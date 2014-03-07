@@ -1,0 +1,71 @@
+Installing and Using UPMurphi 2.0
+-------------------------------------------------------
+
+UPMurphi installation has been tested on the following platforms:
+
+- Recent Linux distributions (extensively tested on Ubuntu) -
+Windows with Cygwin (http://www.cygwin.com/)
+
+In both cases, the following tools must be available (and updated)
+on your system:
+
+- g++ compiler
+- lex and yacc, or (better) their GNU replacements: flex and bison
+
+
+Step 1 - Compiling the UPMurphi compiler (upmc)
+
+This step must be performed only once. Enter the "src" directory,
+call "make" and cross your fingers. If everything is ok, the upmc
+executable (with an .exe extension on Windows) will be compiled.
+
+
+Step 2 - Compiling the model (.m)
+
+Now you must prepare a model to execute planning. The language to
+use is the same of CMurphi with some planning-related extensions,
+which are briefly discussed in the UP_MANUAL.txt file. You can find
+some examples in the "ex" directory. Note that some models have an
+associated library (.c file and possibly the corresponding header
+file .h) which define functions to be called by the model during its
+execution.
+
+To compile a model in the corresponding executable planner, use the
+script ex/compile_mode.sh, calling it with the model name (without
+extension) as the first parameter. For example,
+
+"./compile_model.sh planety-SS99".
+
+The script (which you can inspect and modify to suit your needs)
+invokes the UPMurphi compiler (which it expects to find in the
+"../src" directory), then the g++ compiler (in this case, the script
+assumes that the UPMurphi includes are in the "../include"
+directory).
+
+An executable planner will be generated, with the same name as the
+model.
+
+Note that if your model uses variable rule durations and weights,
+you MUST change the UPMurphi compiler command line used by the script to 
+add the --varweight and/or --varduration switches. 
+As an example, see the ex/compile_mode_var.sh script. For more information
+on these switches, see the UPMurphi user manual.
+
+
+Step 3 - Executing the planner
+
+Once the executable planner has been generated, you can run it to
+start the planning process. Read the UP_MANUAL.txt for a description
+of the available options. The "ex/commandline_example.sh" file
+contains an example of command line relative to the planety-SS99
+domain:
+
+./planety-SS99 -l 200 -m 100 -format:pddl -search:o -output plans.pddl
+
+This command line executes the planner with 100Mb of available
+memory, limiting the exploration to 200 BFS levels, and requiring
+the optimal plan (one for each model start state) to be saved in
+PDDL format in the plans.pddl file.
+
+
+Enjoy!

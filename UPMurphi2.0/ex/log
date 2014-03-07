@@ -1,0 +1,581 @@
+
+======================================================
+
+UPMurphi Release 2.0.b4
+Universal Planner for Discrete Time Hybrid Systems
+
+Copyright (C) 2007 - 2010
+G. Della Penna, B. Intrigila, D. Magazzeni, F. Mercorio
+
+Call with the -c flag or read the license file for terms
+and conditions of use.
+Run this program with "-h" for the list of options.
+Send bugs and comments to giuseppe.dellapenna@univaq.it
+
+======================================================
+
+======================================================
+
+Model: math
+* the state size is 11 bits (rounded up to 4 bytes).
+
+======================================================
+
+=== Analyzing model... ===============================
+
+* State Space Expansion Algorithm: breadth first search.
+  with symmetry algorithm 3 -- Heuristic Small Memory Normalization
+  with permutation trial limit 10.
+* Maximum size of the state space: 784313 states.
+  with states hash-compressed to 40 bits.
+
+
+==========================================================================
+Verbose option selected.  The following is the detailed progress.
+
+Firing startstate start
+Obtained state:
+x: 0
+
+------------------------------
+Unpacking state from queue:
+x: 0
+
+The following next states are obtained:
+
+Firing rule  dec_1 
+Obtained state:
+x: -1
+
+Firing rule  mult_2 
+Obtained state:
+x: 0
+
+Firing rule  add_5 
+Obtained state:
+x: 5
+
+Firing rule  add_1 
+Obtained state:
+x: 1
+
+------------------------------
+Unpacking state from queue:
+x: -1
+
+The following next states are obtained:
+
+Firing rule  dec_1 
+Obtained state:
+x: -2
+
+Firing rule  add_5 
+Obtained state:
+x: 4
+
+Firing rule  add_1 
+Obtained state:
+x: 0
+
+------------------------------
+Unpacking state from queue:
+x: 5
+
+The following next states are obtained:
+
+Firing rule  dec_1 
+Obtained state:
+x: 4
+
+Firing rule  add_5 
+Obtained state:
+x: 10
+
+Firing rule  add_1 
+Obtained state:
+x: 6
+
+------------------------------
+Unpacking state from queue:
+x: 1
+
+The following next states are obtained:
+
+Firing rule  dec_1 
+Obtained state:
+x: 0
+
+Firing rule  add_5 
+Obtained state:
+x: 6
+
+Firing rule  add_1 
+Obtained state:
+x: 2
+
+------------------------------
+Unpacking state from queue:
+x: -2
+
+The following next states are obtained:
+
+Firing rule  dec_1 
+Obtained state:
+x: -3
+
+Firing rule  add_5 
+Obtained state:
+x: 3
+
+Firing rule  add_1 
+Obtained state:
+x: -1
+
+------------------------------
+Unpacking state from queue:
+x: 4
+
+The following next states are obtained:
+
+Firing rule  dec_1 
+Obtained state:
+x: 3
+
+Firing rule  mult_2 
+Obtained state:
+x: 8
+
+Firing rule  add_5 
+Obtained state:
+x: 9
+
+Firing rule  add_1 
+Obtained state:
+x: 5
+
+------------------------------
+Unpacking state from queue:
+x: 10
+
+The following next states are obtained:
+
+Firing rule  dec_1 
+Obtained state:
+x: 9
+
+Firing rule  mult_2 
+Obtained state:
+x: 20
+
+Firing rule  add_5 
+Obtained state:
+x: 15
+
+Firing rule  add_1 
+Obtained state:
+x: 11
+
+------------------------------
+Unpacking state from queue:
+x: 6
+
+The following next states are obtained:
+
+Firing rule  dec_1 
+Obtained state:
+x: 5
+
+Firing rule  mult_2 
+Obtained state:
+x: 12
+
+Firing rule  add_5 
+Obtained state:
+x: 11
+
+Firing rule  add_1 
+Obtained state:
+x: 7
+
+------------------------------
+Unpacking state from queue:
+x: 2
+
+The following next states are obtained:
+
+Firing rule  dec_1 
+Obtained state:
+x: 1
+
+Firing rule  mult_2 
+Obtained state:
+x: 4
+
+Firing rule  add_5 
+Obtained state:
+x: 7
+
+Firing rule  add_1 
+Obtained state:
+x: 3
+
+------------------------------
+Unpacking state from queue:
+x: -3
+
+The following next states are obtained:
+
+Firing rule  add_5 
+Obtained state:
+x: 2
+
+Firing rule  add_1 
+Obtained state:
+x: -2
+
+------------------------------
+Unpacking state from queue:
+x: 3
+
+The following next states are obtained:
+
+Firing rule  dec_1 
+Obtained state:
+x: 2
+
+Firing rule  add_5 
+Obtained state:
+x: 8
+
+Firing rule  add_1 
+Obtained state:
+x: 4
+
+------------------------------
+Unpacking state from queue:
+x: 8
+
+The following next states are obtained:
+
+Firing rule  dec_1 
+Obtained state:
+x: 7
+
+Firing rule  mult_2 
+Obtained state:
+x: 16
+
+Firing rule  add_5 
+Obtained state:
+x: 13
+
+Firing rule  add_1 
+Obtained state:
+x: 9
+
+------------------------------
+Unpacking state from queue:
+x: 9
+
+The following next states are obtained:
+
+Firing rule  dec_1 
+Obtained state:
+x: 8
+
+Firing rule  add_5 
+Obtained state:
+x: 14
+
+Firing rule  add_1 
+Obtained state:
+x: 10
+
+------------------------------
+Unpacking state from queue:
+x: 15
+
+The following next states are obtained:
+
+Firing rule  dec_1 
+Obtained state:
+x: 14
+
+Firing rule  add_5 
+Obtained state:
+x: 20
+
+Firing rule  add_1 
+Obtained state:
+x: 16
+
+------------------------------
+Unpacking state from queue:
+x: 11
+
+The following next states are obtained:
+
+Firing rule  dec_1 
+Obtained state:
+x: 10
+
+Firing rule  add_5 
+Obtained state:
+x: 16
+
+Firing rule  add_1 
+Obtained state:
+x: 12
+
+------------------------------
+Unpacking state from queue:
+x: 12
+
+The following next states are obtained:
+
+Firing rule  dec_1 
+Obtained state:
+x: 11
+
+Firing rule  add_5 
+Obtained state:
+x: 17
+
+Firing rule  add_1 
+Obtained state:
+x: 13
+
+------------------------------
+Unpacking state from queue:
+x: 7
+
+The following next states are obtained:
+
+Firing rule  dec_1 
+Obtained state:
+x: 6
+
+Firing rule  add_5 
+Obtained state:
+x: 12
+
+Firing rule  add_1 
+Obtained state:
+x: 8
+
+------------------------------
+Unpacking state from queue:
+x: 16
+
+The following next states are obtained:
+
+Firing rule  dec_1 
+Obtained state:
+x: 15
+
+Firing rule  add_5 
+Obtained state:
+x: 21
+
+Firing rule  add_1 
+Obtained state:
+x: 17
+
+------------------------------
+Unpacking state from queue:
+x: 13
+
+The following next states are obtained:
+
+Firing rule  dec_1 
+Obtained state:
+x: 12
+
+Firing rule  add_5 
+Obtained state:
+x: 18
+
+Firing rule  add_1 
+Obtained state:
+x: 14
+
+------------------------------
+Unpacking state from queue:
+x: 14
+
+The following next states are obtained:
+
+Firing rule  dec_1 
+Obtained state:
+x: 13
+
+Firing rule  add_5 
+Obtained state:
+x: 19
+
+Firing rule  add_1 
+Obtained state:
+x: 15
+
+------------------------------
+Unpacking state from queue:
+x: 17
+
+The following next states are obtained:
+
+Firing rule  dec_1 
+Obtained state:
+x: 16
+
+Firing rule  add_5 
+Obtained state:
+x: 22
+
+Firing rule  add_1 
+Obtained state:
+x: 18
+
+------------------------------
+Unpacking state from queue:
+x: 21
+
+The following next states are obtained:
+
+Firing rule  dec_1 
+Obtained state:
+x: 20
+
+------------------------------
+Unpacking state from queue:
+x: 18
+
+The following next states are obtained:
+
+Firing rule  dec_1 
+Obtained state:
+x: 17
+
+Firing rule  add_5 
+Obtained state:
+x: 23
+
+Firing rule  add_1 
+Obtained state:
+x: 19
+
+------------------------------
+Unpacking state from queue:
+x: 19
+
+The following next states are obtained:
+
+Firing rule  dec_1 
+Obtained state:
+x: 18
+
+Firing rule  add_5 
+Obtained state:
+x: 24
+
+Firing rule  add_1 
+Obtained state:
+x: 20
+
+------------------------------
+Unpacking state from queue:
+x: 22
+
+The following next states are obtained:
+
+Firing rule  dec_1 
+Obtained state:
+x: 21
+
+------------------------------
+Unpacking state from queue:
+x: 23
+
+The following next states are obtained:
+
+Firing rule  dec_1 
+Obtained state:
+x: 22
+
+------------------------------
+Unpacking state from queue:
+x: 24
+
+The following next states are obtained:
+
+Firing rule  dec_1 
+Obtained state:
+x: 23
+
+
+======================================================
+
+Model exploration complete (in 0.10 seconds).
+	78 rules fired
+	1 start states
+	28 reachable states
+	1 goals found
+
+
+=== Building model dynamics... =======================
+
+* Transition Graph mode: Memory Image
+* Maximum size of graph: 869565 transitions.
+
+
+======================================================
+
+Model dynamics rebuilding complete (in 0.10 seconds).
+	28 states
+	77 transitions
+	out degree: min 1 max 4 avg 2.75
+
+
+=== Finding control paths... =========================
+
+* Search Algorithm: Optimal Plan.
+
+
+======================================================
+
+Control paths calculation complete (in 0.10 seconds).
+	28 states
+	27 controllable
+
+
+=== Collecting plans... ==============================
+
+
+======================================================
+
+Plan(s) generation complete (in 0.10 seconds).
+	1 plans
+	plan length (actions): min 3 max 3 avg 3.00
+	plan duration (time): min 0 max 0 avg 0.00
+	plan weight: min 0 max 0 avg 0.00
+
+
+=== Writing final results... =========================
+
+* Output format: PDDL+
+* Output target: stdout.
+
+; --Plan #00001--------------------------
+; ---------------------------------------
+(000)  add_5  [000]
+(000)  add_5  [000]
+(000)  mult_2  [000]
+; ---------------------------------------
+; --Plan duration: 0000, weight: 0000----
+; ---------------------------------------
+
+
+======================================================
+
+Results Written (in 0.10 seconds).
+
+
