@@ -111,7 +111,9 @@ double world_class::get_h_val()
 //WP
 void world_class::set_h_val()
 {
-  double h_val = 0;
+  upm_rpg ff_rpg;// = upm_rpg();
+  double h_val = ff_rpg.get_rpg_value();
+//  double h_val = 0;
   mu_h_n.value(h_val);
 }
 //WP

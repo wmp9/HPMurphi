@@ -9,6 +9,7 @@
 */
  
 #include <cassert>
+#include <vector>
 
 #define SSQ_PAGING_FILE_TOP "SSQ_PAGING_FILE_1"
 #define SSQ_PAGING_FILE_BOTTOM "SSQ_PAGING_FILE_2"
@@ -32,7 +33,7 @@ state::print ()
   theworld.print ();
 };
 
-
+// WP
 double
 state::get_f_val()
 {
@@ -40,6 +41,7 @@ state::get_f_val()
 	return f_val;
 }
 
+// WP
 void
 state::set_f_val()
 {
@@ -54,6 +56,7 @@ state::get_h_val()
 	return h_val;
 };
 
+// WP
 void
 state::set_h_val()
 {
@@ -68,10 +71,27 @@ state::get_g_val()
 	return g_n;
 };
 
+// WP
 void
 state::set_g_val(double g_val)
 {
 	theworld.set_g_val(g_val);
+};
+
+// WP
+std::vector<mu_0_boolean*>
+state::get_mu_bools()
+{
+	std::vector<mu_0_boolean*> aw = theworld.get_mu_bools();
+	return (aw);
+}
+
+std::set<std::string, bool> get_bool_values(){
+
+};
+
+std::set<std::string, double> get_double_values(){
+
 };
 
 /****************************************

@@ -113,6 +113,13 @@ struct undefinestmt:stmt {
   virtual const char *generate_code();
 };
 
+// WP
+struct var_names_stmt:stmt {
+  designator *target;
+   var_names_stmt(designator * target);
+  virtual const char *generate_code();
+};
+
 struct multisetaddstmt:stmt {
   designator *element;
   designator *target;

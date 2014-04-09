@@ -29,6 +29,11 @@
 #include "upm_graph.cpp"
 #include "upm_storage.cpp"
 #include "upm_system.cpp"
+#include "upm_rpg.cpp"
+#include <iostream>
+#include <string>
+#include <set>
+#include <list>
 
 /****************************************
   real numbers extension

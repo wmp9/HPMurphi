@@ -10,6 +10,7 @@
 
 #include "upm_statecl.hpp"
 #include <limits.h>
+#include <vector>
 
 // if you change this,
 // please make sure that you change a lot of other things
@@ -709,6 +710,7 @@ public:
   void clear();			/* clear every variable. */
   void undefine();		/* undefine every variable. */
   void reset();			/* uninitialize every variable. */
+  std::vector<mu_0_boolean*> get_mu_bools();		/* get variable names from state WP */
   /*
    * this is something of a different approach than previous versions--
    * we let the translation of the world

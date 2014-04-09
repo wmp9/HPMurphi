@@ -13,6 +13,10 @@
 #else
 #define BLOCKS_IN_WORLD (((BITS_IN_WORLD + (4*BITS( BIT_BLOCK )) - 1 ) / (4*BITS(BIT_BLOCK )))*4)
 #endif
+#include <string>
+#include <set>
+#include <vector>
+#include <iostream>
 
 /****************************************   // added by Uli
   class for pointer to previous state
@@ -64,7 +68,7 @@ public:
 #ifdef HASHC
 hash_function *h3;
 #endif
-
+class mu_0_boolean;
 class state {
 public:
   BIT_BLOCK bits[BLOCKS_IN_WORLD];
@@ -182,6 +186,10 @@ public:
     return (memcmp(&bits, &other.bits, BLOCKS_IN_WORLD) != 0);
   };
 
+  std::set<std::string, bool> get_bool_values();
+
+  std::set<std::string, double> get_double_values();
+
   //WP get g(n)+h(n) value of a state
   double get_f_val();
 
@@ -199,6 +207,10 @@ public:
 
   //WP setting a g(n) value for a state
   void set_g_val(double g_n);
+
+
+  //WP getting the names of all declared variables
+  std::vector<mu_0_boolean*> get_mu_bools();
 
   // scribbles over the current world variables. 
   void print();

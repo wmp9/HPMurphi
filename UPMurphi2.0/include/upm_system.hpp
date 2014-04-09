@@ -117,7 +117,7 @@ class RuleManager
   unsigned long rules_fired;
   unsigned long num_transitions; //actual number of distinct non-error transitions explored
   unsigned long * NumTimesFired; // array for storing the number of times fired for each rule
-  NextStateGenerator * generator;
+//  NextStateGenerator * generator;
 
   setofrules * EnabledTransition();
   bool AllNextStates(setofrules * fire);
@@ -137,6 +137,7 @@ public:
   ~RuleManager();
   state * RandomNextState();
   state * SeqNextState();
+  NextStateGenerator * generator;
   bool AllNextStates();
   void ResetRuleNum();
   void SetRuleNum(RULE_INDEX_TYPE r);

@@ -9,6 +9,9 @@
 */
 
 #include "mu.hpp"
+#include <iostream>
+#include <typeinfo>
+#include <string>
 
 /* NOTE: 
 
@@ -478,6 +481,10 @@ const char *arraytypedecl::generate_decl()
 	    "  void clear() { for (int i = 0; i < %d; i++) array[i].clear(); };\n\n"
 	    "  void undefine() { for (int i = 0; i < %d; i++) array[i].undefine(); };\n\n"
 	    "  void reset() { for (int i = 0; i < %d; i++) array[i].reset(); };\n\n"
+    	/* WP: */
+    	"  void var_names()\n"
+    	"  {\n"
+    	"    for (int i = 0; i < %d; i++) cout<< array[i].name << endl;\n  };\n\n"
 	    "  void to_state(state *thestate)\n"
 	    "  {\n"
 	    "    for (int i = 0; i < %d; i++)\n"
@@ -490,7 +497,8 @@ const char *arraytypedecl::generate_decl()
 	    indextype->getsize(),	/* body of clear */
 	    indextype->getsize(),	/* body of undefine */
 	    indextype->getsize(),	/* body of reset */
-	    indextype->getsize()	/* body of to_state */
+	    indextype->getsize(),	/* body of to_state */
+	    indextype->getsize()	/* WP: BODY OF HOW_ABOUT_THEM_VARS_NAMES_ARRAY_PRINT */
 	    //      indextype->getsize()  /* body of from_state */
 	);
 
@@ -748,7 +756,9 @@ const char *multisettypedecl::generate_decl()
 	    "  void clear() { for (int i = 0; i < %d; i++) { array[i].undefine(); valid[i].value(FALSE); } current_size = 0; };\n\n"
 	    "  void undefine() { for (int i = 0; i < %d; i++) { array[i].undefine(); valid[i].value(FALSE); } current_size = 0; };\n\n"
 	    "  void reset() { for (int i = 0; i < %d; i++) { array[i].undefine(); valid[i].value(FALSE); } current_size = 0; };\n\n"
-	    "  void to_state(state *thestate)\n"
+    	/* WP: */
+    	"  void var_names() { for (int i = 0; i < %d; i++) { cout << array[i].name << endl; cout << valid[i].name << endl; } };\n\n"
+    	"  void to_state(state *thestate)\n"
 	    "  {\n"
 	    "    for (int i = 0; i < %d; i++)\n"
 	    "     {\n"
@@ -766,6 +776,7 @@ const char *multisettypedecl::generate_decl()
 	    "  int get_current_size() const" "  {\n" "    int tmp = 0;\n" "    for (int i = 0; i < %d; i++)\n" "      if (valid[i].value()) tmp++;\n" "    return tmp;\n" "  };\n\n " "  void update_size()\n" "  {\n" "    current_size = 0;\n" "    for (int i = 0; i < %d; i++)\n" "      if (valid[i].value()) current_size++;\n" "    if (max_size<current_size) max_size = current_size;\n" "  };\n\n ", maximum_size,	/* body of clear */
 	    maximum_size,	/* body of undefine */
 	    maximum_size,	/* body of reset */
+	    maximum_size, 	/* WP: BODY OF VAR NAMES*/
 	    maximum_size,	/* body of to_state */
 //       maximum_size, /* body of from_state */
 	    maximum_size,	/* body of get_current_size */
@@ -1062,6 +1073,13 @@ const char *recordtypedecl::generate_decl()
     fprintf(codefile, "  void reset() {\n");
     for (f = fields; f != NULL; f = f->getnext())
       fprintf(codefile, "    %s.reset();\n",
+	      f->getvalue()->generate_code());
+    fprintf(codefile, " };\n");
+
+    /* WP: */
+    fprintf(codefile, "  void var_names() {\n");
+    for (f = fields; f != NULL; f = f->getnext())
+      fprintf(codefile, "    cout << %s.name << endl;\n",
 	      f->getvalue()->generate_code());
     fprintf(codefile, " };\n");
 
@@ -2728,6 +2746,19 @@ const char *undefinestmt::generate_code()
   return "ERROR!";
 }
 
+
+/********************
+  code for var_names_stmt
+ ********************/
+const char *var_names_stmt::generate_code()
+{
+  // Gotta figure this one out--
+  // current best idea: give every object a clear method.
+  fprintf(codefile, "%s.name;\n", target->generate_code());
+  return "ERROR!";
+}
+
+
 /********************
   code for multisetaddstmt
   ********************/
@@ -3930,6 +3961,26 @@ void make_undefine(ste * globals)
   fprintf(codefile, "}\n");
 }
 
+/* WP: */
+void make_get_mu_bools_aux(vardecl * var)
+{
+	std::string b_type("mu_0_boolean");
+	if (var->gettype()->generate_code() == b_type)
+	{
+		fprintf(codefile, "      awesome.push_back(&(%s));\n", var->generate_code() );
+	}
+}
+
+/* WP: TODO */
+void make_get_mu_bools(ste * globals)
+{
+  fprintf(codefile, "std::vector<mu_0_boolean*> world_class::get_mu_bools()\n"
+		  "{\n"
+		  	  "	  std::vector<mu_0_boolean*> awesome;" "\n\n");
+  map_vars(globals, &make_get_mu_bools_aux);
+  fprintf(codefile, "    return awesome; }\n");
+}
+
 /* the world::reset() function resets every variable to an resetd state. */
 void make_reset_aux(vardecl * var)
 {
@@ -4000,6 +4051,7 @@ void make_world(ste * globals)
   make_clear(globals);
   make_undefine(globals);
   make_reset(globals);
+  make_get_mu_bools(globals); /* WP: */
   make_print_world(globals);
   make_print_pddlworld(globals);
   make_print_statistic(globals);
@@ -4437,6 +4489,7 @@ const char *program::generate_code()
   fprintf(codefile, "/********************\n  Include\n");
   fprintf(codefile, " ********************/\n");
   fprintf(codefile, "#include \"upm_prolog.hpp\"\n");
+  fprintf(codefile, "#include <typeinfo>\n");
 
   /* generate dependent stuff. */
   fprintf(codefile, "\n/********************\n  Decl declaration\n");

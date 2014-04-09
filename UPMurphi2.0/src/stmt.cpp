@@ -169,6 +169,14 @@ undefinestmt::undefinestmt(designator * target)
 		  "Target of UNDEFINE statement must be a variable.");
 }
 
+// WP
+var_names_stmt::var_names_stmt(designator * target)
+:  target(target)
+{
+  Error.CondError(!target->islvalue(),
+		  "Target of VAR_NAMES statement must be a variable.");
+}
+
 multisetaddstmt::multisetaddstmt(designator * element, designator * target)
 :  element(element), target(target)
 {

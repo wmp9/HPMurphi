@@ -104,6 +104,11 @@
 #include "upm_graph.hpp"
 #include "upm_storage.hpp"
 #include "upm_system.hpp"
+#include "upm_rpg.hpp"
+#include <iostream>
+#include <string>
+#include <set>
+#include <list>
 
 
 /****************************************

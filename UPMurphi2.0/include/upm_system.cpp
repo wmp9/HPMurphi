@@ -837,7 +837,7 @@ RuleManager::NextState()
 #ifdef HASHC
   if (args->trace_file.value) {
     workingstate->previous.set(NumCurState);
-  	workingstate->set_g_val(99);
+  	workingstate->set_g_val(curstate->get_g_val()+1);
     workingstate->set_h_val();
     workingstate->get_f_val();
     //TODO: F value add
