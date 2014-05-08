@@ -12,6 +12,10 @@
 #include <iostream>
 #include <typeinfo>
 #include <string>
+#include <vector>
+#include <algorithm>
+#include <set>
+#include <iterator>
 
 /* NOTE: 
 
@@ -349,10 +353,42 @@ const char *arraytypedecl::generate_decl()
       mu_name = tsprintf("mu_%s", name);
     }
 
-    /* declare class with set_self, constructor and destructor */
-    fprintf(codefile, "class %s\n" "{\n" " public:\n" "  %s array[ %d ];\n" " public:\n" "  char *name;\n" "  char longname[BUFFER_SIZE/4];\n" "  void set_self( const char *n, int os);\n" "  void set_self_2( const char *n, const char *n2, int os);\n" "  void set_self_ar( const char *n, const char *n2, int os);\n" "  %s (const char *n, int os) { set_self(n, os); };\n" "  %s ( void ) {};\n" "  virtual ~%s ();\n", mu_name,	/* class name */
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    /* declare class with set_self, constructor and destructor
+     *
+     *
+     * WP WP WP WP WP WP WP WP WP WP WP WP WP WP WP WP WP WP WP WP WP WP WP WP WP WP WP WP WP WP
+     *
+     * ADDED THE SUPERCLASS TO DECLARATION OF THE NEW TYPE ARRAY CLASS TO EASIER GET THE COMPLEX VARIABLES FROM THE COMPILED MODEL!
+     *
+     * TODO: CREATE A FIELD IN EACH OF THE NEWLY CREATED TYPES TO SHOW HOW MANY DIMENSIONS DOES THE ARRAY OF BOOLEANS HAVE!!!!!!!!!!!!!!!!!!!!!!!!
+     *
+     * */
+
+
+
+    fprintf(codefile, "class %s:public mu_1__type_super\n" "{\n" " public:\n" "  %s array[ %d ]; \n#define awesome_mu_00_%s_%s 1 \n" " public:\n" "  char *name;\n" "  char longname[BUFFER_SIZE/4];\n" "  void set_self( const char *n, int os);\n" "  void set_self_2( const char *n, const char *n2, int os);\n" "  void set_self_ar( const char *n, const char *n2, int os);\n" "  %s (const char *n, int os) { set_self(n, os); };\n" "  %s ( void ) {};\n" "  virtual ~%s ();\n", mu_name,	/* class name */
 	    elementtype->generate_code(),	/* array elt type */
 	    indextype->getsize(),	/* array size */
+	    elementtype->generate_code(),	/* array elt type */
+	    mu_name,
 	    mu_name,		/* name for first constructor */
 	    mu_name,		/* name for second constructor */
 	    mu_name);		/* destructor name */
@@ -481,10 +517,63 @@ const char *arraytypedecl::generate_decl()
 	    "  void clear() { for (int i = 0; i < %d; i++) array[i].clear(); };\n\n"
 	    "  void undefine() { for (int i = 0; i < %d; i++) array[i].undefine(); };\n\n"
 	    "  void reset() { for (int i = 0; i < %d; i++) array[i].reset(); };\n\n"
-    	/* WP: */
-    	"  void var_names()\n"
-    	"  {\n"
-    	"    for (int i = 0; i < %d; i++) cout<< array[i].name << endl;\n  };\n\n"
+
+
+    	/*
+    	 *  WP WP WP WP WP WP WP WP WP WP WP WP WP WP WP WP WP WP WP WP WP WP WP WP WP WP WP WP WP
+    	 *
+    	 * THIS CODE IS CREATED IN EVERY SINGLE NEWLY CREATED mu_1__type_X OBJECT!
+    	 * (HAVEN'T FIGURED WHERE DO THE OTHER CODE GENERATION SNIPPETS ACTUALLY PUT THE CODE :)
+    	 * AND I'VE PUT THE CODE EVERYWHERE. AND I MEAN E-V'RY-WHEEEEEEEEEREEE! )
+    	 *
+    	 * */
+
+
+    	"  int array_dim() {\n\n"
+        "  const char* mb = \"mu_0_boolean\";\n"
+        "  const char* mt = \"mu_1__type\";\n\n"
+    	"	int dim = 1;\n"
+
+    	"	#ifdef awesome_mu_00_mu_0_boolean_%s\n"
+    	"		return 1;\n"
+    	"	#else \n"
+    	""
+    	"	if (strstr(typeid(array).name(), mt) != NULL){\n"
+    	"			dim += array[0].array_dim();\n"
+    	"  			return dim;\n"
+    	"	}\n"
+    	"   else { return (-1); }\n"
+    	"   \n\n"
+    	"	#endif \n}\n"
+
+
+
+
+		/*
+		 *  WP WP WP WP WP WP WP WP WP WP WP WP WP WP WP WP WP WP WP WP WP WP WP WP WP WP WP WP WP
+		 *
+		 * THIS CODE WILL GO THROUGH EACH mu_1_type_X OBJECT AND RETURN A VECTOR OF
+		 * SINGLE mu_0_boolean VARS SO THEIR VALUES CAN EASILY BE CHECKED REGARDLESS OF
+		 * THE NUMBER OF PARAMETERS IN THE PREDICATE.
+		 *
+		 *
+		 * */
+
+
+		"  std::vector<mu_0_boolean*> bool_array() {\n\n"
+    	"	std::vector<mu_0_boolean*> barr;\n"
+		"	#ifdef awesome_mu_00_mu_0_boolean_%s\n"
+    	"		for (int ix = 0; ix < %d; ix++){ barr.push_back(&(array[ix])); }\n"
+    	"		return barr;\n"
+		"	#else \n"
+		""
+		"		for (int ix = 0; ix < %d; ix++){\n"
+		"			for (int ix2 = 0; ix2 < %d; ix2++){ barr.push_back(&(array[ix][ix2+1])); }\n"
+		"		}\n"
+		"		return barr;\n"
+		"	   \n\n"
+		"	#endif \n}\n"
+
 	    "  void to_state(state *thestate)\n"
 	    "  {\n"
 	    "    for (int i = 0; i < %d; i++)\n"
@@ -497,8 +586,13 @@ const char *arraytypedecl::generate_decl()
 	    indextype->getsize(),	/* body of clear */
 	    indextype->getsize(),	/* body of undefine */
 	    indextype->getsize(),	/* body of reset */
-	    indextype->getsize(),	/* body of to_state */
-	    indextype->getsize()	/* WP: BODY OF HOW_ABOUT_THEM_VARS_NAMES_ARRAY_PRINT */
+	    mu_name,				/* WP: CLASS NAME FOR array_dim*/
+	    mu_name,				/* WP: CLASS NAME FOR bool_array*/
+	    indextype->getsize(),	/* body of bool_array in #ifdef */
+	    indextype->getsize(),	/* body of bool_array in #else */
+	    indextype->getsize(),	/* body of bool_array in #else */
+	    indextype->getsize()	/* body of to_state */
+//	    indextype->getsize()	/* WP: BODY OF ARRAY_DIM */
 	    //      indextype->getsize()  /* body of from_state */
 	);
 
@@ -757,7 +851,18 @@ const char *multisettypedecl::generate_decl()
 	    "  void undefine() { for (int i = 0; i < %d; i++) { array[i].undefine(); valid[i].value(FALSE); } current_size = 0; };\n\n"
 	    "  void reset() { for (int i = 0; i < %d; i++) { array[i].undefine(); valid[i].value(FALSE); } current_size = 0; };\n\n"
     	/* WP: */
-    	"  void var_names() { for (int i = 0; i < %d; i++) { cout << array[i].name << endl; cout << valid[i].name << endl; } };\n\n"
+        	"  int array_dim() {\n\n"
+        	"	int dim = 1;\n"
+        	"    while(true){\n"
+        	"		if(typeid(array).name == \"mu_0_boolean\"){\n"
+        	"			return dim;\n"
+        	"		}\n"
+        	"		else if (typeid(array).name  CONTAINS \"mu_1__type_X\"){\n"
+        	"			dim += array[0].array_dim();\n"
+        	"  			return dim;\n"
+        	"		}\n"
+        	"	}\n"
+        	"  }\n\n"
     	"  void to_state(state *thestate)\n"
 	    "  {\n"
 	    "    for (int i = 0; i < %d; i++)\n"
@@ -776,7 +881,7 @@ const char *multisettypedecl::generate_decl()
 	    "  int get_current_size() const" "  {\n" "    int tmp = 0;\n" "    for (int i = 0; i < %d; i++)\n" "      if (valid[i].value()) tmp++;\n" "    return tmp;\n" "  };\n\n " "  void update_size()\n" "  {\n" "    current_size = 0;\n" "    for (int i = 0; i < %d; i++)\n" "      if (valid[i].value()) current_size++;\n" "    if (max_size<current_size) max_size = current_size;\n" "  };\n\n ", maximum_size,	/* body of clear */
 	    maximum_size,	/* body of undefine */
 	    maximum_size,	/* body of reset */
-	    maximum_size, 	/* WP: BODY OF VAR NAMES*/
+//	    maximum_size, 	/* WP: BODY OF array_dim*/
 	    maximum_size,	/* body of to_state */
 //       maximum_size, /* body of from_state */
 	    maximum_size,	/* body of get_current_size */
@@ -1077,10 +1182,21 @@ const char *recordtypedecl::generate_decl()
     fprintf(codefile, " };\n");
 
     /* WP: */
-    fprintf(codefile, "  void var_names() {\n");
+    fprintf(codefile, "  int array_dim() {\n");
     for (f = fields; f != NULL; f = f->getnext())
-      fprintf(codefile, "    cout << %s.name << endl;\n",
-	      f->getvalue()->generate_code());
+      fprintf(codefile, "  "
+    	    	"	int dim = 1;\n"
+    	    	"    while(true){\n"
+    	    	"		if(typeid(array).name() == \"mu_0_boolean\"){\n"
+    	    	"			return dim;\n"
+    	    	"		}\n"
+    	    	"		else if (typeid(array).name()  CONTAINS \"mu_1__type_X\"){\n"
+    	    	"			dim += array[0].array_dim();\n"
+    	    	"  			return dim;\n"
+    	    	"		}\n"
+    	    	"	}\n"
+    	    	"  }\n\n"
+	      /*f->getvalue()->generate_code()*/);
     fprintf(codefile, " };\n");
 
     fprintf(codefile, "  void print(FILE *target, const char *separator) {\n");
@@ -2589,6 +2705,24 @@ const char *assignment::generate_code()
   return "ERROR!";
 }
 
+/*
+ * WP WP WP WP WP WP WP WP WP WP WP WP
+ * get the effects of an action (fact names)
+ */
+const char *assignment::get_target()
+{
+	return (target->generate_code());
+}
+
+/*
+ * WP WP WP WP WP WP WP WP WP WP WP WP
+ * get the effects of an action (fact values)
+ */
+const char *assignment::get_src()
+{
+	return (src->generate_code());
+}
+
 /********************
   code for whilestmt
  ********************/
@@ -2748,13 +2882,24 @@ const char *undefinestmt::generate_code()
 
 
 /********************
-  code for var_names_stmt
+  code for array_dim_stmt
  ********************/
-const char *var_names_stmt::generate_code()
+const char *array_dim_stmt::generate_code()
 {
   // Gotta figure this one out--
   // current best idea: give every object a clear method.
-  fprintf(codefile, "%s.name;\n", target->generate_code());
+  fprintf(codefile,     	"  int array_dim() {\n\n"
+	    	"	int dim = 1;\n"
+	    	"    while(true){\n"
+	    	"		if(typeid(array).name() == \"mu_0_boolean\"){\n"
+	    	"			return dim;\n"
+	    	"		}\n"
+	    	"		else if (typeid(array).name()  CONTAINS \"mu_1__type_X\"){\n"
+	    	"			dim += array[0].array_dim();\n"
+	    	"  			return dim;\n"
+	    	"		}\n"
+	    	"	}\n"
+	    	"  }\n\n");
   return "ERROR!";
 }
 
@@ -3526,6 +3671,167 @@ const char *simplerule::generate_code()
   fprintf(codefile, "    return %s;\n", condition->generate_code());
   fprintf(codefile, "  }\n" "\n");
 
+
+  /*
+   * WP WP WP WP WP WP WP WP WP WP WP WP WP WP WP WP WP WP WP WP WP WP WP WP WP WP WP WP WP WP
+   *
+   * returns grounded preconditions!!!
+   *
+   */
+
+  // generate array of preconditions(r)
+  fprintf(codefile, "  std::vector<std::string> precond_array(RULE_INDEX_TYPE r)\n" "  {\n"
+		  ""
+		  "    std::vector<std::string> preconds;\n");
+  generate_rule_params_assignment(enclosures);  // RESPONSIBLE FOR CREATING THE RIGHT MU_BLOCKS FOR THE PRECONDITION!
+  generate_rule_params_choose(enclosures);
+  generate_rule_aliases(enclosures);
+
+  fprintf(codefile, "\n");
+
+  std::set<std::string> precondset;
+
+
+  if(condition->get_left() != NULL){
+	  std::string lst(condition->get_left()->generate_code_left());
+	  std::string rst(condition->get_left()->generate_code_right());
+
+	  precondset.insert(lst);
+	  precondset.insert(rst);
+
+
+	  if(condition->get_left()->get_left() != NULL){
+		  std::string lst(condition->get_left()->get_left()->generate_code_left());
+		  std::string rst(condition->get_left()->get_left()->generate_code_right());
+
+		  precondset.insert(lst);
+		  precondset.insert(rst);
+	  }
+
+	  if(condition->get_left()->get_right() != NULL){
+		  std::string lst(condition->get_left()->get_right()->generate_code_left());
+		  std::string rst(condition->get_left()->get_right()->generate_code_right());
+
+		  precondset.insert(lst);
+		  precondset.insert(rst);
+	  }
+
+  }
+
+  if(condition->get_right() != NULL){
+	  std::string lst(condition->get_right()->generate_code_left());
+	  std::string rst(condition->get_right()->generate_code_right());
+
+	  precondset.insert(lst);
+	  precondset.insert(rst);
+
+
+	  if(condition->get_right()->get_left() != NULL){
+		  std::string lst(condition->get_right()->get_left()->generate_code_left());
+		  std::string rst(condition->get_right()->get_left()->generate_code_right());
+
+		  precondset.insert(lst);
+		  precondset.insert(rst);
+	  }
+
+	  if(condition->get_right()->get_right() != NULL){
+		  std::string lst(condition->get_right()->get_right()->generate_code_left());
+		  std::string rst(condition->get_right()->get_right()->generate_code_right());
+
+		  precondset.insert(lst);
+		  precondset.insert(rst);
+	  }
+
+  }
+
+  std::string ulst(condition->generate_code_left());
+  std::string urst(condition->generate_code_right());
+
+  precondset.insert(ulst);
+  precondset.insert(urst);
+
+
+
+  std::set<std::string>::iterator it;
+  for (it=precondset.begin(); it!=precondset.end(); ++it){
+
+	  if (((*it).compare("mu_true")!=0) && ((*it).find("mu__boolexpr")==std::string::npos)) {
+
+		  fprintf(codefile, "		preconds.push_back(%s.name); \n", it->c_str());
+
+	  }
+  }
+
+
+  fprintf(codefile, "\n    return preconds;\n");
+  fprintf(codefile, "  }\n" "\n");
+
+
+
+  /*
+   * WP WP WP WP WP WP WP WP WP WP WP WP WP WP WP WP WP WP WP WP WP WP WP WP WP WP WP WP WP WP
+   *
+   * returns grounded effects of an action!!!
+   *
+   * TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO
+   */
+
+
+  // generate array of effects(r)
+  fprintf(codefile, "  std::vector<mu_0_boolean*> effects_array(RULE_INDEX_TYPE r)\n" "  {\n"
+		  ""
+		  "    std::vector<mu_0_boolean*> effs;\n");
+
+  fprintf(codefile, "\n");
+
+  generate_rule_params_assignment(enclosures);
+  generate_rule_aliases(enclosures);
+  locals->generate_decls();
+
+  fprintf(codefile, "\n");
+
+  // gets the m_0_boolean* grounded fact
+      for (stmt * b = body; b != NULL; b = b->next) {
+    	  if (b->get_target() != "ERROR"){
+    		  fprintf(codefile, "    effs.push_back(&(%s));  // %s \n", b->get_target(), b->get_src());
+    	  }
+      }
+
+//      for (stmt * b = body; b != NULL; b = b->next) b->generate_code();
+
+  fprintf(codefile, "\n    return effs;\n");
+  fprintf(codefile, "  }\n" "\n");
+
+
+
+
+  // generate array of add effects(r)
+  fprintf(codefile, "  std::vector<std::string> effects_add_array(RULE_INDEX_TYPE r)\n" "  {\n"
+		  ""
+		  "    std::vector<std::string> aeffs;\n");
+
+  fprintf(codefile, "\n");
+
+  generate_rule_params_assignment(enclosures);
+  generate_rule_aliases(enclosures);
+  locals->generate_decls();
+
+  fprintf(codefile, "\n");
+
+  // gets the m_0_boolean* grounded fact
+      for (stmt * b = body; b != NULL; b = b->next) {
+    	  std::string src_str(b->get_src());
+    	  if ((b->get_target() != "ERROR") && (b->get_src() != "ERROR") && (src_str.compare("mu_false")!=0)){
+    		  fprintf(codefile, "    aeffs.push_back(%s.name); //  %s \n", b->get_target(), b->get_src());
+    	  }
+      }
+
+//      for (stmt * b = body; b != NULL; b = b->next) b->generate_code();
+
+  fprintf(codefile, "\n    return aeffs;\n");
+  fprintf(codefile, "  }\n" "\n");
+
+
   // generate NextRule(r)
     fprintf(codefile,
 	    "  void NextRule(RULE_INDEX_TYPE & what_rule)\n"
@@ -3871,7 +4177,8 @@ void make_print_world(ste * globals)
 	"//WP\n"
 	"void world_class::set_h_val()\n"
 	"{\n"
-	"  double h_val = 0;\n"
+	"  //	double h_val = 0; \n"
+	"  double h_val = upm_rpg::getInstance().get_rpg_value();\n"
 	"  mu_h_n.value(h_val);\n"
 	"}\n");
 
@@ -3978,8 +4285,37 @@ void make_get_mu_bools(ste * globals)
 		  "{\n"
 		  	  "	  std::vector<mu_0_boolean*> awesome;" "\n\n");
   map_vars(globals, &make_get_mu_bools_aux);
-  fprintf(codefile, "    return awesome; }\n");
+  fprintf(codefile, "    return awesome; \n}\n");
 }
+
+
+/* WP: */
+void make_get_mu_bool_arrays_aux(vardecl * var)
+{
+	std::string ba_type("mu_1__type");
+	std::string s_comp(var->gettype()->generate_code());
+	if (s_comp.find(ba_type) != std::string::npos)
+	{
+		fprintf(codefile, "      interm = %s.bool_array();\n"
+				"		var_arrays.insert(var_arrays.end(), interm.begin(), interm.end());\n", var->generate_code() );
+	}
+}
+
+/* WP: TODO */
+void make_get_mu_bool_arrays(ste * globals)
+{
+  fprintf(codefile, "std::vector<mu_0_boolean*> world_class::get_mu_bool_arrays()\n"
+		  "{\n"
+		  	  "	  std::vector<mu_0_boolean*> var_arrays;\n"
+		  	  "   std::vector<mu_0_boolean*> interm;\n"
+		      "\n");
+  map_vars(globals, &make_get_mu_bool_arrays_aux);
+  fprintf(codefile, "    return var_arrays; \n}\n");
+}
+
+
+
+
 
 /* the world::reset() function resets every variable to an resetd state. */
 void make_reset_aux(vardecl * var)
@@ -4052,6 +4388,7 @@ void make_world(ste * globals)
   make_undefine(globals);
   make_reset(globals);
   make_get_mu_bools(globals); /* WP: */
+  make_get_mu_bool_arrays(globals); /* WP: */
   make_print_world(globals);
   make_print_pddlworld(globals);
   make_print_statistic(globals);
@@ -4276,6 +4613,82 @@ RULE_INDEX_TYPE generate_ruleset()
   fprintf(codefile,
 	  "Error.Notrace(\"Internal: NextStateGenerator -- checking condition for nonexisting rule.\");\n"
 	  "}\n");
+
+
+  // generate precond_array(r)
+    fprintf(codefile,
+  	  "std::vector<std::string> precond_array(RULE_INDEX_TYPE r)\n" "{\n"
+  	  "  category = CONDITION;\n");
+    i = 0;
+    r = 0;
+    for (sr = simplerule::SimpleRuleList; sr != NULL;
+         sr = sr->NextSimpleRule) {
+      if (sr->getclass() == rule::Simple && sr != error_rule) {
+        if (i != 0)
+  	fprintf(codefile,
+  		"  if (r>=%lu && r<=%lu) return R%lu.precond_array(r-%lu);\n",
+  		i, i + sr->getsize() - 1, r, i);
+        else
+  	fprintf(codefile,
+  		"  if (r<=%lu) return R%lu.precond_array(r-%lu);\n",
+  		i + sr->getsize() - 1, r, i);
+        r++;
+        i += sr->getsize();
+      }
+    }
+    fprintf(codefile,
+  	  "Error.Notrace(\"Internal: NextStateGenerator -- checking preconditions for nonexisting rule.\");\n"
+  	  "}\n");
+
+
+    // generate effects_array(r)
+      fprintf(codefile,
+    	  "std::vector<mu_0_boolean*> effects_array(RULE_INDEX_TYPE r)\n" "{\n");
+      i = 0;
+      r = 0;
+      for (sr = simplerule::SimpleRuleList; sr != NULL;
+           sr = sr->NextSimpleRule) {
+        if (sr->getclass() == rule::Simple && sr != error_rule) {
+          if (i != 0)
+    	fprintf(codefile,
+    		"  if (r>=%lu && r<=%lu) return R%lu.effects_array(r-%lu);\n",
+    		i, i + sr->getsize() - 1, r, i);
+          else
+    	fprintf(codefile,
+    		"  if (r<=%lu) return R%lu.effects_array(r-%lu);\n",
+    		i + sr->getsize() - 1, r, i);
+          r++;
+          i += sr->getsize();
+        }
+      }
+      fprintf(codefile,
+    	  "Error.Notrace(\"Internal: NextStateGenerator -- checking effects for nonexisting rule.\");\n"
+    	  "}\n");
+
+
+      // generate effects_add_array(r)
+        fprintf(codefile,
+      	  "std::vector<std::string> effects_add_array(RULE_INDEX_TYPE r)\n" "{\n");
+        i = 0;
+        r = 0;
+        for (sr = simplerule::SimpleRuleList; sr != NULL;
+             sr = sr->NextSimpleRule) {
+          if (sr->getclass() == rule::Simple && sr != error_rule) {
+            if (i != 0)
+      	fprintf(codefile,
+      		"  if (r>=%lu && r<=%lu) return R%lu.effects_add_array(r-%lu);\n",
+      		i, i + sr->getsize() - 1, r, i);
+            else
+      	fprintf(codefile,
+      		"  if (r<=%lu) return R%lu.effects_add_array(r-%lu);\n",
+      		i + sr->getsize() - 1, r, i);
+            r++;
+            i += sr->getsize();
+          }
+        }
+        fprintf(codefile,
+      	  "Error.Notrace(\"Internal: NextStateGenerator -- checking add effects for nonexisting rule.\");\n"
+      	  "}\n");
 
 
   // generate Code(r)

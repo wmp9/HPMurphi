@@ -710,7 +710,9 @@ public:
   void clear();			/* clear every variable. */
   void undefine();		/* undefine every variable. */
   void reset();			/* uninitialize every variable. */
-  std::vector<mu_0_boolean*> get_mu_bools();		/* get variable names from state WP */
+  std::vector<mu_0_boolean*> get_mu_bools();		/* get single mu_0_boolean variables from state WP */
+  std::vector<mu_0_boolean*> get_mu_bool_arrays();		/* get mu_0_boolean variables from arrays from state WP */
+
   /*
    * this is something of a different approach than previous versions--
    * we let the translation of the world

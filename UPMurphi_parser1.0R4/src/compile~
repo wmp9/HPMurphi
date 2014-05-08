@@ -1,0 +1,4 @@
+#flex -+ pddl+.lex
+#bison pddl+.yacc -o pddl+.cpp
+g++ -ggdb  -Wno-deprecated -fpermissive *.cpp -o parser
+#g++ *.o  -fpermissive -o parser

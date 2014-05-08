@@ -21,6 +21,8 @@ public:
   :next(NULL) {
   };
   virtual const char *generate_code();
+  virtual const char *get_target(){return "ERROR";};
+  virtual const char *get_src(){return "ERROR";};
 };
 
 /********************
@@ -46,6 +48,8 @@ struct assignment:stmt {
   expr *src;
    assignment(designator * target, expr * src);
   virtual const char *generate_code();
+  virtual const char *get_target();
+  virtual const char *get_src();
 };
 
 
@@ -114,9 +118,9 @@ struct undefinestmt:stmt {
 };
 
 // WP
-struct var_names_stmt:stmt {
+struct array_dim_stmt:stmt {
   designator *target;
-   var_names_stmt(designator * target);
+   array_dim_stmt(designator * target);
   virtual const char *generate_code();
 };
 

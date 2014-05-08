@@ -69,6 +69,7 @@ public:
 hash_function *h3;
 #endif
 class mu_0_boolean;
+class mu_1__type_super;
 class state {
 public:
   BIT_BLOCK bits[BLOCKS_IN_WORLD];
@@ -186,10 +187,6 @@ public:
     return (memcmp(&bits, &other.bits, BLOCKS_IN_WORLD) != 0);
   };
 
-  std::set<std::string, bool> get_bool_values();
-
-  std::set<std::string, double> get_double_values();
-
   //WP get g(n)+h(n) value of a state
   double get_f_val();
 
@@ -209,8 +206,11 @@ public:
   void set_g_val(double g_n);
 
 
-  //WP getting the names of all declared variables
+  //WP getting all declared simple boolean variables
   std::vector<mu_0_boolean*> get_mu_bools();
+
+  //WP getting all declared booleans from arrays (even multi-dimensional)
+  std::vector<mu_0_boolean*> get_mu_bool_arrays();
 
   // scribbles over the current world variables. 
   void print();

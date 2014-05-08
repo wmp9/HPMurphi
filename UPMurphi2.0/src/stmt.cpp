@@ -170,7 +170,7 @@ undefinestmt::undefinestmt(designator * target)
 }
 
 // WP
-var_names_stmt::var_names_stmt(designator * target)
+array_dim_stmt::array_dim_stmt(designator * target)
 :  target(target)
 {
   Error.CondError(!target->islvalue(),

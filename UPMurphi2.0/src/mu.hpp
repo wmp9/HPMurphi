@@ -319,6 +319,7 @@ public:
 }};
 
 class stecoll {
+public:
   stelist *first;
   stelist *last;
 public:

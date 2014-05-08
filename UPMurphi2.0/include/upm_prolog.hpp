@@ -111,6 +111,32 @@
 #include <list>
 
 
+
+
+
+/**
+ *
+ * WP WP WP WP WP WP WP WP WP WP WP WP WP WP WP WP WP WP WP WP WP WP WP WP
+ *
+ * CLASS CREATED TO RETURN MULTITYPE ARRAY-BASED OBJECTS
+ *
+ *
+ *
+ * TODO CHECKOUT STATIC AND DYNAMIC CASTS !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+ *
+ *
+ *
+ *
+ */
+class mu_1__type_super{
+
+public:
+  mu_0_boolean array[];
+  char *name;
+
+};
+
+
 /****************************************
   real numbers extension
   ****************************************/

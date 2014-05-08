@@ -86,13 +86,13 @@ state::get_mu_bools()
 	return (aw);
 }
 
-std::set<std::string, bool> get_bool_values(){
-
-};
-
-std::set<std::string, double> get_double_values(){
-
-};
+// WP
+std::vector<mu_0_boolean*>
+state::get_mu_bool_arrays()
+{
+	std::vector<mu_0_boolean*> aw2 = theworld.get_mu_bool_arrays();
+	return (aw2);
+}
 
 /****************************************
   Bit vector - copied straight from Andreas. 

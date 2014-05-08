@@ -76,6 +76,13 @@ public:
 
   // code generation
   virtual const char *generate_code();
+
+
+  virtual const char * generate_code_left(){return generate_code();}
+  virtual const char * generate_code_right(){return generate_code();}
+
+  virtual expr * get_left(){ return (NULL);}
+  virtual expr * get_right(){ return (NULL);}
 };
 
 // AP: mathematical functions 
@@ -102,7 +109,7 @@ myceil,
 
 /********************
   class unaryexpr
-  -- class for all unary expression 
+  -- class for all unary expression get_right
   ********************/
 class unaryexpr:public expr {
 protected:
@@ -125,7 +132,7 @@ public:
   -- class for all binary expression
   ********************/
 class binaryexpr:public expr {
-protected:
+public:
   int op;			/* the operator value. */
   expr *left, *right;		/* the arguments. */
 
@@ -141,6 +148,13 @@ public:
 
      return l;
   }
+
+  virtual const char * generate_code_left(){ return (left->generate_code());}
+  virtual const char * generate_code_right(){ return (right->generate_code());}
+
+  virtual expr * get_left(){ return (left);}
+  virtual expr * get_right(){ return (right);}
+
   // code generation virtual const char *generate_code() = 0;
 };
 
@@ -155,6 +169,13 @@ public:
 
   // code generation
   virtual const char *generate_code();
+
+  virtual const char * generate_code_left(){ return (left->generate_code());}
+  virtual const char * generate_code_right(){ return (right->generate_code());}
+
+  virtual expr * get_left(){ return (left);}
+  virtual expr * get_right(){ return (right);}
+
 };
 
 /********************
