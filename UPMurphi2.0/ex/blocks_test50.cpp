@@ -1,16 +1,16 @@
 /******************************
-  Program "blocks.m" compiled by "Universal Planner Murphi Release 2.0.R8"
+  Program "blocks_test50.m" compiled by "Universal Planner Murphi Release 2.0.R8"
 
-  Murphi Last Compiled date: "May 20 2014"
+  Murphi Last Compiled date: "May  9 2014"
  ******************************/
 
 /********************
   Parameter
  ********************/
 #define MURPHI_VERSION "Universal Planner Murphi Release 2.0.R8"
-#define MURPHI_DATE "May 20 2014"
-#define PROTOCOL_NAME "blocks"
-#define BITS_IN_WORLD 115
+#define MURPHI_DATE "May  9 2014"
+#define PROTOCOL_NAME "blocks_test50"
+#define BITS_IN_WORLD 5359
 #define HASHC
 
 /********************
@@ -88,9 +88,9 @@ class mu_1_block: public mu__byte
     else return ( s << "Undefined" );
   };
 
-  mu_1_block (const char *name, int os): mu__byte(1, 4, 3, name, os) {};
-  mu_1_block (void): mu__byte(1, 4, 3) {};
-  mu_1_block (int val): mu__byte(1, 4, 3, "Parameter or function result.", 0)
+  mu_1_block (const char *name, int os): mu__byte(1, 50, 6, name, os) {};
+  mu_1_block (void): mu__byte(1, 50, 6) {};
+  mu_1_block (int val): mu__byte(1, 50, 6, "Parameter or function result.", 0)
   {
      operator=(val);
   };
@@ -113,7 +113,7 @@ class mu_1_block: public mu__byte
   };
 };
 
-const char *mu_1_block::values[] = {"a","b","c","d",NULL };
+const char *mu_1_block::values[] = {"b1","b2","b3","b4","b5","b6","b7","b8","b9","b10","b11","b12","b13","b14","b15","b16","b17","b18","b19","b20","b21","b22","b23","b24","b25","b26","b27","b28","b29","b30","b31","b32","b33","b34","b35","b36","b37","b38","b39","b40","b41","b42","b43","b44","b45","b46","b47","b48","b49","b50",NULL };
 
 /*** end of enum declaration ***/
 mu_1_block mu_1_block_undefined_var;
@@ -121,7 +121,7 @@ mu_1_block mu_1_block_undefined_var;
 class mu_1__type_0:public mu_1__type_super
 {
  public:
-  mu_0_boolean array[ 4 ]; 
+  mu_0_boolean array[ 50 ]; 
 #define awesome_mu_00_mu_0_boolean_mu_1__type_0 1 
  public:
   char *name;
@@ -135,7 +135,7 @@ class mu_1__type_0:public mu_1__type_super
   mu_0_boolean& operator[] (int index) /* const */
   {
 #ifndef NO_RUN_TIME_CHECKING
-    if ( ( index >= 1 ) && ( index <= 4 ) )
+    if ( ( index >= 1 ) && ( index <= 50 ) )
       return array[ index - 1 ];
     else {
       if (index==UNDEFVAL) 
@@ -150,7 +150,7 @@ class mu_1__type_0:public mu_1__type_super
   };
   mu_1__type_0& operator= (const mu_1__type_0& from)
   {
-    for (int i = 0; i < 4; i++)
+    for (int i = 0; i < 50; i++)
       array[i].value(from.array[i].value());
     return *this;
   }
@@ -158,7 +158,7 @@ class mu_1__type_0:public mu_1__type_super
 friend int CompareWeight(mu_1__type_0& a, mu_1__type_0& b)
   {
     int w;
-    for (int i=0; i<4; i++) {
+    for (int i=0; i<50; i++) {
       w = CompareWeight(a.array[i], b.array[i]);
       if (w!=0) return w;
     }
@@ -167,7 +167,7 @@ friend int CompareWeight(mu_1__type_0& a, mu_1__type_0& b)
 friend int Compare(mu_1__type_0& a, mu_1__type_0& b)
   {
     int w;
-    for (int i=0; i<4; i++) {
+    for (int i=0; i<50; i++) {
       w = Compare(a.array[i], b.array[i]);
       if (w!=0) return w;
     }
@@ -182,19 +182,19 @@ friend int Compare(mu_1__type_0& a, mu_1__type_0& b)
   virtual void MultisetLimit(PermSet& Perm);
   virtual void MultisetSort()
   {
-    for (int i=0; i<4; i++)
+    for (int i=0; i<50; i++)
       array[i].MultisetSort();
   }
   void print_statistic()
   {
-    for (int i=0; i<4; i++)
+    for (int i=0; i<50; i++)
       array[i].print_statistic();
   }
-  void clear() { for (int i = 0; i < 4; i++) array[i].clear(); };
+  void clear() { for (int i = 0; i < 50; i++) array[i].clear(); };
 
-  void undefine() { for (int i = 0; i < 4; i++) array[i].undefine(); };
+  void undefine() { for (int i = 0; i < 50; i++) array[i].undefine(); };
 
-  void reset() { for (int i = 0; i < 4; i++) array[i].reset(); };
+  void reset() { for (int i = 0; i < 50; i++) array[i].reset(); };
 
   int array_dim() {
 
@@ -218,11 +218,11 @@ friend int Compare(mu_1__type_0& a, mu_1__type_0& b)
 
 	std::vector<mu_0_boolean*> barr;
 	#ifdef awesome_mu_00_mu_0_boolean_mu_1__type_0
-		for (int ix = 0; ix < 4; ix++){ barr.push_back(&(array[ix])); }
+		for (int ix = 0; ix < 50; ix++){ barr.push_back(&(array[ix])); }
 		return barr;
 	#else 
-		for (int ix = 0; ix < 4; ix++){
-			for (int ix2 = 0; ix2 < 4; ix2++){ barr.push_back(&(array[ix][ix2+1])); }
+		for (int ix = 0; ix < 50; ix++){
+			for (int ix2 = 0; ix2 < 50; ix2++){ barr.push_back(&(array[ix][ix2+1])); }
 		}
 		return barr;
 	   
@@ -231,18 +231,18 @@ friend int Compare(mu_1__type_0& a, mu_1__type_0& b)
 }
   void to_state(state *thestate)
   {
-    for (int i = 0; i < 4; i++)
+    for (int i = 0; i < 50; i++)
       array[i].to_state(thestate);
   };
 
   void print(FILE *target, const char *separator)
   {
-    for (int i = 0; i < 4; i++)
+    for (int i = 0; i < 50; i++)
       array[i].print(target,separator); };
 
   void print_diff(state *prevstate, FILE *target, const char *separator)
   {
-    for (int i = 0; i < 4; i++)
+    for (int i = 0; i < 50; i++)
       array[i].print_diff(prevstate,target,separator);
   };
 };
@@ -268,10 +268,56 @@ friend int Compare(mu_1__type_0& a, mu_1__type_0& b)
     int i=0;
     name = (char *)n;
 
-if (n) array[i].set_self_ar(n,"a", i * 2 + os); else array[i].set_self_ar(NULL, NULL, 0); i++;
-if (n) array[i].set_self_ar(n,"b", i * 2 + os); else array[i].set_self_ar(NULL, NULL, 0); i++;
-if (n) array[i].set_self_ar(n,"c", i * 2 + os); else array[i].set_self_ar(NULL, NULL, 0); i++;
-if (n) array[i].set_self_ar(n,"d", i * 2 + os); else array[i].set_self_ar(NULL, NULL, 0); i++;
+if (n) array[i].set_self_ar(n,"b1", i * 2 + os); else array[i].set_self_ar(NULL, NULL, 0); i++;
+if (n) array[i].set_self_ar(n,"b2", i * 2 + os); else array[i].set_self_ar(NULL, NULL, 0); i++;
+if (n) array[i].set_self_ar(n,"b3", i * 2 + os); else array[i].set_self_ar(NULL, NULL, 0); i++;
+if (n) array[i].set_self_ar(n,"b4", i * 2 + os); else array[i].set_self_ar(NULL, NULL, 0); i++;
+if (n) array[i].set_self_ar(n,"b5", i * 2 + os); else array[i].set_self_ar(NULL, NULL, 0); i++;
+if (n) array[i].set_self_ar(n,"b6", i * 2 + os); else array[i].set_self_ar(NULL, NULL, 0); i++;
+if (n) array[i].set_self_ar(n,"b7", i * 2 + os); else array[i].set_self_ar(NULL, NULL, 0); i++;
+if (n) array[i].set_self_ar(n,"b8", i * 2 + os); else array[i].set_self_ar(NULL, NULL, 0); i++;
+if (n) array[i].set_self_ar(n,"b9", i * 2 + os); else array[i].set_self_ar(NULL, NULL, 0); i++;
+if (n) array[i].set_self_ar(n,"b10", i * 2 + os); else array[i].set_self_ar(NULL, NULL, 0); i++;
+if (n) array[i].set_self_ar(n,"b11", i * 2 + os); else array[i].set_self_ar(NULL, NULL, 0); i++;
+if (n) array[i].set_self_ar(n,"b12", i * 2 + os); else array[i].set_self_ar(NULL, NULL, 0); i++;
+if (n) array[i].set_self_ar(n,"b13", i * 2 + os); else array[i].set_self_ar(NULL, NULL, 0); i++;
+if (n) array[i].set_self_ar(n,"b14", i * 2 + os); else array[i].set_self_ar(NULL, NULL, 0); i++;
+if (n) array[i].set_self_ar(n,"b15", i * 2 + os); else array[i].set_self_ar(NULL, NULL, 0); i++;
+if (n) array[i].set_self_ar(n,"b16", i * 2 + os); else array[i].set_self_ar(NULL, NULL, 0); i++;
+if (n) array[i].set_self_ar(n,"b17", i * 2 + os); else array[i].set_self_ar(NULL, NULL, 0); i++;
+if (n) array[i].set_self_ar(n,"b18", i * 2 + os); else array[i].set_self_ar(NULL, NULL, 0); i++;
+if (n) array[i].set_self_ar(n,"b19", i * 2 + os); else array[i].set_self_ar(NULL, NULL, 0); i++;
+if (n) array[i].set_self_ar(n,"b20", i * 2 + os); else array[i].set_self_ar(NULL, NULL, 0); i++;
+if (n) array[i].set_self_ar(n,"b21", i * 2 + os); else array[i].set_self_ar(NULL, NULL, 0); i++;
+if (n) array[i].set_self_ar(n,"b22", i * 2 + os); else array[i].set_self_ar(NULL, NULL, 0); i++;
+if (n) array[i].set_self_ar(n,"b23", i * 2 + os); else array[i].set_self_ar(NULL, NULL, 0); i++;
+if (n) array[i].set_self_ar(n,"b24", i * 2 + os); else array[i].set_self_ar(NULL, NULL, 0); i++;
+if (n) array[i].set_self_ar(n,"b25", i * 2 + os); else array[i].set_self_ar(NULL, NULL, 0); i++;
+if (n) array[i].set_self_ar(n,"b26", i * 2 + os); else array[i].set_self_ar(NULL, NULL, 0); i++;
+if (n) array[i].set_self_ar(n,"b27", i * 2 + os); else array[i].set_self_ar(NULL, NULL, 0); i++;
+if (n) array[i].set_self_ar(n,"b28", i * 2 + os); else array[i].set_self_ar(NULL, NULL, 0); i++;
+if (n) array[i].set_self_ar(n,"b29", i * 2 + os); else array[i].set_self_ar(NULL, NULL, 0); i++;
+if (n) array[i].set_self_ar(n,"b30", i * 2 + os); else array[i].set_self_ar(NULL, NULL, 0); i++;
+if (n) array[i].set_self_ar(n,"b31", i * 2 + os); else array[i].set_self_ar(NULL, NULL, 0); i++;
+if (n) array[i].set_self_ar(n,"b32", i * 2 + os); else array[i].set_self_ar(NULL, NULL, 0); i++;
+if (n) array[i].set_self_ar(n,"b33", i * 2 + os); else array[i].set_self_ar(NULL, NULL, 0); i++;
+if (n) array[i].set_self_ar(n,"b34", i * 2 + os); else array[i].set_self_ar(NULL, NULL, 0); i++;
+if (n) array[i].set_self_ar(n,"b35", i * 2 + os); else array[i].set_self_ar(NULL, NULL, 0); i++;
+if (n) array[i].set_self_ar(n,"b36", i * 2 + os); else array[i].set_self_ar(NULL, NULL, 0); i++;
+if (n) array[i].set_self_ar(n,"b37", i * 2 + os); else array[i].set_self_ar(NULL, NULL, 0); i++;
+if (n) array[i].set_self_ar(n,"b38", i * 2 + os); else array[i].set_self_ar(NULL, NULL, 0); i++;
+if (n) array[i].set_self_ar(n,"b39", i * 2 + os); else array[i].set_self_ar(NULL, NULL, 0); i++;
+if (n) array[i].set_self_ar(n,"b40", i * 2 + os); else array[i].set_self_ar(NULL, NULL, 0); i++;
+if (n) array[i].set_self_ar(n,"b41", i * 2 + os); else array[i].set_self_ar(NULL, NULL, 0); i++;
+if (n) array[i].set_self_ar(n,"b42", i * 2 + os); else array[i].set_self_ar(NULL, NULL, 0); i++;
+if (n) array[i].set_self_ar(n,"b43", i * 2 + os); else array[i].set_self_ar(NULL, NULL, 0); i++;
+if (n) array[i].set_self_ar(n,"b44", i * 2 + os); else array[i].set_self_ar(NULL, NULL, 0); i++;
+if (n) array[i].set_self_ar(n,"b45", i * 2 + os); else array[i].set_self_ar(NULL, NULL, 0); i++;
+if (n) array[i].set_self_ar(n,"b46", i * 2 + os); else array[i].set_self_ar(NULL, NULL, 0); i++;
+if (n) array[i].set_self_ar(n,"b47", i * 2 + os); else array[i].set_self_ar(NULL, NULL, 0); i++;
+if (n) array[i].set_self_ar(n,"b48", i * 2 + os); else array[i].set_self_ar(NULL, NULL, 0); i++;
+if (n) array[i].set_self_ar(n,"b49", i * 2 + os); else array[i].set_self_ar(NULL, NULL, 0); i++;
+if (n) array[i].set_self_ar(n,"b50", i * 2 + os); else array[i].set_self_ar(NULL, NULL, 0); i++;
   }
 mu_1__type_0::~mu_1__type_0()
 {
@@ -282,7 +328,7 @@ mu_1__type_0 mu_1__type_0_undefined_var;
 class mu_1__type_1:public mu_1__type_super
 {
  public:
-  mu_1__type_0 array[ 4 ]; 
+  mu_1__type_0 array[ 50 ]; 
 #define awesome_mu_00_mu_1__type_0_mu_1__type_1 1 
  public:
   char *name;
@@ -296,7 +342,7 @@ class mu_1__type_1:public mu_1__type_super
   mu_1__type_0& operator[] (int index) /* const */
   {
 #ifndef NO_RUN_TIME_CHECKING
-    if ( ( index >= 1 ) && ( index <= 4 ) )
+    if ( ( index >= 1 ) && ( index <= 50 ) )
       return array[ index - 1 ];
     else {
       if (index==UNDEFVAL) 
@@ -311,7 +357,7 @@ class mu_1__type_1:public mu_1__type_super
   };
   mu_1__type_1& operator= (const mu_1__type_1& from)
   {
-    for (int i = 0; i < 4; i++)
+    for (int i = 0; i < 50; i++)
       array[i] = from.array[i];
     return *this;
   }
@@ -319,7 +365,7 @@ class mu_1__type_1:public mu_1__type_super
 friend int CompareWeight(mu_1__type_1& a, mu_1__type_1& b)
   {
     int w;
-    for (int i=0; i<4; i++) {
+    for (int i=0; i<50; i++) {
       w = CompareWeight(a.array[i], b.array[i]);
       if (w!=0) return w;
     }
@@ -328,7 +374,7 @@ friend int CompareWeight(mu_1__type_1& a, mu_1__type_1& b)
 friend int Compare(mu_1__type_1& a, mu_1__type_1& b)
   {
     int w;
-    for (int i=0; i<4; i++) {
+    for (int i=0; i<50; i++) {
       w = Compare(a.array[i], b.array[i]);
       if (w!=0) return w;
     }
@@ -343,19 +389,19 @@ friend int Compare(mu_1__type_1& a, mu_1__type_1& b)
   virtual void MultisetLimit(PermSet& Perm);
   virtual void MultisetSort()
   {
-    for (int i=0; i<4; i++)
+    for (int i=0; i<50; i++)
       array[i].MultisetSort();
   }
   void print_statistic()
   {
-    for (int i=0; i<4; i++)
+    for (int i=0; i<50; i++)
       array[i].print_statistic();
   }
-  void clear() { for (int i = 0; i < 4; i++) array[i].clear(); };
+  void clear() { for (int i = 0; i < 50; i++) array[i].clear(); };
 
-  void undefine() { for (int i = 0; i < 4; i++) array[i].undefine(); };
+  void undefine() { for (int i = 0; i < 50; i++) array[i].undefine(); };
 
-  void reset() { for (int i = 0; i < 4; i++) array[i].reset(); };
+  void reset() { for (int i = 0; i < 50; i++) array[i].reset(); };
 
   int array_dim() {
 
@@ -379,11 +425,11 @@ friend int Compare(mu_1__type_1& a, mu_1__type_1& b)
 
 	std::vector<mu_0_boolean*> barr;
 	#ifdef awesome_mu_00_mu_0_boolean_mu_1__type_1
-		for (int ix = 0; ix < 4; ix++){ barr.push_back(&(array[ix])); }
+		for (int ix = 0; ix < 50; ix++){ barr.push_back(&(array[ix])); }
 		return barr;
 	#else 
-		for (int ix = 0; ix < 4; ix++){
-			for (int ix2 = 0; ix2 < 4; ix2++){ barr.push_back(&(array[ix][ix2+1])); }
+		for (int ix = 0; ix < 50; ix++){
+			for (int ix2 = 0; ix2 < 50; ix2++){ barr.push_back(&(array[ix][ix2+1])); }
 		}
 		return barr;
 	   
@@ -392,18 +438,18 @@ friend int Compare(mu_1__type_1& a, mu_1__type_1& b)
 }
   void to_state(state *thestate)
   {
-    for (int i = 0; i < 4; i++)
+    for (int i = 0; i < 50; i++)
       array[i].to_state(thestate);
   };
 
   void print(FILE *target, const char *separator)
   {
-    for (int i = 0; i < 4; i++)
+    for (int i = 0; i < 50; i++)
       array[i].print(target,separator); };
 
   void print_diff(state *prevstate, FILE *target, const char *separator)
   {
-    for (int i = 0; i < 4; i++)
+    for (int i = 0; i < 50; i++)
       array[i].print_diff(prevstate,target,separator);
   };
 };
@@ -429,10 +475,56 @@ friend int Compare(mu_1__type_1& a, mu_1__type_1& b)
     int i=0;
     name = (char *)n;
 
-if (n) array[i].set_self_ar(n,"a", i * 8 + os); else array[i].set_self_ar(NULL, NULL, 0); i++;
-if (n) array[i].set_self_ar(n,"b", i * 8 + os); else array[i].set_self_ar(NULL, NULL, 0); i++;
-if (n) array[i].set_self_ar(n,"c", i * 8 + os); else array[i].set_self_ar(NULL, NULL, 0); i++;
-if (n) array[i].set_self_ar(n,"d", i * 8 + os); else array[i].set_self_ar(NULL, NULL, 0); i++;
+if (n) array[i].set_self_ar(n,"b1", i * 100 + os); else array[i].set_self_ar(NULL, NULL, 0); i++;
+if (n) array[i].set_self_ar(n,"b2", i * 100 + os); else array[i].set_self_ar(NULL, NULL, 0); i++;
+if (n) array[i].set_self_ar(n,"b3", i * 100 + os); else array[i].set_self_ar(NULL, NULL, 0); i++;
+if (n) array[i].set_self_ar(n,"b4", i * 100 + os); else array[i].set_self_ar(NULL, NULL, 0); i++;
+if (n) array[i].set_self_ar(n,"b5", i * 100 + os); else array[i].set_self_ar(NULL, NULL, 0); i++;
+if (n) array[i].set_self_ar(n,"b6", i * 100 + os); else array[i].set_self_ar(NULL, NULL, 0); i++;
+if (n) array[i].set_self_ar(n,"b7", i * 100 + os); else array[i].set_self_ar(NULL, NULL, 0); i++;
+if (n) array[i].set_self_ar(n,"b8", i * 100 + os); else array[i].set_self_ar(NULL, NULL, 0); i++;
+if (n) array[i].set_self_ar(n,"b9", i * 100 + os); else array[i].set_self_ar(NULL, NULL, 0); i++;
+if (n) array[i].set_self_ar(n,"b10", i * 100 + os); else array[i].set_self_ar(NULL, NULL, 0); i++;
+if (n) array[i].set_self_ar(n,"b11", i * 100 + os); else array[i].set_self_ar(NULL, NULL, 0); i++;
+if (n) array[i].set_self_ar(n,"b12", i * 100 + os); else array[i].set_self_ar(NULL, NULL, 0); i++;
+if (n) array[i].set_self_ar(n,"b13", i * 100 + os); else array[i].set_self_ar(NULL, NULL, 0); i++;
+if (n) array[i].set_self_ar(n,"b14", i * 100 + os); else array[i].set_self_ar(NULL, NULL, 0); i++;
+if (n) array[i].set_self_ar(n,"b15", i * 100 + os); else array[i].set_self_ar(NULL, NULL, 0); i++;
+if (n) array[i].set_self_ar(n,"b16", i * 100 + os); else array[i].set_self_ar(NULL, NULL, 0); i++;
+if (n) array[i].set_self_ar(n,"b17", i * 100 + os); else array[i].set_self_ar(NULL, NULL, 0); i++;
+if (n) array[i].set_self_ar(n,"b18", i * 100 + os); else array[i].set_self_ar(NULL, NULL, 0); i++;
+if (n) array[i].set_self_ar(n,"b19", i * 100 + os); else array[i].set_self_ar(NULL, NULL, 0); i++;
+if (n) array[i].set_self_ar(n,"b20", i * 100 + os); else array[i].set_self_ar(NULL, NULL, 0); i++;
+if (n) array[i].set_self_ar(n,"b21", i * 100 + os); else array[i].set_self_ar(NULL, NULL, 0); i++;
+if (n) array[i].set_self_ar(n,"b22", i * 100 + os); else array[i].set_self_ar(NULL, NULL, 0); i++;
+if (n) array[i].set_self_ar(n,"b23", i * 100 + os); else array[i].set_self_ar(NULL, NULL, 0); i++;
+if (n) array[i].set_self_ar(n,"b24", i * 100 + os); else array[i].set_self_ar(NULL, NULL, 0); i++;
+if (n) array[i].set_self_ar(n,"b25", i * 100 + os); else array[i].set_self_ar(NULL, NULL, 0); i++;
+if (n) array[i].set_self_ar(n,"b26", i * 100 + os); else array[i].set_self_ar(NULL, NULL, 0); i++;
+if (n) array[i].set_self_ar(n,"b27", i * 100 + os); else array[i].set_self_ar(NULL, NULL, 0); i++;
+if (n) array[i].set_self_ar(n,"b28", i * 100 + os); else array[i].set_self_ar(NULL, NULL, 0); i++;
+if (n) array[i].set_self_ar(n,"b29", i * 100 + os); else array[i].set_self_ar(NULL, NULL, 0); i++;
+if (n) array[i].set_self_ar(n,"b30", i * 100 + os); else array[i].set_self_ar(NULL, NULL, 0); i++;
+if (n) array[i].set_self_ar(n,"b31", i * 100 + os); else array[i].set_self_ar(NULL, NULL, 0); i++;
+if (n) array[i].set_self_ar(n,"b32", i * 100 + os); else array[i].set_self_ar(NULL, NULL, 0); i++;
+if (n) array[i].set_self_ar(n,"b33", i * 100 + os); else array[i].set_self_ar(NULL, NULL, 0); i++;
+if (n) array[i].set_self_ar(n,"b34", i * 100 + os); else array[i].set_self_ar(NULL, NULL, 0); i++;
+if (n) array[i].set_self_ar(n,"b35", i * 100 + os); else array[i].set_self_ar(NULL, NULL, 0); i++;
+if (n) array[i].set_self_ar(n,"b36", i * 100 + os); else array[i].set_self_ar(NULL, NULL, 0); i++;
+if (n) array[i].set_self_ar(n,"b37", i * 100 + os); else array[i].set_self_ar(NULL, NULL, 0); i++;
+if (n) array[i].set_self_ar(n,"b38", i * 100 + os); else array[i].set_self_ar(NULL, NULL, 0); i++;
+if (n) array[i].set_self_ar(n,"b39", i * 100 + os); else array[i].set_self_ar(NULL, NULL, 0); i++;
+if (n) array[i].set_self_ar(n,"b40", i * 100 + os); else array[i].set_self_ar(NULL, NULL, 0); i++;
+if (n) array[i].set_self_ar(n,"b41", i * 100 + os); else array[i].set_self_ar(NULL, NULL, 0); i++;
+if (n) array[i].set_self_ar(n,"b42", i * 100 + os); else array[i].set_self_ar(NULL, NULL, 0); i++;
+if (n) array[i].set_self_ar(n,"b43", i * 100 + os); else array[i].set_self_ar(NULL, NULL, 0); i++;
+if (n) array[i].set_self_ar(n,"b44", i * 100 + os); else array[i].set_self_ar(NULL, NULL, 0); i++;
+if (n) array[i].set_self_ar(n,"b45", i * 100 + os); else array[i].set_self_ar(NULL, NULL, 0); i++;
+if (n) array[i].set_self_ar(n,"b46", i * 100 + os); else array[i].set_self_ar(NULL, NULL, 0); i++;
+if (n) array[i].set_self_ar(n,"b47", i * 100 + os); else array[i].set_self_ar(NULL, NULL, 0); i++;
+if (n) array[i].set_self_ar(n,"b48", i * 100 + os); else array[i].set_self_ar(NULL, NULL, 0); i++;
+if (n) array[i].set_self_ar(n,"b49", i * 100 + os); else array[i].set_self_ar(NULL, NULL, 0); i++;
+if (n) array[i].set_self_ar(n,"b50", i * 100 + os); else array[i].set_self_ar(NULL, NULL, 0); i++;
   }
 mu_1__type_1::~mu_1__type_1()
 {
@@ -443,7 +535,7 @@ mu_1__type_1 mu_1__type_1_undefined_var;
 class mu_1__type_2:public mu_1__type_super
 {
  public:
-  mu_0_boolean array[ 4 ]; 
+  mu_0_boolean array[ 50 ]; 
 #define awesome_mu_00_mu_0_boolean_mu_1__type_2 1 
  public:
   char *name;
@@ -457,7 +549,7 @@ class mu_1__type_2:public mu_1__type_super
   mu_0_boolean& operator[] (int index) /* const */
   {
 #ifndef NO_RUN_TIME_CHECKING
-    if ( ( index >= 1 ) && ( index <= 4 ) )
+    if ( ( index >= 1 ) && ( index <= 50 ) )
       return array[ index - 1 ];
     else {
       if (index==UNDEFVAL) 
@@ -472,7 +564,7 @@ class mu_1__type_2:public mu_1__type_super
   };
   mu_1__type_2& operator= (const mu_1__type_2& from)
   {
-    for (int i = 0; i < 4; i++)
+    for (int i = 0; i < 50; i++)
       array[i].value(from.array[i].value());
     return *this;
   }
@@ -480,7 +572,7 @@ class mu_1__type_2:public mu_1__type_super
 friend int CompareWeight(mu_1__type_2& a, mu_1__type_2& b)
   {
     int w;
-    for (int i=0; i<4; i++) {
+    for (int i=0; i<50; i++) {
       w = CompareWeight(a.array[i], b.array[i]);
       if (w!=0) return w;
     }
@@ -489,7 +581,7 @@ friend int CompareWeight(mu_1__type_2& a, mu_1__type_2& b)
 friend int Compare(mu_1__type_2& a, mu_1__type_2& b)
   {
     int w;
-    for (int i=0; i<4; i++) {
+    for (int i=0; i<50; i++) {
       w = Compare(a.array[i], b.array[i]);
       if (w!=0) return w;
     }
@@ -504,19 +596,19 @@ friend int Compare(mu_1__type_2& a, mu_1__type_2& b)
   virtual void MultisetLimit(PermSet& Perm);
   virtual void MultisetSort()
   {
-    for (int i=0; i<4; i++)
+    for (int i=0; i<50; i++)
       array[i].MultisetSort();
   }
   void print_statistic()
   {
-    for (int i=0; i<4; i++)
+    for (int i=0; i<50; i++)
       array[i].print_statistic();
   }
-  void clear() { for (int i = 0; i < 4; i++) array[i].clear(); };
+  void clear() { for (int i = 0; i < 50; i++) array[i].clear(); };
 
-  void undefine() { for (int i = 0; i < 4; i++) array[i].undefine(); };
+  void undefine() { for (int i = 0; i < 50; i++) array[i].undefine(); };
 
-  void reset() { for (int i = 0; i < 4; i++) array[i].reset(); };
+  void reset() { for (int i = 0; i < 50; i++) array[i].reset(); };
 
   int array_dim() {
 
@@ -540,11 +632,11 @@ friend int Compare(mu_1__type_2& a, mu_1__type_2& b)
 
 	std::vector<mu_0_boolean*> barr;
 	#ifdef awesome_mu_00_mu_0_boolean_mu_1__type_2
-		for (int ix = 0; ix < 4; ix++){ barr.push_back(&(array[ix])); }
+		for (int ix = 0; ix < 50; ix++){ barr.push_back(&(array[ix])); }
 		return barr;
 	#else 
-		for (int ix = 0; ix < 4; ix++){
-			for (int ix2 = 0; ix2 < 4; ix2++){ barr.push_back(&(array[ix][ix2+1])); }
+		for (int ix = 0; ix < 50; ix++){
+			for (int ix2 = 0; ix2 < 50; ix2++){ barr.push_back(&(array[ix][ix2+1])); }
 		}
 		return barr;
 	   
@@ -553,18 +645,18 @@ friend int Compare(mu_1__type_2& a, mu_1__type_2& b)
 }
   void to_state(state *thestate)
   {
-    for (int i = 0; i < 4; i++)
+    for (int i = 0; i < 50; i++)
       array[i].to_state(thestate);
   };
 
   void print(FILE *target, const char *separator)
   {
-    for (int i = 0; i < 4; i++)
+    for (int i = 0; i < 50; i++)
       array[i].print(target,separator); };
 
   void print_diff(state *prevstate, FILE *target, const char *separator)
   {
-    for (int i = 0; i < 4; i++)
+    for (int i = 0; i < 50; i++)
       array[i].print_diff(prevstate,target,separator);
   };
 };
@@ -590,10 +682,56 @@ friend int Compare(mu_1__type_2& a, mu_1__type_2& b)
     int i=0;
     name = (char *)n;
 
-if (n) array[i].set_self_ar(n,"a", i * 2 + os); else array[i].set_self_ar(NULL, NULL, 0); i++;
-if (n) array[i].set_self_ar(n,"b", i * 2 + os); else array[i].set_self_ar(NULL, NULL, 0); i++;
-if (n) array[i].set_self_ar(n,"c", i * 2 + os); else array[i].set_self_ar(NULL, NULL, 0); i++;
-if (n) array[i].set_self_ar(n,"d", i * 2 + os); else array[i].set_self_ar(NULL, NULL, 0); i++;
+if (n) array[i].set_self_ar(n,"b1", i * 2 + os); else array[i].set_self_ar(NULL, NULL, 0); i++;
+if (n) array[i].set_self_ar(n,"b2", i * 2 + os); else array[i].set_self_ar(NULL, NULL, 0); i++;
+if (n) array[i].set_self_ar(n,"b3", i * 2 + os); else array[i].set_self_ar(NULL, NULL, 0); i++;
+if (n) array[i].set_self_ar(n,"b4", i * 2 + os); else array[i].set_self_ar(NULL, NULL, 0); i++;
+if (n) array[i].set_self_ar(n,"b5", i * 2 + os); else array[i].set_self_ar(NULL, NULL, 0); i++;
+if (n) array[i].set_self_ar(n,"b6", i * 2 + os); else array[i].set_self_ar(NULL, NULL, 0); i++;
+if (n) array[i].set_self_ar(n,"b7", i * 2 + os); else array[i].set_self_ar(NULL, NULL, 0); i++;
+if (n) array[i].set_self_ar(n,"b8", i * 2 + os); else array[i].set_self_ar(NULL, NULL, 0); i++;
+if (n) array[i].set_self_ar(n,"b9", i * 2 + os); else array[i].set_self_ar(NULL, NULL, 0); i++;
+if (n) array[i].set_self_ar(n,"b10", i * 2 + os); else array[i].set_self_ar(NULL, NULL, 0); i++;
+if (n) array[i].set_self_ar(n,"b11", i * 2 + os); else array[i].set_self_ar(NULL, NULL, 0); i++;
+if (n) array[i].set_self_ar(n,"b12", i * 2 + os); else array[i].set_self_ar(NULL, NULL, 0); i++;
+if (n) array[i].set_self_ar(n,"b13", i * 2 + os); else array[i].set_self_ar(NULL, NULL, 0); i++;
+if (n) array[i].set_self_ar(n,"b14", i * 2 + os); else array[i].set_self_ar(NULL, NULL, 0); i++;
+if (n) array[i].set_self_ar(n,"b15", i * 2 + os); else array[i].set_self_ar(NULL, NULL, 0); i++;
+if (n) array[i].set_self_ar(n,"b16", i * 2 + os); else array[i].set_self_ar(NULL, NULL, 0); i++;
+if (n) array[i].set_self_ar(n,"b17", i * 2 + os); else array[i].set_self_ar(NULL, NULL, 0); i++;
+if (n) array[i].set_self_ar(n,"b18", i * 2 + os); else array[i].set_self_ar(NULL, NULL, 0); i++;
+if (n) array[i].set_self_ar(n,"b19", i * 2 + os); else array[i].set_self_ar(NULL, NULL, 0); i++;
+if (n) array[i].set_self_ar(n,"b20", i * 2 + os); else array[i].set_self_ar(NULL, NULL, 0); i++;
+if (n) array[i].set_self_ar(n,"b21", i * 2 + os); else array[i].set_self_ar(NULL, NULL, 0); i++;
+if (n) array[i].set_self_ar(n,"b22", i * 2 + os); else array[i].set_self_ar(NULL, NULL, 0); i++;
+if (n) array[i].set_self_ar(n,"b23", i * 2 + os); else array[i].set_self_ar(NULL, NULL, 0); i++;
+if (n) array[i].set_self_ar(n,"b24", i * 2 + os); else array[i].set_self_ar(NULL, NULL, 0); i++;
+if (n) array[i].set_self_ar(n,"b25", i * 2 + os); else array[i].set_self_ar(NULL, NULL, 0); i++;
+if (n) array[i].set_self_ar(n,"b26", i * 2 + os); else array[i].set_self_ar(NULL, NULL, 0); i++;
+if (n) array[i].set_self_ar(n,"b27", i * 2 + os); else array[i].set_self_ar(NULL, NULL, 0); i++;
+if (n) array[i].set_self_ar(n,"b28", i * 2 + os); else array[i].set_self_ar(NULL, NULL, 0); i++;
+if (n) array[i].set_self_ar(n,"b29", i * 2 + os); else array[i].set_self_ar(NULL, NULL, 0); i++;
+if (n) array[i].set_self_ar(n,"b30", i * 2 + os); else array[i].set_self_ar(NULL, NULL, 0); i++;
+if (n) array[i].set_self_ar(n,"b31", i * 2 + os); else array[i].set_self_ar(NULL, NULL, 0); i++;
+if (n) array[i].set_self_ar(n,"b32", i * 2 + os); else array[i].set_self_ar(NULL, NULL, 0); i++;
+if (n) array[i].set_self_ar(n,"b33", i * 2 + os); else array[i].set_self_ar(NULL, NULL, 0); i++;
+if (n) array[i].set_self_ar(n,"b34", i * 2 + os); else array[i].set_self_ar(NULL, NULL, 0); i++;
+if (n) array[i].set_self_ar(n,"b35", i * 2 + os); else array[i].set_self_ar(NULL, NULL, 0); i++;
+if (n) array[i].set_self_ar(n,"b36", i * 2 + os); else array[i].set_self_ar(NULL, NULL, 0); i++;
+if (n) array[i].set_self_ar(n,"b37", i * 2 + os); else array[i].set_self_ar(NULL, NULL, 0); i++;
+if (n) array[i].set_self_ar(n,"b38", i * 2 + os); else array[i].set_self_ar(NULL, NULL, 0); i++;
+if (n) array[i].set_self_ar(n,"b39", i * 2 + os); else array[i].set_self_ar(NULL, NULL, 0); i++;
+if (n) array[i].set_self_ar(n,"b40", i * 2 + os); else array[i].set_self_ar(NULL, NULL, 0); i++;
+if (n) array[i].set_self_ar(n,"b41", i * 2 + os); else array[i].set_self_ar(NULL, NULL, 0); i++;
+if (n) array[i].set_self_ar(n,"b42", i * 2 + os); else array[i].set_self_ar(NULL, NULL, 0); i++;
+if (n) array[i].set_self_ar(n,"b43", i * 2 + os); else array[i].set_self_ar(NULL, NULL, 0); i++;
+if (n) array[i].set_self_ar(n,"b44", i * 2 + os); else array[i].set_self_ar(NULL, NULL, 0); i++;
+if (n) array[i].set_self_ar(n,"b45", i * 2 + os); else array[i].set_self_ar(NULL, NULL, 0); i++;
+if (n) array[i].set_self_ar(n,"b46", i * 2 + os); else array[i].set_self_ar(NULL, NULL, 0); i++;
+if (n) array[i].set_self_ar(n,"b47", i * 2 + os); else array[i].set_self_ar(NULL, NULL, 0); i++;
+if (n) array[i].set_self_ar(n,"b48", i * 2 + os); else array[i].set_self_ar(NULL, NULL, 0); i++;
+if (n) array[i].set_self_ar(n,"b49", i * 2 + os); else array[i].set_self_ar(NULL, NULL, 0); i++;
+if (n) array[i].set_self_ar(n,"b50", i * 2 + os); else array[i].set_self_ar(NULL, NULL, 0); i++;
   }
 mu_1__type_2::~mu_1__type_2()
 {
@@ -604,7 +742,7 @@ mu_1__type_2 mu_1__type_2_undefined_var;
 class mu_1__type_3:public mu_1__type_super
 {
  public:
-  mu_0_boolean array[ 4 ]; 
+  mu_0_boolean array[ 50 ]; 
 #define awesome_mu_00_mu_0_boolean_mu_1__type_3 1 
  public:
   char *name;
@@ -618,7 +756,7 @@ class mu_1__type_3:public mu_1__type_super
   mu_0_boolean& operator[] (int index) /* const */
   {
 #ifndef NO_RUN_TIME_CHECKING
-    if ( ( index >= 1 ) && ( index <= 4 ) )
+    if ( ( index >= 1 ) && ( index <= 50 ) )
       return array[ index - 1 ];
     else {
       if (index==UNDEFVAL) 
@@ -633,7 +771,7 @@ class mu_1__type_3:public mu_1__type_super
   };
   mu_1__type_3& operator= (const mu_1__type_3& from)
   {
-    for (int i = 0; i < 4; i++)
+    for (int i = 0; i < 50; i++)
       array[i].value(from.array[i].value());
     return *this;
   }
@@ -641,7 +779,7 @@ class mu_1__type_3:public mu_1__type_super
 friend int CompareWeight(mu_1__type_3& a, mu_1__type_3& b)
   {
     int w;
-    for (int i=0; i<4; i++) {
+    for (int i=0; i<50; i++) {
       w = CompareWeight(a.array[i], b.array[i]);
       if (w!=0) return w;
     }
@@ -650,7 +788,7 @@ friend int CompareWeight(mu_1__type_3& a, mu_1__type_3& b)
 friend int Compare(mu_1__type_3& a, mu_1__type_3& b)
   {
     int w;
-    for (int i=0; i<4; i++) {
+    for (int i=0; i<50; i++) {
       w = Compare(a.array[i], b.array[i]);
       if (w!=0) return w;
     }
@@ -665,19 +803,19 @@ friend int Compare(mu_1__type_3& a, mu_1__type_3& b)
   virtual void MultisetLimit(PermSet& Perm);
   virtual void MultisetSort()
   {
-    for (int i=0; i<4; i++)
+    for (int i=0; i<50; i++)
       array[i].MultisetSort();
   }
   void print_statistic()
   {
-    for (int i=0; i<4; i++)
+    for (int i=0; i<50; i++)
       array[i].print_statistic();
   }
-  void clear() { for (int i = 0; i < 4; i++) array[i].clear(); };
+  void clear() { for (int i = 0; i < 50; i++) array[i].clear(); };
 
-  void undefine() { for (int i = 0; i < 4; i++) array[i].undefine(); };
+  void undefine() { for (int i = 0; i < 50; i++) array[i].undefine(); };
 
-  void reset() { for (int i = 0; i < 4; i++) array[i].reset(); };
+  void reset() { for (int i = 0; i < 50; i++) array[i].reset(); };
 
   int array_dim() {
 
@@ -701,11 +839,11 @@ friend int Compare(mu_1__type_3& a, mu_1__type_3& b)
 
 	std::vector<mu_0_boolean*> barr;
 	#ifdef awesome_mu_00_mu_0_boolean_mu_1__type_3
-		for (int ix = 0; ix < 4; ix++){ barr.push_back(&(array[ix])); }
+		for (int ix = 0; ix < 50; ix++){ barr.push_back(&(array[ix])); }
 		return barr;
 	#else 
-		for (int ix = 0; ix < 4; ix++){
-			for (int ix2 = 0; ix2 < 4; ix2++){ barr.push_back(&(array[ix][ix2+1])); }
+		for (int ix = 0; ix < 50; ix++){
+			for (int ix2 = 0; ix2 < 50; ix2++){ barr.push_back(&(array[ix][ix2+1])); }
 		}
 		return barr;
 	   
@@ -714,18 +852,18 @@ friend int Compare(mu_1__type_3& a, mu_1__type_3& b)
 }
   void to_state(state *thestate)
   {
-    for (int i = 0; i < 4; i++)
+    for (int i = 0; i < 50; i++)
       array[i].to_state(thestate);
   };
 
   void print(FILE *target, const char *separator)
   {
-    for (int i = 0; i < 4; i++)
+    for (int i = 0; i < 50; i++)
       array[i].print(target,separator); };
 
   void print_diff(state *prevstate, FILE *target, const char *separator)
   {
-    for (int i = 0; i < 4; i++)
+    for (int i = 0; i < 50; i++)
       array[i].print_diff(prevstate,target,separator);
   };
 };
@@ -751,10 +889,56 @@ friend int Compare(mu_1__type_3& a, mu_1__type_3& b)
     int i=0;
     name = (char *)n;
 
-if (n) array[i].set_self_ar(n,"a", i * 2 + os); else array[i].set_self_ar(NULL, NULL, 0); i++;
-if (n) array[i].set_self_ar(n,"b", i * 2 + os); else array[i].set_self_ar(NULL, NULL, 0); i++;
-if (n) array[i].set_self_ar(n,"c", i * 2 + os); else array[i].set_self_ar(NULL, NULL, 0); i++;
-if (n) array[i].set_self_ar(n,"d", i * 2 + os); else array[i].set_self_ar(NULL, NULL, 0); i++;
+if (n) array[i].set_self_ar(n,"b1", i * 2 + os); else array[i].set_self_ar(NULL, NULL, 0); i++;
+if (n) array[i].set_self_ar(n,"b2", i * 2 + os); else array[i].set_self_ar(NULL, NULL, 0); i++;
+if (n) array[i].set_self_ar(n,"b3", i * 2 + os); else array[i].set_self_ar(NULL, NULL, 0); i++;
+if (n) array[i].set_self_ar(n,"b4", i * 2 + os); else array[i].set_self_ar(NULL, NULL, 0); i++;
+if (n) array[i].set_self_ar(n,"b5", i * 2 + os); else array[i].set_self_ar(NULL, NULL, 0); i++;
+if (n) array[i].set_self_ar(n,"b6", i * 2 + os); else array[i].set_self_ar(NULL, NULL, 0); i++;
+if (n) array[i].set_self_ar(n,"b7", i * 2 + os); else array[i].set_self_ar(NULL, NULL, 0); i++;
+if (n) array[i].set_self_ar(n,"b8", i * 2 + os); else array[i].set_self_ar(NULL, NULL, 0); i++;
+if (n) array[i].set_self_ar(n,"b9", i * 2 + os); else array[i].set_self_ar(NULL, NULL, 0); i++;
+if (n) array[i].set_self_ar(n,"b10", i * 2 + os); else array[i].set_self_ar(NULL, NULL, 0); i++;
+if (n) array[i].set_self_ar(n,"b11", i * 2 + os); else array[i].set_self_ar(NULL, NULL, 0); i++;
+if (n) array[i].set_self_ar(n,"b12", i * 2 + os); else array[i].set_self_ar(NULL, NULL, 0); i++;
+if (n) array[i].set_self_ar(n,"b13", i * 2 + os); else array[i].set_self_ar(NULL, NULL, 0); i++;
+if (n) array[i].set_self_ar(n,"b14", i * 2 + os); else array[i].set_self_ar(NULL, NULL, 0); i++;
+if (n) array[i].set_self_ar(n,"b15", i * 2 + os); else array[i].set_self_ar(NULL, NULL, 0); i++;
+if (n) array[i].set_self_ar(n,"b16", i * 2 + os); else array[i].set_self_ar(NULL, NULL, 0); i++;
+if (n) array[i].set_self_ar(n,"b17", i * 2 + os); else array[i].set_self_ar(NULL, NULL, 0); i++;
+if (n) array[i].set_self_ar(n,"b18", i * 2 + os); else array[i].set_self_ar(NULL, NULL, 0); i++;
+if (n) array[i].set_self_ar(n,"b19", i * 2 + os); else array[i].set_self_ar(NULL, NULL, 0); i++;
+if (n) array[i].set_self_ar(n,"b20", i * 2 + os); else array[i].set_self_ar(NULL, NULL, 0); i++;
+if (n) array[i].set_self_ar(n,"b21", i * 2 + os); else array[i].set_self_ar(NULL, NULL, 0); i++;
+if (n) array[i].set_self_ar(n,"b22", i * 2 + os); else array[i].set_self_ar(NULL, NULL, 0); i++;
+if (n) array[i].set_self_ar(n,"b23", i * 2 + os); else array[i].set_self_ar(NULL, NULL, 0); i++;
+if (n) array[i].set_self_ar(n,"b24", i * 2 + os); else array[i].set_self_ar(NULL, NULL, 0); i++;
+if (n) array[i].set_self_ar(n,"b25", i * 2 + os); else array[i].set_self_ar(NULL, NULL, 0); i++;
+if (n) array[i].set_self_ar(n,"b26", i * 2 + os); else array[i].set_self_ar(NULL, NULL, 0); i++;
+if (n) array[i].set_self_ar(n,"b27", i * 2 + os); else array[i].set_self_ar(NULL, NULL, 0); i++;
+if (n) array[i].set_self_ar(n,"b28", i * 2 + os); else array[i].set_self_ar(NULL, NULL, 0); i++;
+if (n) array[i].set_self_ar(n,"b29", i * 2 + os); else array[i].set_self_ar(NULL, NULL, 0); i++;
+if (n) array[i].set_self_ar(n,"b30", i * 2 + os); else array[i].set_self_ar(NULL, NULL, 0); i++;
+if (n) array[i].set_self_ar(n,"b31", i * 2 + os); else array[i].set_self_ar(NULL, NULL, 0); i++;
+if (n) array[i].set_self_ar(n,"b32", i * 2 + os); else array[i].set_self_ar(NULL, NULL, 0); i++;
+if (n) array[i].set_self_ar(n,"b33", i * 2 + os); else array[i].set_self_ar(NULL, NULL, 0); i++;
+if (n) array[i].set_self_ar(n,"b34", i * 2 + os); else array[i].set_self_ar(NULL, NULL, 0); i++;
+if (n) array[i].set_self_ar(n,"b35", i * 2 + os); else array[i].set_self_ar(NULL, NULL, 0); i++;
+if (n) array[i].set_self_ar(n,"b36", i * 2 + os); else array[i].set_self_ar(NULL, NULL, 0); i++;
+if (n) array[i].set_self_ar(n,"b37", i * 2 + os); else array[i].set_self_ar(NULL, NULL, 0); i++;
+if (n) array[i].set_self_ar(n,"b38", i * 2 + os); else array[i].set_self_ar(NULL, NULL, 0); i++;
+if (n) array[i].set_self_ar(n,"b39", i * 2 + os); else array[i].set_self_ar(NULL, NULL, 0); i++;
+if (n) array[i].set_self_ar(n,"b40", i * 2 + os); else array[i].set_self_ar(NULL, NULL, 0); i++;
+if (n) array[i].set_self_ar(n,"b41", i * 2 + os); else array[i].set_self_ar(NULL, NULL, 0); i++;
+if (n) array[i].set_self_ar(n,"b42", i * 2 + os); else array[i].set_self_ar(NULL, NULL, 0); i++;
+if (n) array[i].set_self_ar(n,"b43", i * 2 + os); else array[i].set_self_ar(NULL, NULL, 0); i++;
+if (n) array[i].set_self_ar(n,"b44", i * 2 + os); else array[i].set_self_ar(NULL, NULL, 0); i++;
+if (n) array[i].set_self_ar(n,"b45", i * 2 + os); else array[i].set_self_ar(NULL, NULL, 0); i++;
+if (n) array[i].set_self_ar(n,"b46", i * 2 + os); else array[i].set_self_ar(NULL, NULL, 0); i++;
+if (n) array[i].set_self_ar(n,"b47", i * 2 + os); else array[i].set_self_ar(NULL, NULL, 0); i++;
+if (n) array[i].set_self_ar(n,"b48", i * 2 + os); else array[i].set_self_ar(NULL, NULL, 0); i++;
+if (n) array[i].set_self_ar(n,"b49", i * 2 + os); else array[i].set_self_ar(NULL, NULL, 0); i++;
+if (n) array[i].set_self_ar(n,"b50", i * 2 + os); else array[i].set_self_ar(NULL, NULL, 0); i++;
   }
 mu_1__type_3::~mu_1__type_3()
 {
@@ -765,7 +949,7 @@ mu_1__type_3 mu_1__type_3_undefined_var;
 class mu_1__type_4:public mu_1__type_super
 {
  public:
-  mu_0_boolean array[ 4 ]; 
+  mu_0_boolean array[ 50 ]; 
 #define awesome_mu_00_mu_0_boolean_mu_1__type_4 1 
  public:
   char *name;
@@ -779,7 +963,7 @@ class mu_1__type_4:public mu_1__type_super
   mu_0_boolean& operator[] (int index) /* const */
   {
 #ifndef NO_RUN_TIME_CHECKING
-    if ( ( index >= 1 ) && ( index <= 4 ) )
+    if ( ( index >= 1 ) && ( index <= 50 ) )
       return array[ index - 1 ];
     else {
       if (index==UNDEFVAL) 
@@ -794,7 +978,7 @@ class mu_1__type_4:public mu_1__type_super
   };
   mu_1__type_4& operator= (const mu_1__type_4& from)
   {
-    for (int i = 0; i < 4; i++)
+    for (int i = 0; i < 50; i++)
       array[i].value(from.array[i].value());
     return *this;
   }
@@ -802,7 +986,7 @@ class mu_1__type_4:public mu_1__type_super
 friend int CompareWeight(mu_1__type_4& a, mu_1__type_4& b)
   {
     int w;
-    for (int i=0; i<4; i++) {
+    for (int i=0; i<50; i++) {
       w = CompareWeight(a.array[i], b.array[i]);
       if (w!=0) return w;
     }
@@ -811,7 +995,7 @@ friend int CompareWeight(mu_1__type_4& a, mu_1__type_4& b)
 friend int Compare(mu_1__type_4& a, mu_1__type_4& b)
   {
     int w;
-    for (int i=0; i<4; i++) {
+    for (int i=0; i<50; i++) {
       w = Compare(a.array[i], b.array[i]);
       if (w!=0) return w;
     }
@@ -826,19 +1010,19 @@ friend int Compare(mu_1__type_4& a, mu_1__type_4& b)
   virtual void MultisetLimit(PermSet& Perm);
   virtual void MultisetSort()
   {
-    for (int i=0; i<4; i++)
+    for (int i=0; i<50; i++)
       array[i].MultisetSort();
   }
   void print_statistic()
   {
-    for (int i=0; i<4; i++)
+    for (int i=0; i<50; i++)
       array[i].print_statistic();
   }
-  void clear() { for (int i = 0; i < 4; i++) array[i].clear(); };
+  void clear() { for (int i = 0; i < 50; i++) array[i].clear(); };
 
-  void undefine() { for (int i = 0; i < 4; i++) array[i].undefine(); };
+  void undefine() { for (int i = 0; i < 50; i++) array[i].undefine(); };
 
-  void reset() { for (int i = 0; i < 4; i++) array[i].reset(); };
+  void reset() { for (int i = 0; i < 50; i++) array[i].reset(); };
 
   int array_dim() {
 
@@ -862,11 +1046,11 @@ friend int Compare(mu_1__type_4& a, mu_1__type_4& b)
 
 	std::vector<mu_0_boolean*> barr;
 	#ifdef awesome_mu_00_mu_0_boolean_mu_1__type_4
-		for (int ix = 0; ix < 4; ix++){ barr.push_back(&(array[ix])); }
+		for (int ix = 0; ix < 50; ix++){ barr.push_back(&(array[ix])); }
 		return barr;
 	#else 
-		for (int ix = 0; ix < 4; ix++){
-			for (int ix2 = 0; ix2 < 4; ix2++){ barr.push_back(&(array[ix][ix2+1])); }
+		for (int ix = 0; ix < 50; ix++){
+			for (int ix2 = 0; ix2 < 50; ix2++){ barr.push_back(&(array[ix][ix2+1])); }
 		}
 		return barr;
 	   
@@ -875,18 +1059,18 @@ friend int Compare(mu_1__type_4& a, mu_1__type_4& b)
 }
   void to_state(state *thestate)
   {
-    for (int i = 0; i < 4; i++)
+    for (int i = 0; i < 50; i++)
       array[i].to_state(thestate);
   };
 
   void print(FILE *target, const char *separator)
   {
-    for (int i = 0; i < 4; i++)
+    for (int i = 0; i < 50; i++)
       array[i].print(target,separator); };
 
   void print_diff(state *prevstate, FILE *target, const char *separator)
   {
-    for (int i = 0; i < 4; i++)
+    for (int i = 0; i < 50; i++)
       array[i].print_diff(prevstate,target,separator);
   };
 };
@@ -912,10 +1096,56 @@ friend int Compare(mu_1__type_4& a, mu_1__type_4& b)
     int i=0;
     name = (char *)n;
 
-if (n) array[i].set_self_ar(n,"a", i * 2 + os); else array[i].set_self_ar(NULL, NULL, 0); i++;
-if (n) array[i].set_self_ar(n,"b", i * 2 + os); else array[i].set_self_ar(NULL, NULL, 0); i++;
-if (n) array[i].set_self_ar(n,"c", i * 2 + os); else array[i].set_self_ar(NULL, NULL, 0); i++;
-if (n) array[i].set_self_ar(n,"d", i * 2 + os); else array[i].set_self_ar(NULL, NULL, 0); i++;
+if (n) array[i].set_self_ar(n,"b1", i * 2 + os); else array[i].set_self_ar(NULL, NULL, 0); i++;
+if (n) array[i].set_self_ar(n,"b2", i * 2 + os); else array[i].set_self_ar(NULL, NULL, 0); i++;
+if (n) array[i].set_self_ar(n,"b3", i * 2 + os); else array[i].set_self_ar(NULL, NULL, 0); i++;
+if (n) array[i].set_self_ar(n,"b4", i * 2 + os); else array[i].set_self_ar(NULL, NULL, 0); i++;
+if (n) array[i].set_self_ar(n,"b5", i * 2 + os); else array[i].set_self_ar(NULL, NULL, 0); i++;
+if (n) array[i].set_self_ar(n,"b6", i * 2 + os); else array[i].set_self_ar(NULL, NULL, 0); i++;
+if (n) array[i].set_self_ar(n,"b7", i * 2 + os); else array[i].set_self_ar(NULL, NULL, 0); i++;
+if (n) array[i].set_self_ar(n,"b8", i * 2 + os); else array[i].set_self_ar(NULL, NULL, 0); i++;
+if (n) array[i].set_self_ar(n,"b9", i * 2 + os); else array[i].set_self_ar(NULL, NULL, 0); i++;
+if (n) array[i].set_self_ar(n,"b10", i * 2 + os); else array[i].set_self_ar(NULL, NULL, 0); i++;
+if (n) array[i].set_self_ar(n,"b11", i * 2 + os); else array[i].set_self_ar(NULL, NULL, 0); i++;
+if (n) array[i].set_self_ar(n,"b12", i * 2 + os); else array[i].set_self_ar(NULL, NULL, 0); i++;
+if (n) array[i].set_self_ar(n,"b13", i * 2 + os); else array[i].set_self_ar(NULL, NULL, 0); i++;
+if (n) array[i].set_self_ar(n,"b14", i * 2 + os); else array[i].set_self_ar(NULL, NULL, 0); i++;
+if (n) array[i].set_self_ar(n,"b15", i * 2 + os); else array[i].set_self_ar(NULL, NULL, 0); i++;
+if (n) array[i].set_self_ar(n,"b16", i * 2 + os); else array[i].set_self_ar(NULL, NULL, 0); i++;
+if (n) array[i].set_self_ar(n,"b17", i * 2 + os); else array[i].set_self_ar(NULL, NULL, 0); i++;
+if (n) array[i].set_self_ar(n,"b18", i * 2 + os); else array[i].set_self_ar(NULL, NULL, 0); i++;
+if (n) array[i].set_self_ar(n,"b19", i * 2 + os); else array[i].set_self_ar(NULL, NULL, 0); i++;
+if (n) array[i].set_self_ar(n,"b20", i * 2 + os); else array[i].set_self_ar(NULL, NULL, 0); i++;
+if (n) array[i].set_self_ar(n,"b21", i * 2 + os); else array[i].set_self_ar(NULL, NULL, 0); i++;
+if (n) array[i].set_self_ar(n,"b22", i * 2 + os); else array[i].set_self_ar(NULL, NULL, 0); i++;
+if (n) array[i].set_self_ar(n,"b23", i * 2 + os); else array[i].set_self_ar(NULL, NULL, 0); i++;
+if (n) array[i].set_self_ar(n,"b24", i * 2 + os); else array[i].set_self_ar(NULL, NULL, 0); i++;
+if (n) array[i].set_self_ar(n,"b25", i * 2 + os); else array[i].set_self_ar(NULL, NULL, 0); i++;
+if (n) array[i].set_self_ar(n,"b26", i * 2 + os); else array[i].set_self_ar(NULL, NULL, 0); i++;
+if (n) array[i].set_self_ar(n,"b27", i * 2 + os); else array[i].set_self_ar(NULL, NULL, 0); i++;
+if (n) array[i].set_self_ar(n,"b28", i * 2 + os); else array[i].set_self_ar(NULL, NULL, 0); i++;
+if (n) array[i].set_self_ar(n,"b29", i * 2 + os); else array[i].set_self_ar(NULL, NULL, 0); i++;
+if (n) array[i].set_self_ar(n,"b30", i * 2 + os); else array[i].set_self_ar(NULL, NULL, 0); i++;
+if (n) array[i].set_self_ar(n,"b31", i * 2 + os); else array[i].set_self_ar(NULL, NULL, 0); i++;
+if (n) array[i].set_self_ar(n,"b32", i * 2 + os); else array[i].set_self_ar(NULL, NULL, 0); i++;
+if (n) array[i].set_self_ar(n,"b33", i * 2 + os); else array[i].set_self_ar(NULL, NULL, 0); i++;
+if (n) array[i].set_self_ar(n,"b34", i * 2 + os); else array[i].set_self_ar(NULL, NULL, 0); i++;
+if (n) array[i].set_self_ar(n,"b35", i * 2 + os); else array[i].set_self_ar(NULL, NULL, 0); i++;
+if (n) array[i].set_self_ar(n,"b36", i * 2 + os); else array[i].set_self_ar(NULL, NULL, 0); i++;
+if (n) array[i].set_self_ar(n,"b37", i * 2 + os); else array[i].set_self_ar(NULL, NULL, 0); i++;
+if (n) array[i].set_self_ar(n,"b38", i * 2 + os); else array[i].set_self_ar(NULL, NULL, 0); i++;
+if (n) array[i].set_self_ar(n,"b39", i * 2 + os); else array[i].set_self_ar(NULL, NULL, 0); i++;
+if (n) array[i].set_self_ar(n,"b40", i * 2 + os); else array[i].set_self_ar(NULL, NULL, 0); i++;
+if (n) array[i].set_self_ar(n,"b41", i * 2 + os); else array[i].set_self_ar(NULL, NULL, 0); i++;
+if (n) array[i].set_self_ar(n,"b42", i * 2 + os); else array[i].set_self_ar(NULL, NULL, 0); i++;
+if (n) array[i].set_self_ar(n,"b43", i * 2 + os); else array[i].set_self_ar(NULL, NULL, 0); i++;
+if (n) array[i].set_self_ar(n,"b44", i * 2 + os); else array[i].set_self_ar(NULL, NULL, 0); i++;
+if (n) array[i].set_self_ar(n,"b45", i * 2 + os); else array[i].set_self_ar(NULL, NULL, 0); i++;
+if (n) array[i].set_self_ar(n,"b46", i * 2 + os); else array[i].set_self_ar(NULL, NULL, 0); i++;
+if (n) array[i].set_self_ar(n,"b47", i * 2 + os); else array[i].set_self_ar(NULL, NULL, 0); i++;
+if (n) array[i].set_self_ar(n,"b48", i * 2 + os); else array[i].set_self_ar(NULL, NULL, 0); i++;
+if (n) array[i].set_self_ar(n,"b49", i * 2 + os); else array[i].set_self_ar(NULL, NULL, 0); i++;
+if (n) array[i].set_self_ar(n,"b50", i * 2 + os); else array[i].set_self_ar(NULL, NULL, 0); i++;
   }
 mu_1__type_4::~mu_1__type_4()
 {
@@ -923,10 +1153,56 @@ mu_1__type_4::~mu_1__type_4()
 /*** end array declaration ***/
 mu_1__type_4 mu_1__type_4_undefined_var;
 
-const int mu_a = 1;
-const int mu_b = 2;
-const int mu_c = 3;
-const int mu_d = 4;
+const int mu_b1 = 1;
+const int mu_b2 = 2;
+const int mu_b3 = 3;
+const int mu_b4 = 4;
+const int mu_b5 = 5;
+const int mu_b6 = 6;
+const int mu_b7 = 7;
+const int mu_b8 = 8;
+const int mu_b9 = 9;
+const int mu_b10 = 10;
+const int mu_b11 = 11;
+const int mu_b12 = 12;
+const int mu_b13 = 13;
+const int mu_b14 = 14;
+const int mu_b15 = 15;
+const int mu_b16 = 16;
+const int mu_b17 = 17;
+const int mu_b18 = 18;
+const int mu_b19 = 19;
+const int mu_b20 = 20;
+const int mu_b21 = 21;
+const int mu_b22 = 22;
+const int mu_b23 = 23;
+const int mu_b24 = 24;
+const int mu_b25 = 25;
+const int mu_b26 = 26;
+const int mu_b27 = 27;
+const int mu_b28 = 28;
+const int mu_b29 = 29;
+const int mu_b30 = 30;
+const int mu_b31 = 31;
+const int mu_b32 = 32;
+const int mu_b33 = 33;
+const int mu_b34 = 34;
+const int mu_b35 = 35;
+const int mu_b36 = 36;
+const int mu_b37 = 37;
+const int mu_b38 = 38;
+const int mu_b39 = 39;
+const int mu_b40 = 40;
+const int mu_b41 = 41;
+const int mu_b42 = 42;
+const int mu_b43 = 43;
+const int mu_b44 = 44;
+const int mu_b45 = 45;
+const int mu_b46 = 46;
+const int mu_b47 = 47;
+const int mu_b48 = 48;
+const int mu_b49 = 49;
+const int mu_b50 = 50;
 const int mu_T = 1;
 /*** Variable declaration ***/
 mu_1_real_type mu_fun("fun",0);
@@ -944,16 +1220,16 @@ mu_1_integer mu_f_n("f_n",46);
 mu_1__type_1 mu_on("on",57);
 
 /*** Variable declaration ***/
-mu_1__type_2 mu_ontable("ontable",89);
+mu_1__type_2 mu_ontable("ontable",5057);
 
 /*** Variable declaration ***/
-mu_1__type_3 mu_isclear("isclear",97);
+mu_1__type_3 mu_isclear("isclear",5157);
 
 /*** Variable declaration ***/
-mu_0_boolean mu_handempty("handempty",105);
+mu_0_boolean mu_handempty("handempty",5257);
 
 /*** Variable declaration ***/
-mu_1__type_4 mu_holding("holding",107);
+mu_1__type_4 mu_holding("holding",5259);
 
 void mu_set_on(const mu_1_block& mu_x, const mu_1_block& mu_y, const mu_0_boolean& mu_value)
 {
@@ -1122,8 +1398,6 @@ double world_class::get_h_val()
 void world_class::set_h_val()
 {
   //	double h_val = 0; 
-  //   double h_val = upm_rpg().get_rpg_value();
-  upm_rpg::getInstance().clear_all();
   double h_val = upm_rpg::getInstance().get_rpg_value();
   mu_h_n.value(h_val);
 }
@@ -1291,15 +1565,6 @@ public:
   {
   };
 
-  void Code_ff(RULE_INDEX_TYPE r)
-  {
-
-
-
-
-
-  }
-
   int Duration(RULE_INDEX_TYPE r)
   {
     return 1;
@@ -1331,21 +1596,21 @@ public:
   char * Name(RULE_INDEX_TYPE r)
   {
     static mu_1_block mu_y;
-    mu_y.value((r % 4) + 1);
-    r = r / 4;
+    mu_y.value((r % 50) + 1);
+    r = r / 50;
     static mu_1_block mu_x;
-    mu_x.value((r % 4) + 1);
-    r = r / 4;
+    mu_x.value((r % 50) + 1);
+    r = r / 50;
     return tsprintf(" unstack , y:%s, x:%s", mu_y.Name(), mu_x.Name());
   }
   bool Condition(RULE_INDEX_TYPE r)
   {
     static mu_1_block mu_y;
-    mu_y.value((r % 4) + 1);
-    r = r / 4;
+    mu_y.value((r % 50) + 1);
+    r = r / 50;
     static mu_1_block mu_x;
-    mu_x.value((r % 4) + 1);
-    r = r / 4;
+    mu_x.value((r % 50) + 1);
+    r = r / 50;
 bool mu__boolexpr5;
 bool mu__boolexpr6;
   if (!(mu_on[mu_x][mu_y])) mu__boolexpr6 = FALSE ;
@@ -1363,11 +1628,11 @@ bool mu__boolexpr6;
   {
     std::vector<std::string> preconds;
     static mu_1_block mu_y;
-    mu_y.value((r % 4) + 1);
-    r = r / 4;
+    mu_y.value((r % 50) + 1);
+    r = r / 50;
     static mu_1_block mu_x;
-    mu_x.value((r % 4) + 1);
-    r = r / 4;
+    mu_x.value((r % 50) + 1);
+    r = r / 50;
 
 bool mu__boolexpr7;
   if (!(mu_on[mu_x][mu_y])) mu__boolexpr7 = FALSE ;
@@ -1386,14 +1651,17 @@ bool mu__boolexpr7;
     std::vector<mu_0_boolean*> effs;
 
     static mu_1_block mu_y;
-    mu_y.value((r % 4) + 1);
-    r = r / 4;
+    mu_y.value((r % 50) + 1);
+    r = r / 50;
     static mu_1_block mu_x;
-    mu_x.value((r % 4) + 1);
-    r = r / 4;
+    mu_x.value((r % 50) + 1);
+    r = r / 50;
 
     effs.push_back(&(mu_holding[mu_x]));  // mu_true 
     effs.push_back(&(mu_isclear[mu_y]));  // mu_true 
+    effs.push_back(&(mu_isclear[mu_x]));  // mu_false 
+    effs.push_back(&(mu_handempty));  // mu_false 
+    effs.push_back(&(mu_on[mu_x][mu_y]));  // mu_false 
 
     return effs;
   }
@@ -1403,11 +1671,11 @@ bool mu__boolexpr7;
     std::vector<std::string> aeffs;
 
     static mu_1_block mu_y;
-    mu_y.value((r % 4) + 1);
-    r = r / 4;
+    mu_y.value((r % 50) + 1);
+    r = r / 50;
     static mu_1_block mu_x;
-    mu_x.value((r % 4) + 1);
-    r = r / 4;
+    mu_x.value((r % 50) + 1);
+    r = r / 50;
 
     aeffs.push_back(mu_holding[mu_x].name); //  mu_true 
     aeffs.push_back(mu_isclear[mu_y].name); //  mu_true 
@@ -1419,12 +1687,12 @@ bool mu__boolexpr7;
   {
     RULE_INDEX_TYPE r = what_rule - 1;
     static mu_1_block mu_y;
-    mu_y.value((r % 4) + 1);
-    r = r / 4;
+    mu_y.value((r % 50) + 1);
+    r = r / 50;
     static mu_1_block mu_x;
-    mu_x.value((r % 4) + 1);
-    r = r / 4;
-    while (what_rule < 17 )
+    mu_x.value((r % 50) + 1);
+    r = r / 50;
+    while (what_rule < 2501 )
       {
 	if ( ( TRUE  ) ) {
 bool mu__boolexpr8;
@@ -1449,21 +1717,21 @@ bool mu__boolexpr9;
 	else
 	  what_rule += 1;
     r = what_rule - 1;
-    mu_y.value((r % 4) + 1);
-    r = r / 4;
-    mu_x.value((r % 4) + 1);
-    r = r / 4;
+    mu_y.value((r % 50) + 1);
+    r = r / 50;
+    mu_x.value((r % 50) + 1);
+    r = r / 50;
     }
   }
 
   void Code(RULE_INDEX_TYPE r)
   {
     static mu_1_block mu_y;
-    mu_y.value((r % 4) + 1);
-    r = r / 4;
+    mu_y.value((r % 50) + 1);
+    r = r / 50;
     static mu_1_block mu_x;
-    mu_x.value((r % 4) + 1);
-    r = r / 4;
+    mu_x.value((r % 50) + 1);
+    r = r / 50;
 mu_holding[mu_x] = mu_true;
 mu_isclear[mu_y] = mu_true;
 mu_isclear[mu_x] = mu_false;
@@ -1471,53 +1739,36 @@ mu_handempty = mu_false;
 mu_on[mu_x][mu_y] = mu_false;
   };
 
-  void Code_ff(RULE_INDEX_TYPE r)
-  {
-
-
-    static mu_1_block mu_y;
-    mu_y.value((r % 4) + 1);
-    r = r / 4;
-    static mu_1_block mu_x;
-    mu_x.value((r % 4) + 1);
-    r = r / 4;
-
-    mu_holding[mu_x] = mu_true; 
-    mu_isclear[mu_y] = mu_true; 
-
-
-  }
-
   int Duration(RULE_INDEX_TYPE r)
   {
     static mu_1_block mu_y;
-    mu_y.value((r % 4) + 1);
-    r = r / 4;
+    mu_y.value((r % 50) + 1);
+    r = r / 50;
     static mu_1_block mu_x;
-    mu_x.value((r % 4) + 1);
-    r = r / 4;
+    mu_x.value((r % 50) + 1);
+    r = r / 50;
     return 0;
   }
 
   int Weight(RULE_INDEX_TYPE r)
   {
     static mu_1_block mu_y;
-    mu_y.value((r % 4) + 1);
-    r = r / 4;
+    mu_y.value((r % 50) + 1);
+    r = r / 50;
     static mu_1_block mu_x;
-    mu_x.value((r % 4) + 1);
-    r = r / 4;
+    mu_x.value((r % 50) + 1);
+    r = r / 50;
     return 0;
   }
 
   char * PDDLName(RULE_INDEX_TYPE r)
   {
     static mu_1_block mu_y;
-    mu_y.value((r % 4) + 1);
-    r = r / 4;
+    mu_y.value((r % 50) + 1);
+    r = r / 50;
     static mu_1_block mu_x;
-    mu_x.value((r % 4) + 1);
-    r = r / 4;
+    mu_x.value((r % 50) + 1);
+    r = r / 50;
     return tsprintf(" unstack(%s,%s)", mu_y.Name(), mu_x.Name());
   }
    RuleManager::rule_pddlclass PDDLClass(RULE_INDEX_TYPE r)
@@ -1537,21 +1788,21 @@ public:
   char * Name(RULE_INDEX_TYPE r)
   {
     static mu_1_block mu_y;
-    mu_y.value((r % 4) + 1);
-    r = r / 4;
+    mu_y.value((r % 50) + 1);
+    r = r / 50;
     static mu_1_block mu_x;
-    mu_x.value((r % 4) + 1);
-    r = r / 4;
+    mu_x.value((r % 50) + 1);
+    r = r / 50;
     return tsprintf(" stack , y:%s, x:%s", mu_y.Name(), mu_x.Name());
   }
   bool Condition(RULE_INDEX_TYPE r)
   {
     static mu_1_block mu_y;
-    mu_y.value((r % 4) + 1);
-    r = r / 4;
+    mu_y.value((r % 50) + 1);
+    r = r / 50;
     static mu_1_block mu_x;
-    mu_x.value((r % 4) + 1);
-    r = r / 4;
+    mu_x.value((r % 50) + 1);
+    r = r / 50;
 bool mu__boolexpr10;
   if (!(mu_holding[mu_x])) mu__boolexpr10 = FALSE ;
   else {
@@ -1564,11 +1815,11 @@ bool mu__boolexpr10;
   {
     std::vector<std::string> preconds;
     static mu_1_block mu_y;
-    mu_y.value((r % 4) + 1);
-    r = r / 4;
+    mu_y.value((r % 50) + 1);
+    r = r / 50;
     static mu_1_block mu_x;
-    mu_x.value((r % 4) + 1);
-    r = r / 4;
+    mu_x.value((r % 50) + 1);
+    r = r / 50;
 
 		preconds.push_back(mu_holding[mu_x].name); 
 		preconds.push_back(mu_isclear[mu_y].name); 
@@ -1581,15 +1832,17 @@ bool mu__boolexpr10;
     std::vector<mu_0_boolean*> effs;
 
     static mu_1_block mu_y;
-    mu_y.value((r % 4) + 1);
-    r = r / 4;
+    mu_y.value((r % 50) + 1);
+    r = r / 50;
     static mu_1_block mu_x;
-    mu_x.value((r % 4) + 1);
-    r = r / 4;
+    mu_x.value((r % 50) + 1);
+    r = r / 50;
 
     effs.push_back(&(mu_isclear[mu_x]));  // mu_true 
     effs.push_back(&(mu_handempty));  // mu_true 
     effs.push_back(&(mu_on[mu_x][mu_y]));  // mu_true 
+    effs.push_back(&(mu_holding[mu_x]));  // mu_false 
+    effs.push_back(&(mu_isclear[mu_y]));  // mu_false 
 
     return effs;
   }
@@ -1599,11 +1852,11 @@ bool mu__boolexpr10;
     std::vector<std::string> aeffs;
 
     static mu_1_block mu_y;
-    mu_y.value((r % 4) + 1);
-    r = r / 4;
+    mu_y.value((r % 50) + 1);
+    r = r / 50;
     static mu_1_block mu_x;
-    mu_x.value((r % 4) + 1);
-    r = r / 4;
+    mu_x.value((r % 50) + 1);
+    r = r / 50;
 
     aeffs.push_back(mu_isclear[mu_x].name); //  mu_true 
     aeffs.push_back(mu_handempty.name); //  mu_true 
@@ -1614,14 +1867,14 @@ bool mu__boolexpr10;
 
   void NextRule(RULE_INDEX_TYPE & what_rule)
   {
-    RULE_INDEX_TYPE r = what_rule - 17;
+    RULE_INDEX_TYPE r = what_rule - 2501;
     static mu_1_block mu_y;
-    mu_y.value((r % 4) + 1);
-    r = r / 4;
+    mu_y.value((r % 50) + 1);
+    r = r / 50;
     static mu_1_block mu_x;
-    mu_x.value((r % 4) + 1);
-    r = r / 4;
-    while (what_rule < 33 )
+    mu_x.value((r % 50) + 1);
+    r = r / 50;
+    while (what_rule < 5001 )
       {
 	if ( ( TRUE  ) ) {
 bool mu__boolexpr11;
@@ -1640,22 +1893,22 @@ bool mu__boolexpr11;
 	}
 	else
 	  what_rule += 1;
-    r = what_rule - 17;
-    mu_y.value((r % 4) + 1);
-    r = r / 4;
-    mu_x.value((r % 4) + 1);
-    r = r / 4;
+    r = what_rule - 2501;
+    mu_y.value((r % 50) + 1);
+    r = r / 50;
+    mu_x.value((r % 50) + 1);
+    r = r / 50;
     }
   }
 
   void Code(RULE_INDEX_TYPE r)
   {
     static mu_1_block mu_y;
-    mu_y.value((r % 4) + 1);
-    r = r / 4;
+    mu_y.value((r % 50) + 1);
+    r = r / 50;
     static mu_1_block mu_x;
-    mu_x.value((r % 4) + 1);
-    r = r / 4;
+    mu_x.value((r % 50) + 1);
+    r = r / 50;
 mu_isclear[mu_x] = mu_true;
 mu_handempty = mu_true;
 mu_on[mu_x][mu_y] = mu_true;
@@ -1663,54 +1916,36 @@ mu_holding[mu_x] = mu_false;
 mu_isclear[mu_y] = mu_false;
   };
 
-  void Code_ff(RULE_INDEX_TYPE r)
-  {
-
-
-    static mu_1_block mu_y;
-    mu_y.value((r % 4) + 1);
-    r = r / 4;
-    static mu_1_block mu_x;
-    mu_x.value((r % 4) + 1);
-    r = r / 4;
-
-    mu_isclear[mu_x] = mu_true; 
-    mu_handempty = mu_true; 
-    mu_on[mu_x][mu_y] = mu_true; 
-
-
-  }
-
   int Duration(RULE_INDEX_TYPE r)
   {
     static mu_1_block mu_y;
-    mu_y.value((r % 4) + 1);
-    r = r / 4;
+    mu_y.value((r % 50) + 1);
+    r = r / 50;
     static mu_1_block mu_x;
-    mu_x.value((r % 4) + 1);
-    r = r / 4;
+    mu_x.value((r % 50) + 1);
+    r = r / 50;
     return 0;
   }
 
   int Weight(RULE_INDEX_TYPE r)
   {
     static mu_1_block mu_y;
-    mu_y.value((r % 4) + 1);
-    r = r / 4;
+    mu_y.value((r % 50) + 1);
+    r = r / 50;
     static mu_1_block mu_x;
-    mu_x.value((r % 4) + 1);
-    r = r / 4;
+    mu_x.value((r % 50) + 1);
+    r = r / 50;
     return 0;
   }
 
   char * PDDLName(RULE_INDEX_TYPE r)
   {
     static mu_1_block mu_y;
-    mu_y.value((r % 4) + 1);
-    r = r / 4;
+    mu_y.value((r % 50) + 1);
+    r = r / 50;
     static mu_1_block mu_x;
-    mu_x.value((r % 4) + 1);
-    r = r / 4;
+    mu_x.value((r % 50) + 1);
+    r = r / 50;
     return tsprintf(" stack(%s,%s)", mu_y.Name(), mu_x.Name());
   }
    RuleManager::rule_pddlclass PDDLClass(RULE_INDEX_TYPE r)
@@ -1730,15 +1965,15 @@ public:
   char * Name(RULE_INDEX_TYPE r)
   {
     static mu_1_block mu_x;
-    mu_x.value((r % 4) + 1);
-    r = r / 4;
+    mu_x.value((r % 50) + 1);
+    r = r / 50;
     return tsprintf(" put-down , x:%s", mu_x.Name());
   }
   bool Condition(RULE_INDEX_TYPE r)
   {
     static mu_1_block mu_x;
-    mu_x.value((r % 4) + 1);
-    r = r / 4;
+    mu_x.value((r % 50) + 1);
+    r = r / 50;
     return mu_holding[mu_x];
   }
 
@@ -1746,8 +1981,8 @@ public:
   {
     std::vector<std::string> preconds;
     static mu_1_block mu_x;
-    mu_x.value((r % 4) + 1);
-    r = r / 4;
+    mu_x.value((r % 50) + 1);
+    r = r / 50;
 
 		preconds.push_back(mu_holding[mu_x].name); 
 
@@ -1759,12 +1994,13 @@ public:
     std::vector<mu_0_boolean*> effs;
 
     static mu_1_block mu_x;
-    mu_x.value((r % 4) + 1);
-    r = r / 4;
+    mu_x.value((r % 50) + 1);
+    r = r / 50;
 
     effs.push_back(&(mu_isclear[mu_x]));  // mu_true 
     effs.push_back(&(mu_handempty));  // mu_true 
     effs.push_back(&(mu_ontable[mu_x]));  // mu_true 
+    effs.push_back(&(mu_holding[mu_x]));  // mu_false 
 
     return effs;
   }
@@ -1774,8 +2010,8 @@ public:
     std::vector<std::string> aeffs;
 
     static mu_1_block mu_x;
-    mu_x.value((r % 4) + 1);
-    r = r / 4;
+    mu_x.value((r % 50) + 1);
+    r = r / 50;
 
     aeffs.push_back(mu_isclear[mu_x].name); //  mu_true 
     aeffs.push_back(mu_handempty.name); //  mu_true 
@@ -1786,11 +2022,11 @@ public:
 
   void NextRule(RULE_INDEX_TYPE & what_rule)
   {
-    RULE_INDEX_TYPE r = what_rule - 33;
+    RULE_INDEX_TYPE r = what_rule - 5001;
     static mu_1_block mu_x;
-    mu_x.value((r % 4) + 1);
-    r = r / 4;
-    while (what_rule < 37 )
+    mu_x.value((r % 50) + 1);
+    r = r / 50;
+    while (what_rule < 5051 )
       {
 	if ( ( TRUE  ) ) {
 	      if (mu_holding[mu_x]) {
@@ -1804,59 +2040,44 @@ public:
 	}
 	else
 	  what_rule += 1;
-    r = what_rule - 33;
-    mu_x.value((r % 4) + 1);
-    r = r / 4;
+    r = what_rule - 5001;
+    mu_x.value((r % 50) + 1);
+    r = r / 50;
     }
   }
 
   void Code(RULE_INDEX_TYPE r)
   {
     static mu_1_block mu_x;
-    mu_x.value((r % 4) + 1);
-    r = r / 4;
+    mu_x.value((r % 50) + 1);
+    r = r / 50;
 mu_isclear[mu_x] = mu_true;
 mu_handempty = mu_true;
 mu_ontable[mu_x] = mu_true;
 mu_holding[mu_x] = mu_false;
   };
 
-  void Code_ff(RULE_INDEX_TYPE r)
-  {
-
-
-    static mu_1_block mu_x;
-    mu_x.value((r % 4) + 1);
-    r = r / 4;
-
-    mu_isclear[mu_x] = mu_true; 
-    mu_handempty = mu_true; 
-    mu_ontable[mu_x] = mu_true; 
-
-
-  }
-
   int Duration(RULE_INDEX_TYPE r)
   {
     static mu_1_block mu_x;
-    mu_x.value((r % 4) + 1);
-    r = r / 4;
+    mu_x.value((r % 50) + 1);
+    r = r / 50;
     return 0;
   }
 
   int Weight(RULE_INDEX_TYPE r)
   {
     static mu_1_block mu_x;
-    mu_x.value((r % 4) + 1);
-    r = r / 4;
+    mu_x.value((r % 50) + 1);
+    r = r / 50;
     return 0;
   }
 
   char * PDDLName(RULE_INDEX_TYPE r)
   {
     static mu_1_block mu_x;
-    mu_x.value((r % 4) + 1);
-    r = r / 4;
+    mu_x.value((r % 50) + 1);
+    r = r / 50;
     return tsprintf(" put-down(%s)", mu_x.Name());
   }
    RuleManager::rule_pddlclass PDDLClass(RULE_INDEX_TYPE r)
@@ -1876,15 +2097,15 @@ public:
   char * Name(RULE_INDEX_TYPE r)
   {
     static mu_1_block mu_x;
-    mu_x.value((r % 4) + 1);
-    r = r / 4;
+    mu_x.value((r % 50) + 1);
+    r = r / 50;
     return tsprintf(" pick-up , x:%s", mu_x.Name());
   }
   bool Condition(RULE_INDEX_TYPE r)
   {
     static mu_1_block mu_x;
-    mu_x.value((r % 4) + 1);
-    r = r / 4;
+    mu_x.value((r % 50) + 1);
+    r = r / 50;
 bool mu__boolexpr12;
 bool mu__boolexpr13;
   if (!(mu_isclear[mu_x])) mu__boolexpr13 = FALSE ;
@@ -1902,8 +2123,8 @@ bool mu__boolexpr13;
   {
     std::vector<std::string> preconds;
     static mu_1_block mu_x;
-    mu_x.value((r % 4) + 1);
-    r = r / 4;
+    mu_x.value((r % 50) + 1);
+    r = r / 50;
 
 bool mu__boolexpr14;
   if (!(mu_isclear[mu_x])) mu__boolexpr14 = FALSE ;
@@ -1922,10 +2143,13 @@ bool mu__boolexpr14;
     std::vector<mu_0_boolean*> effs;
 
     static mu_1_block mu_x;
-    mu_x.value((r % 4) + 1);
-    r = r / 4;
+    mu_x.value((r % 50) + 1);
+    r = r / 50;
 
     effs.push_back(&(mu_holding[mu_x]));  // mu_true 
+    effs.push_back(&(mu_ontable[mu_x]));  // mu_false 
+    effs.push_back(&(mu_isclear[mu_x]));  // mu_false 
+    effs.push_back(&(mu_handempty));  // mu_false 
 
     return effs;
   }
@@ -1935,8 +2159,8 @@ bool mu__boolexpr14;
     std::vector<std::string> aeffs;
 
     static mu_1_block mu_x;
-    mu_x.value((r % 4) + 1);
-    r = r / 4;
+    mu_x.value((r % 50) + 1);
+    r = r / 50;
 
     aeffs.push_back(mu_holding[mu_x].name); //  mu_true 
 
@@ -1945,11 +2169,11 @@ bool mu__boolexpr14;
 
   void NextRule(RULE_INDEX_TYPE & what_rule)
   {
-    RULE_INDEX_TYPE r = what_rule - 37;
+    RULE_INDEX_TYPE r = what_rule - 5051;
     static mu_1_block mu_x;
-    mu_x.value((r % 4) + 1);
-    r = r / 4;
-    while (what_rule < 41 )
+    mu_x.value((r % 50) + 1);
+    r = r / 50;
+    while (what_rule < 5101 )
       {
 	if ( ( TRUE  ) ) {
 bool mu__boolexpr15;
@@ -1973,57 +2197,44 @@ bool mu__boolexpr16;
 	}
 	else
 	  what_rule += 1;
-    r = what_rule - 37;
-    mu_x.value((r % 4) + 1);
-    r = r / 4;
+    r = what_rule - 5051;
+    mu_x.value((r % 50) + 1);
+    r = r / 50;
     }
   }
 
   void Code(RULE_INDEX_TYPE r)
   {
     static mu_1_block mu_x;
-    mu_x.value((r % 4) + 1);
-    r = r / 4;
+    mu_x.value((r % 50) + 1);
+    r = r / 50;
 mu_holding[mu_x] = mu_true;
 mu_ontable[mu_x] = mu_false;
 mu_isclear[mu_x] = mu_false;
 mu_handempty = mu_false;
   };
 
-  void Code_ff(RULE_INDEX_TYPE r)
-  {
-
-
-    static mu_1_block mu_x;
-    mu_x.value((r % 4) + 1);
-    r = r / 4;
-
-    mu_holding[mu_x] = mu_true; 
-
-
-  }
-
   int Duration(RULE_INDEX_TYPE r)
   {
     static mu_1_block mu_x;
-    mu_x.value((r % 4) + 1);
-    r = r / 4;
+    mu_x.value((r % 50) + 1);
+    r = r / 50;
     return 0;
   }
 
   int Weight(RULE_INDEX_TYPE r)
   {
     static mu_1_block mu_x;
-    mu_x.value((r % 4) + 1);
-    r = r / 4;
+    mu_x.value((r % 50) + 1);
+    r = r / 50;
     return 0;
   }
 
   char * PDDLName(RULE_INDEX_TYPE r)
   {
     static mu_1_block mu_x;
-    mu_x.value((r % 4) + 1);
-    r = r / 4;
+    mu_x.value((r % 50) + 1);
+    r = r / 50;
     return tsprintf(" pick-up(%s)", mu_x.Name());
   }
    RuleManager::rule_pddlclass PDDLClass(RULE_INDEX_TYPE r)
@@ -2046,133 +2257,125 @@ void SetNextEnabledRule(RULE_INDEX_TYPE & what_rule)
   if (what_rule<1)
     { R0.NextRule(what_rule);
       if (what_rule<1) return; }
-  if (what_rule>=1 && what_rule<17)
+  if (what_rule>=1 && what_rule<2501)
     { R1.NextRule(what_rule);
-      if (what_rule<17) return; }
-  if (what_rule>=17 && what_rule<33)
+      if (what_rule<2501) return; }
+  if (what_rule>=2501 && what_rule<5001)
     { R2.NextRule(what_rule);
-      if (what_rule<33) return; }
-  if (what_rule>=33 && what_rule<37)
+      if (what_rule<5001) return; }
+  if (what_rule>=5001 && what_rule<5051)
     { R3.NextRule(what_rule);
-      if (what_rule<37) return; }
-  if (what_rule>=37 && what_rule<41)
+      if (what_rule<5051) return; }
+  if (what_rule>=5051 && what_rule<5101)
     { R4.NextRule(what_rule);
-      if (what_rule<41) return; }
+      if (what_rule<5101) return; }
 }
 bool Condition(RULE_INDEX_TYPE r)
 {
   category = CONDITION;
   if (r<=0) return R0.Condition(r-0);
-  if (r>=1 && r<=16) return R1.Condition(r-1);
-  if (r>=17 && r<=32) return R2.Condition(r-17);
-  if (r>=33 && r<=36) return R3.Condition(r-33);
-  if (r>=37 && r<=40) return R4.Condition(r-37);
+  if (r>=1 && r<=2500) return R1.Condition(r-1);
+  if (r>=2501 && r<=5000) return R2.Condition(r-2501);
+  if (r>=5001 && r<=5050) return R3.Condition(r-5001);
+  if (r>=5051 && r<=5100) return R4.Condition(r-5051);
 Error.Notrace("Internal: NextStateGenerator -- checking condition for nonexisting rule.");
 }
 std::vector<std::string> precond_array(RULE_INDEX_TYPE r)
 {
   category = CONDITION;
   if (r<=0) return R0.precond_array(r-0);
-  if (r>=1 && r<=16) return R1.precond_array(r-1);
-  if (r>=17 && r<=32) return R2.precond_array(r-17);
-  if (r>=33 && r<=36) return R3.precond_array(r-33);
-  if (r>=37 && r<=40) return R4.precond_array(r-37);
+  if (r>=1 && r<=2500) return R1.precond_array(r-1);
+  if (r>=2501 && r<=5000) return R2.precond_array(r-2501);
+  if (r>=5001 && r<=5050) return R3.precond_array(r-5001);
+  if (r>=5051 && r<=5100) return R4.precond_array(r-5051);
 Error.Notrace("Internal: NextStateGenerator -- checking preconditions for nonexisting rule.");
 }
 std::vector<mu_0_boolean*> effects_array(RULE_INDEX_TYPE r)
 {
   if (r<=0) return R0.effects_array(r-0);
-  if (r>=1 && r<=16) return R1.effects_array(r-1);
-  if (r>=17 && r<=32) return R2.effects_array(r-17);
-  if (r>=33 && r<=36) return R3.effects_array(r-33);
-  if (r>=37 && r<=40) return R4.effects_array(r-37);
+  if (r>=1 && r<=2500) return R1.effects_array(r-1);
+  if (r>=2501 && r<=5000) return R2.effects_array(r-2501);
+  if (r>=5001 && r<=5050) return R3.effects_array(r-5001);
+  if (r>=5051 && r<=5100) return R4.effects_array(r-5051);
 Error.Notrace("Internal: NextStateGenerator -- checking effects for nonexisting rule.");
 }
 std::vector<std::string> effects_add_array(RULE_INDEX_TYPE r)
 {
   if (r<=0) return R0.effects_add_array(r-0);
-  if (r>=1 && r<=16) return R1.effects_add_array(r-1);
-  if (r>=17 && r<=32) return R2.effects_add_array(r-17);
-  if (r>=33 && r<=36) return R3.effects_add_array(r-33);
-  if (r>=37 && r<=40) return R4.effects_add_array(r-37);
+  if (r>=1 && r<=2500) return R1.effects_add_array(r-1);
+  if (r>=2501 && r<=5000) return R2.effects_add_array(r-2501);
+  if (r>=5001 && r<=5050) return R3.effects_add_array(r-5001);
+  if (r>=5051 && r<=5100) return R4.effects_add_array(r-5051);
 Error.Notrace("Internal: NextStateGenerator -- checking add effects for nonexisting rule.");
 }
 void Code(RULE_INDEX_TYPE r)
 {
   if (r<=0) { R0.Code(r-0); return; } 
-  if (r>=1 && r<=16) { R1.Code(r-1); return; } 
-  if (r>=17 && r<=32) { R2.Code(r-17); return; } 
-  if (r>=33 && r<=36) { R3.Code(r-33); return; } 
-  if (r>=37 && r<=40) { R4.Code(r-37); return; } 
-}
-void Code_ff(RULE_INDEX_TYPE r)
-{
-  if (r<=0) { R0.Code_ff(r-0); return; } 
-  if (r>=1 && r<=16) { R1.Code_ff(r-1); return; } 
-  if (r>=17 && r<=32) { R2.Code_ff(r-17); return; } 
-  if (r>=33 && r<=36) { R3.Code_ff(r-33); return; } 
-  if (r>=37 && r<=40) { R4.Code_ff(r-37); return; } 
+  if (r>=1 && r<=2500) { R1.Code(r-1); return; } 
+  if (r>=2501 && r<=5000) { R2.Code(r-2501); return; } 
+  if (r>=5001 && r<=5050) { R3.Code(r-5001); return; } 
+  if (r>=5051 && r<=5100) { R4.Code(r-5051); return; } 
 }
 int Priority(RULE_INDEX_TYPE r)
 {
   if (r<=0) { return R0.Priority(); } 
-  if (r>=1 && r<=16) { return R1.Priority(); } 
-  if (r>=17 && r<=32) { return R2.Priority(); } 
-  if (r>=33 && r<=36) { return R3.Priority(); } 
-  if (r>=37 && r<=40) { return R4.Priority(); } 
+  if (r>=1 && r<=2500) { return R1.Priority(); } 
+  if (r>=2501 && r<=5000) { return R2.Priority(); } 
+  if (r>=5001 && r<=5050) { return R3.Priority(); } 
+  if (r>=5051 && r<=5100) { return R4.Priority(); } 
 }
 char * Name(RULE_INDEX_TYPE r)
 {
   if (r<=0) return R0.Name(r-0);
-  if (r>=1 && r<=16) return R1.Name(r-1);
-  if (r>=17 && r<=32) return R2.Name(r-17);
-  if (r>=33 && r<=36) return R3.Name(r-33);
-  if (r>=37 && r<=40) return R4.Name(r-37);
+  if (r>=1 && r<=2500) return R1.Name(r-1);
+  if (r>=2501 && r<=5000) return R2.Name(r-2501);
+  if (r>=5001 && r<=5050) return R3.Name(r-5001);
+  if (r>=5051 && r<=5100) return R4.Name(r-5051);
   return NULL;
 }
 int Duration(RULE_INDEX_TYPE r)
 {
   if (r<=0) return R0.Duration(r-0);
-  if (r>=1 && r<=16) return R1.Duration(r-1);
-  if (r>=17 && r<=32) return R2.Duration(r-17);
-  if (r>=33 && r<=36) return R3.Duration(r-33);
-  if (r>=37 && r<=40) return R4.Duration(r-37);
+  if (r>=1 && r<=2500) return R1.Duration(r-1);
+  if (r>=2501 && r<=5000) return R2.Duration(r-2501);
+  if (r>=5001 && r<=5050) return R3.Duration(r-5001);
+  if (r>=5051 && r<=5100) return R4.Duration(r-5051);
 Error.Notrace("Internal: NextStateGenerator -- querying duration for nonexisting rule.");
 }
 int Weight(RULE_INDEX_TYPE r)
 {
   if (r<=0) return R0.Weight(r-0);
-  if (r>=1 && r<=16) return R1.Weight(r-1);
-  if (r>=17 && r<=32) return R2.Weight(r-17);
-  if (r>=33 && r<=36) return R3.Weight(r-33);
-  if (r>=37 && r<=40) return R4.Weight(r-37);
+  if (r>=1 && r<=2500) return R1.Weight(r-1);
+  if (r>=2501 && r<=5000) return R2.Weight(r-2501);
+  if (r>=5001 && r<=5050) return R3.Weight(r-5001);
+  if (r>=5051 && r<=5100) return R4.Weight(r-5051);
 Error.Notrace("Internal: NextStateGenerator -- querying duration for nonexisting rule.");
 }
 char * PDDLName(RULE_INDEX_TYPE r)
 {
   if (r<=0) return R0.PDDLName(r-0);
-  if (r>=1 && r<=16) return R1.PDDLName(r-1);
-  if (r>=17 && r<=32) return R2.PDDLName(r-17);
-  if (r>=33 && r<=36) return R3.PDDLName(r-33);
-  if (r>=37 && r<=40) return R4.PDDLName(r-37);
+  if (r>=1 && r<=2500) return R1.PDDLName(r-1);
+  if (r>=2501 && r<=5000) return R2.PDDLName(r-2501);
+  if (r>=5001 && r<=5050) return R3.PDDLName(r-5001);
+  if (r>=5051 && r<=5100) return R4.PDDLName(r-5051);
   return NULL;
 }
 RuleManager::rule_pddlclass PDDLClass(RULE_INDEX_TYPE r)
 {
   if (r<=0) return R0.PDDLClass(r-0);
-  if (r>=1 && r<=16) return R1.PDDLClass(r-1);
-  if (r>=17 && r<=32) return R2.PDDLClass(r-17);
-  if (r>=33 && r<=36) return R3.PDDLClass(r-33);
-  if (r>=37 && r<=40) return R4.PDDLClass(r-37);
+  if (r>=1 && r<=2500) return R1.PDDLClass(r-1);
+  if (r>=2501 && r<=5000) return R2.PDDLClass(r-2501);
+  if (r>=5001 && r<=5050) return R3.PDDLClass(r-5001);
+  if (r>=5051 && r<=5100) return R4.PDDLClass(r-5051);
 Error.Notrace("Internal: NextStateGenerator -- querying PDDL class for nonexisting rule.");
 }
 };
-const RULE_INDEX_TYPE numrules = 41;
+const RULE_INDEX_TYPE numrules = 5101;
 
 /********************
   parameter
  ********************/
-#define RULES_IN_WORLD 41
+#define RULES_IN_WORLD 5101
 
 
 /********************
@@ -2189,40 +2392,87 @@ public:
   void Code(unsigned short r)
   {
 {
-for(int mu_x = 1; mu_x <= 4; mu_x++) {
+for(int mu_x = 1; mu_x <= 50; mu_x++) {
 {
-for(int mu_y = 1; mu_y <= 4; mu_y++) {
+for(int mu_y = 1; mu_y <= 50; mu_y++) {
 mu_set_on ( mu_x, mu_y, mu_false );
 };
 };
 };
 };
 {
-for(int mu_x = 1; mu_x <= 4; mu_x++) {
+for(int mu_x = 1; mu_x <= 50; mu_x++) {
 mu_set_ontable ( mu_x, mu_false );
 };
 };
 {
-for(int mu_x = 1; mu_x <= 4; mu_x++) {
+for(int mu_x = 1; mu_x <= 50; mu_x++) {
 mu_set_isclear ( mu_x, mu_false );
 };
 };
 mu_set_handempty ( mu_false );
 {
-for(int mu_x = 1; mu_x <= 4; mu_x++) {
+for(int mu_x = 1; mu_x <= 50; mu_x++) {
 mu_set_holding ( mu_x, mu_false );
 };
 };
 mu_fun = 0.000000e+00;
-mu_isclear[mu_d] = mu_true;
-mu_ontable[mu_a] = mu_true;
-mu_on[mu_d][mu_c] = mu_true;
-mu_on[mu_c][mu_b] = mu_true;
-mu_on[mu_b][mu_a] = mu_true;
 mu_handempty = mu_true;
-mu_h_n = 0;
-mu_g_n = 0;
-mu_f_n = (mu_h_n) + (mu_g_n);
+mu_on[mu_b1][mu_b48] = mu_true;
+mu_on[mu_b2][mu_b33] = mu_true;
+mu_on[mu_b3][mu_b41] = mu_true;
+mu_on[mu_b4][mu_b37] = mu_true;
+mu_on[mu_b5][mu_b45] = mu_true;
+mu_on[mu_b6][mu_b16] = mu_true;
+mu_on[mu_b7][mu_b31] = mu_true;
+mu_on[mu_b8][mu_b28] = mu_true;
+mu_on[mu_b9][mu_b49] = mu_true;
+mu_on[mu_b10][mu_b34] = mu_true;
+mu_on[mu_b11][mu_b15] = mu_true;
+mu_on[mu_b12][mu_b17] = mu_true;
+mu_on[mu_b13][mu_b20] = mu_true;
+mu_on[mu_b14][mu_b2] = mu_true;
+mu_on[mu_b15][mu_b44] = mu_true;
+mu_on[mu_b16][mu_b5] = mu_true;
+mu_on[mu_b17][mu_b32] = mu_true;
+mu_on[mu_b18][mu_b50] = mu_true;
+mu_on[mu_b19][mu_b30] = mu_true;
+mu_on[mu_b20][mu_b22] = mu_true;
+mu_on[mu_b21][mu_b27] = mu_true;
+mu_on[mu_b22][mu_b38] = mu_true;
+mu_on[mu_b23][mu_b11] = mu_true;
+mu_ontable[mu_b24] = mu_true;
+mu_on[mu_b25][mu_b46] = mu_true;
+mu_ontable[mu_b26] = mu_true;
+mu_on[mu_b27][mu_b40] = mu_true;
+mu_on[mu_b28][mu_b43] = mu_true;
+mu_on[mu_b29][mu_b19] = mu_true;
+mu_on[mu_b30][mu_b39] = mu_true;
+mu_on[mu_b31][mu_b29] = mu_true;
+mu_ontable[mu_b32] = mu_true;
+mu_ontable[mu_b33] = mu_true;
+mu_on[mu_b34][mu_b14] = mu_true;
+mu_on[mu_b35][mu_b36] = mu_true;
+mu_ontable[mu_b36] = mu_true;
+mu_on[mu_b37][mu_b8] = mu_true;
+mu_on[mu_b38][mu_b9] = mu_true;
+mu_on[mu_b39][mu_b18] = mu_true;
+mu_on[mu_b40][mu_b3] = mu_true;
+mu_on[mu_b41][mu_b35] = mu_true;
+mu_on[mu_b42][mu_b4] = mu_true;
+mu_on[mu_b43][mu_b24] = mu_true;
+mu_on[mu_b44][mu_b26] = mu_true;
+mu_on[mu_b45][mu_b47] = mu_true;
+mu_on[mu_b46][mu_b42] = mu_true;
+mu_on[mu_b47][mu_b1] = mu_true;
+mu_on[mu_b48][mu_b21] = mu_true;
+mu_on[mu_b49][mu_b25] = mu_true;
+mu_on[mu_b50][mu_b6] = mu_true;
+mu_isclear[mu_b7] = mu_true;
+mu_isclear[mu_b10] = mu_true;
+mu_isclear[mu_b12] = mu_true;
+mu_isclear[mu_b13] = mu_true;
+mu_isclear[mu_b23] = mu_true;
   };
 
 };
@@ -2252,18 +2502,228 @@ int mu__goal_17() // Goal "enjoy"
 {
 bool mu__boolexpr18;
 bool mu__boolexpr19;
-  if (!(mu_on[mu_a][mu_b])) mu__boolexpr19 = FALSE ;
+bool mu__boolexpr20;
+bool mu__boolexpr21;
+bool mu__boolexpr22;
+bool mu__boolexpr23;
+bool mu__boolexpr24;
+bool mu__boolexpr25;
+bool mu__boolexpr26;
+bool mu__boolexpr27;
+bool mu__boolexpr28;
+bool mu__boolexpr29;
+bool mu__boolexpr30;
+bool mu__boolexpr31;
+bool mu__boolexpr32;
+bool mu__boolexpr33;
+bool mu__boolexpr34;
+bool mu__boolexpr35;
+bool mu__boolexpr36;
+bool mu__boolexpr37;
+bool mu__boolexpr38;
+bool mu__boolexpr39;
+bool mu__boolexpr40;
+bool mu__boolexpr41;
+bool mu__boolexpr42;
+bool mu__boolexpr43;
+bool mu__boolexpr44;
+bool mu__boolexpr45;
+bool mu__boolexpr46;
+bool mu__boolexpr47;
+bool mu__boolexpr48;
+bool mu__boolexpr49;
+bool mu__boolexpr50;
+bool mu__boolexpr51;
+bool mu__boolexpr52;
+bool mu__boolexpr53;
+bool mu__boolexpr54;
+bool mu__boolexpr55;
+bool mu__boolexpr56;
+bool mu__boolexpr57;
+bool mu__boolexpr58;
+bool mu__boolexpr59;
+bool mu__boolexpr60;
+bool mu__boolexpr61;
+  if (!(mu_on[mu_b1][mu_b33])) mu__boolexpr61 = FALSE ;
   else {
-  mu__boolexpr19 = (mu_on[mu_b][mu_c]) ; 
+  mu__boolexpr61 = (mu_on[mu_b3][mu_b40]) ; 
+}
+  if (!(mu__boolexpr61)) mu__boolexpr60 = FALSE ;
+  else {
+  mu__boolexpr60 = (mu_on[mu_b4][mu_b46]) ; 
+}
+  if (!(mu__boolexpr60)) mu__boolexpr59 = FALSE ;
+  else {
+  mu__boolexpr59 = (mu_on[mu_b5][mu_b21]) ; 
+}
+  if (!(mu__boolexpr59)) mu__boolexpr58 = FALSE ;
+  else {
+  mu__boolexpr58 = (mu_on[mu_b6][mu_b17]) ; 
+}
+  if (!(mu__boolexpr58)) mu__boolexpr57 = FALSE ;
+  else {
+  mu__boolexpr57 = (mu_on[mu_b7][mu_b37]) ; 
+}
+  if (!(mu__boolexpr57)) mu__boolexpr56 = FALSE ;
+  else {
+  mu__boolexpr56 = (mu_on[mu_b8][mu_b15]) ; 
+}
+  if (!(mu__boolexpr56)) mu__boolexpr55 = FALSE ;
+  else {
+  mu__boolexpr55 = (mu_on[mu_b9][mu_b41]) ; 
+}
+  if (!(mu__boolexpr55)) mu__boolexpr54 = FALSE ;
+  else {
+  mu__boolexpr54 = (mu_on[mu_b10][mu_b26]) ; 
+}
+  if (!(mu__boolexpr54)) mu__boolexpr53 = FALSE ;
+  else {
+  mu__boolexpr53 = (mu_on[mu_b11][mu_b23]) ; 
+}
+  if (!(mu__boolexpr53)) mu__boolexpr52 = FALSE ;
+  else {
+  mu__boolexpr52 = (mu_on[mu_b12][mu_b25]) ; 
+}
+  if (!(mu__boolexpr52)) mu__boolexpr51 = FALSE ;
+  else {
+  mu__boolexpr51 = (mu_on[mu_b13][mu_b47]) ; 
+}
+  if (!(mu__boolexpr51)) mu__boolexpr50 = FALSE ;
+  else {
+  mu__boolexpr50 = (mu_on[mu_b14][mu_b20]) ; 
+}
+  if (!(mu__boolexpr50)) mu__boolexpr49 = FALSE ;
+  else {
+  mu__boolexpr49 = (mu_on[mu_b15][mu_b19]) ; 
+}
+  if (!(mu__boolexpr49)) mu__boolexpr48 = FALSE ;
+  else {
+  mu__boolexpr48 = (mu_on[mu_b16][mu_b31]) ; 
+}
+  if (!(mu__boolexpr48)) mu__boolexpr47 = FALSE ;
+  else {
+  mu__boolexpr47 = (mu_on[mu_b17][mu_b39]) ; 
+}
+  if (!(mu__boolexpr47)) mu__boolexpr46 = FALSE ;
+  else {
+  mu__boolexpr46 = (mu_on[mu_b18][mu_b50]) ; 
+}
+  if (!(mu__boolexpr46)) mu__boolexpr45 = FALSE ;
+  else {
+  mu__boolexpr45 = (mu_on[mu_b19][mu_b1]) ; 
+}
+  if (!(mu__boolexpr45)) mu__boolexpr44 = FALSE ;
+  else {
+  mu__boolexpr44 = (mu_on[mu_b20][mu_b45]) ; 
+}
+  if (!(mu__boolexpr44)) mu__boolexpr43 = FALSE ;
+  else {
+  mu__boolexpr43 = (mu_on[mu_b21][mu_b11]) ; 
+}
+  if (!(mu__boolexpr43)) mu__boolexpr42 = FALSE ;
+  else {
+  mu__boolexpr42 = (mu_on[mu_b23][mu_b43]) ; 
+}
+  if (!(mu__boolexpr42)) mu__boolexpr41 = FALSE ;
+  else {
+  mu__boolexpr41 = (mu_on[mu_b25][mu_b42]) ; 
+}
+  if (!(mu__boolexpr41)) mu__boolexpr40 = FALSE ;
+  else {
+  mu__boolexpr40 = (mu_on[mu_b26][mu_b36]) ; 
+}
+  if (!(mu__boolexpr40)) mu__boolexpr39 = FALSE ;
+  else {
+  mu__boolexpr39 = (mu_on[mu_b27][mu_b35]) ; 
+}
+  if (!(mu__boolexpr39)) mu__boolexpr38 = FALSE ;
+  else {
+  mu__boolexpr38 = (mu_on[mu_b28][mu_b29]) ; 
+}
+  if (!(mu__boolexpr38)) mu__boolexpr37 = FALSE ;
+  else {
+  mu__boolexpr37 = (mu_on[mu_b29][mu_b44]) ; 
+}
+  if (!(mu__boolexpr37)) mu__boolexpr36 = FALSE ;
+  else {
+  mu__boolexpr36 = (mu_on[mu_b30][mu_b8]) ; 
+}
+  if (!(mu__boolexpr36)) mu__boolexpr35 = FALSE ;
+  else {
+  mu__boolexpr35 = (mu_on[mu_b31][mu_b9]) ; 
+}
+  if (!(mu__boolexpr35)) mu__boolexpr34 = FALSE ;
+  else {
+  mu__boolexpr34 = (mu_on[mu_b32][mu_b6]) ; 
+}
+  if (!(mu__boolexpr34)) mu__boolexpr33 = FALSE ;
+  else {
+  mu__boolexpr33 = (mu_on[mu_b33][mu_b10]) ; 
+}
+  if (!(mu__boolexpr33)) mu__boolexpr32 = FALSE ;
+  else {
+  mu__boolexpr32 = (mu_on[mu_b34][mu_b14]) ; 
+}
+  if (!(mu__boolexpr32)) mu__boolexpr31 = FALSE ;
+  else {
+  mu__boolexpr31 = (mu_on[mu_b35][mu_b2]) ; 
+}
+  if (!(mu__boolexpr31)) mu__boolexpr30 = FALSE ;
+  else {
+  mu__boolexpr30 = (mu_on[mu_b36][mu_b7]) ; 
+}
+  if (!(mu__boolexpr30)) mu__boolexpr29 = FALSE ;
+  else {
+  mu__boolexpr29 = (mu_on[mu_b37][mu_b32]) ; 
+}
+  if (!(mu__boolexpr29)) mu__boolexpr28 = FALSE ;
+  else {
+  mu__boolexpr28 = (mu_on[mu_b38][mu_b28]) ; 
+}
+  if (!(mu__boolexpr28)) mu__boolexpr27 = FALSE ;
+  else {
+  mu__boolexpr27 = (mu_on[mu_b40][mu_b24]) ; 
+}
+  if (!(mu__boolexpr27)) mu__boolexpr26 = FALSE ;
+  else {
+  mu__boolexpr26 = (mu_on[mu_b41][mu_b38]) ; 
+}
+  if (!(mu__boolexpr26)) mu__boolexpr25 = FALSE ;
+  else {
+  mu__boolexpr25 = (mu_on[mu_b42][mu_b34]) ; 
+}
+  if (!(mu__boolexpr25)) mu__boolexpr24 = FALSE ;
+  else {
+  mu__boolexpr24 = (mu_on[mu_b43][mu_b12]) ; 
+}
+  if (!(mu__boolexpr24)) mu__boolexpr23 = FALSE ;
+  else {
+  mu__boolexpr23 = (mu_on[mu_b44][mu_b49]) ; 
+}
+  if (!(mu__boolexpr23)) mu__boolexpr22 = FALSE ;
+  else {
+  mu__boolexpr22 = (mu_on[mu_b45][mu_b4]) ; 
+}
+  if (!(mu__boolexpr22)) mu__boolexpr21 = FALSE ;
+  else {
+  mu__boolexpr21 = (mu_on[mu_b46][mu_b18]) ; 
+}
+  if (!(mu__boolexpr21)) mu__boolexpr20 = FALSE ;
+  else {
+  mu__boolexpr20 = (mu_on[mu_b47][mu_b30]) ; 
+}
+  if (!(mu__boolexpr20)) mu__boolexpr19 = FALSE ;
+  else {
+  mu__boolexpr19 = (mu_on[mu_b48][mu_b22]) ; 
 }
   if (!(mu__boolexpr19)) mu__boolexpr18 = FALSE ;
   else {
-  mu__boolexpr18 = (mu_on[mu_c][mu_d]) ; 
+  mu__boolexpr18 = (mu_on[mu_b50][mu_b13]) ; 
 }
 return mu__boolexpr18;
 };
 
-bool mu__condition_20() // Condition for Rule "enjoy"
+bool mu__condition_62() // Condition for Rule "enjoy"
 {
   return mu__goal_17( );
 }
@@ -2271,7 +2731,7 @@ bool mu__condition_20() // Condition for Rule "enjoy"
 /**** end rule declaration ****/
 
 const rulerec goals[] = {
-{"enjoy", &mu__condition_20, NULL, },
+{"enjoy", &mu__condition_62, NULL, },
 };
 const unsigned short numgoals = 1;
 
@@ -2560,7 +3020,7 @@ void mu_1__type_0::Permute(PermSet& Perm, int i)
 {
   static mu_1__type_0 temp("Permute_mu_1__type_0",-1);
   int j;
-  for (j=0; j<4; j++)
+  for (j=0; j<50; j++)
     array[j].Permute(Perm, i);
 };
 void mu_1__type_0::SimpleCanonicalize(PermSet& Perm)
@@ -2575,7 +3035,7 @@ void mu_1__type_1::Permute(PermSet& Perm, int i)
 {
   static mu_1__type_1 temp("Permute_mu_1__type_1",-1);
   int j;
-  for (j=0; j<4; j++)
+  for (j=0; j<50; j++)
     array[j].Permute(Perm, i);
 };
 void mu_1__type_1::SimpleCanonicalize(PermSet& Perm)
@@ -2590,7 +3050,7 @@ void mu_1__type_2::Permute(PermSet& Perm, int i)
 {
   static mu_1__type_2 temp("Permute_mu_1__type_2",-1);
   int j;
-  for (j=0; j<4; j++)
+  for (j=0; j<50; j++)
     array[j].Permute(Perm, i);
 };
 void mu_1__type_2::SimpleCanonicalize(PermSet& Perm)
@@ -2605,7 +3065,7 @@ void mu_1__type_3::Permute(PermSet& Perm, int i)
 {
   static mu_1__type_3 temp("Permute_mu_1__type_3",-1);
   int j;
-  for (j=0; j<4; j++)
+  for (j=0; j<50; j++)
     array[j].Permute(Perm, i);
 };
 void mu_1__type_3::SimpleCanonicalize(PermSet& Perm)
@@ -2620,7 +3080,7 @@ void mu_1__type_4::Permute(PermSet& Perm, int i)
 {
   static mu_1__type_4 temp("Permute_mu_1__type_4",-1);
   int j;
-  for (j=0; j<4; j++)
+  for (j=0; j<50; j++)
     array[j].Permute(Perm, i);
 };
 void mu_1__type_4::SimpleCanonicalize(PermSet& Perm)

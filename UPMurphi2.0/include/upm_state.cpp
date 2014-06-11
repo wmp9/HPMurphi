@@ -443,6 +443,8 @@ void state_queue::Print(void)
 void state_queue::enqueue(state * &e, unsigned long index)
 {
 
+//  cout << (num_elts_head+num_elts_tail) << " out of: " << max_active_states << endl;
+
   if (num_elts_tail >= tail_size) {	//memory full: reclaim more space by swapping out the current queue
 	  ReclaimFreeSpace();
   }
@@ -451,10 +453,13 @@ void state_queue::enqueue(state * &e, unsigned long index)
 //     set the offsets (front, rear, ...) accordingly; so we proceed with
 //     the insertion without checking...
 
+  state * tempt = new state();
+  StateCopy(tempt, workingstate);
+
   double e_h = e->get_f_val();
 
   int stateArrayIndex = head_begin+front+num_elts_head-1;
-  cout << "Getting from state array index " << stateArrayIndex << endl;
+//  cout << "Getting from state array index " << stateArrayIndex << endl;
 
 //  assert(stateArrayIndex >= 0);
 //  assert(stateArrayIndex < max_active_states);
@@ -484,20 +489,22 @@ void state_queue::enqueue(state * &e, unsigned long index)
 
 			  int state_ix1 = stateArray[tail_begin+rear - ix].i;
 
-			  double h1 = workingstate->get_f_val();
+			  double f1 = workingstate->get_f_val();
+			  double h1 = workingstate->get_h_val();
 
 			  StateCopy(workingstate, &(stateArray[tail_begin+rear-(ix+1)].s));
 
 			  int state_ix2 = stateArray[tail_begin+rear - (ix+1)].i;
 
-			  double h2 = workingstate->get_f_val();
+			  double f2 = workingstate->get_f_val();
+			  double h2 = workingstate->get_h_val();
 
 //			  cout << "TAIL    IX HEURISTIC" << h1 << endl;
 //
 //			  cout << "TAIL    IX+1 HEURISTIC" << h2 <<endl;
 
 
-			  if (h1 < h2){
+			  if ((f1 < f2) || ((f1 == f2) && (h1 < h2))){
 
 				  state * temp = new state;
 
@@ -514,6 +521,8 @@ void state_queue::enqueue(state * &e, unsigned long index)
 				  stateArray[tail_begin + rear-(ix+1)].i = state_ix1;
 
 //				  cout << "TAIL  SWAP!!!!!!" << endl;
+
+				  delete temp;
 			  }
 			  else {
 //				  cout << "TAIL  BREAK!!!!!" << endl;
@@ -543,20 +552,22 @@ void state_queue::enqueue(state * &e, unsigned long index)
 
 				  int state_ix1 = stateArray[head_begin+front+num_elts_head-ix].i;
 
-				  double h1 = workingstate->get_f_val();
+				  double f1 = workingstate->get_f_val();
+				  double h1 = workingstate->get_h_val();
 
 				  StateCopy(workingstate, &(stateArray[head_begin+front+num_elts_head-(ix+1)].s));
 
 				  int state_ix2 = stateArray[head_begin+front+num_elts_head-(ix+1)].i;
 
-				  double h2 = workingstate->get_f_val();
+				  double f2 = workingstate->get_f_val();
+				  double h2 = workingstate->get_h_val();
 
 //				  cout << "HEAD     IX HEURISTIC" << h1 << endl;
 
 //				  cout << "HEAD     IX+1 HEURISTIC" << h2 <<endl;
 
 
-				  if (h1 < h2){
+				  if ((f1 < f2) || ((f1 == f2) && (h1 < h2))){
 
 					  state * temp = new state;
 
@@ -573,6 +584,8 @@ void state_queue::enqueue(state * &e, unsigned long index)
 					  stateArray[head_begin+front+num_elts_head-(ix+1)].i = state_ix1;
 
 //					  cout << "HEAD  SWAP!!!!!!" << endl;
+
+					  delete temp;
 				  }
 				  else {
 //					  cout << "HEAD  BREAK!!!!!" << endl;
@@ -580,9 +593,16 @@ void state_queue::enqueue(state * &e, unsigned long index)
 				  }
 			}
 		}
+//		StateCopy(workingstate, tempt);
+//		delete tempt;
 	}
 
-  Print();
+	StateCopy(workingstate, tempt);
+	delete tempt;
+
+// WP WP WP WP WP WP
+//	COMMENTED OUT PRINT FOR TESTING PURPOSES
+//  Print();
 }
 
 

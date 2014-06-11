@@ -1,5 +1,5 @@
 /******************************
-  Program "blocks.m" compiled by "Universal Planner Murphi Release 2.0.R8"
+  Program "bw15.m" compiled by "Universal Planner Murphi Release 2.0.R8"
 
   Murphi Last Compiled date: "May 20 2014"
  ******************************/
@@ -9,8 +9,8 @@
  ********************/
 #define MURPHI_VERSION "Universal Planner Murphi Release 2.0.R8"
 #define MURPHI_DATE "May 20 2014"
-#define PROTOCOL_NAME "blocks"
-#define BITS_IN_WORLD 115
+#define PROTOCOL_NAME "bw15"
+#define BITS_IN_WORLD 599
 #define HASHC
 
 /********************
@@ -88,9 +88,9 @@ class mu_1_block: public mu__byte
     else return ( s << "Undefined" );
   };
 
-  mu_1_block (const char *name, int os): mu__byte(1, 4, 3, name, os) {};
-  mu_1_block (void): mu__byte(1, 4, 3) {};
-  mu_1_block (int val): mu__byte(1, 4, 3, "Parameter or function result.", 0)
+  mu_1_block (const char *name, int os): mu__byte(1, 15, 4, name, os) {};
+  mu_1_block (void): mu__byte(1, 15, 4) {};
+  mu_1_block (int val): mu__byte(1, 15, 4, "Parameter or function result.", 0)
   {
      operator=(val);
   };
@@ -113,7 +113,7 @@ class mu_1_block: public mu__byte
   };
 };
 
-const char *mu_1_block::values[] = {"a","b","c","d",NULL };
+const char *mu_1_block::values[] = {"b1","b2","b3","b4","b5","b6","b7","b8","b9","b10","b11","b12","b13","b14","b15",NULL };
 
 /*** end of enum declaration ***/
 mu_1_block mu_1_block_undefined_var;
@@ -121,7 +121,7 @@ mu_1_block mu_1_block_undefined_var;
 class mu_1__type_0:public mu_1__type_super
 {
  public:
-  mu_0_boolean array[ 4 ]; 
+  mu_0_boolean array[ 15 ]; 
 #define awesome_mu_00_mu_0_boolean_mu_1__type_0 1 
  public:
   char *name;
@@ -135,7 +135,7 @@ class mu_1__type_0:public mu_1__type_super
   mu_0_boolean& operator[] (int index) /* const */
   {
 #ifndef NO_RUN_TIME_CHECKING
-    if ( ( index >= 1 ) && ( index <= 4 ) )
+    if ( ( index >= 1 ) && ( index <= 15 ) )
       return array[ index - 1 ];
     else {
       if (index==UNDEFVAL) 
@@ -150,7 +150,7 @@ class mu_1__type_0:public mu_1__type_super
   };
   mu_1__type_0& operator= (const mu_1__type_0& from)
   {
-    for (int i = 0; i < 4; i++)
+    for (int i = 0; i < 15; i++)
       array[i].value(from.array[i].value());
     return *this;
   }
@@ -158,7 +158,7 @@ class mu_1__type_0:public mu_1__type_super
 friend int CompareWeight(mu_1__type_0& a, mu_1__type_0& b)
   {
     int w;
-    for (int i=0; i<4; i++) {
+    for (int i=0; i<15; i++) {
       w = CompareWeight(a.array[i], b.array[i]);
       if (w!=0) return w;
     }
@@ -167,7 +167,7 @@ friend int CompareWeight(mu_1__type_0& a, mu_1__type_0& b)
 friend int Compare(mu_1__type_0& a, mu_1__type_0& b)
   {
     int w;
-    for (int i=0; i<4; i++) {
+    for (int i=0; i<15; i++) {
       w = Compare(a.array[i], b.array[i]);
       if (w!=0) return w;
     }
@@ -182,19 +182,19 @@ friend int Compare(mu_1__type_0& a, mu_1__type_0& b)
   virtual void MultisetLimit(PermSet& Perm);
   virtual void MultisetSort()
   {
-    for (int i=0; i<4; i++)
+    for (int i=0; i<15; i++)
       array[i].MultisetSort();
   }
   void print_statistic()
   {
-    for (int i=0; i<4; i++)
+    for (int i=0; i<15; i++)
       array[i].print_statistic();
   }
-  void clear() { for (int i = 0; i < 4; i++) array[i].clear(); };
+  void clear() { for (int i = 0; i < 15; i++) array[i].clear(); };
 
-  void undefine() { for (int i = 0; i < 4; i++) array[i].undefine(); };
+  void undefine() { for (int i = 0; i < 15; i++) array[i].undefine(); };
 
-  void reset() { for (int i = 0; i < 4; i++) array[i].reset(); };
+  void reset() { for (int i = 0; i < 15; i++) array[i].reset(); };
 
   int array_dim() {
 
@@ -218,11 +218,11 @@ friend int Compare(mu_1__type_0& a, mu_1__type_0& b)
 
 	std::vector<mu_0_boolean*> barr;
 	#ifdef awesome_mu_00_mu_0_boolean_mu_1__type_0
-		for (int ix = 0; ix < 4; ix++){ barr.push_back(&(array[ix])); }
+		for (int ix = 0; ix < 15; ix++){ barr.push_back(&(array[ix])); }
 		return barr;
 	#else 
-		for (int ix = 0; ix < 4; ix++){
-			for (int ix2 = 0; ix2 < 4; ix2++){ barr.push_back(&(array[ix][ix2+1])); }
+		for (int ix = 0; ix < 15; ix++){
+			for (int ix2 = 0; ix2 < 15; ix2++){ barr.push_back(&(array[ix][ix2+1])); }
 		}
 		return barr;
 	   
@@ -231,18 +231,18 @@ friend int Compare(mu_1__type_0& a, mu_1__type_0& b)
 }
   void to_state(state *thestate)
   {
-    for (int i = 0; i < 4; i++)
+    for (int i = 0; i < 15; i++)
       array[i].to_state(thestate);
   };
 
   void print(FILE *target, const char *separator)
   {
-    for (int i = 0; i < 4; i++)
+    for (int i = 0; i < 15; i++)
       array[i].print(target,separator); };
 
   void print_diff(state *prevstate, FILE *target, const char *separator)
   {
-    for (int i = 0; i < 4; i++)
+    for (int i = 0; i < 15; i++)
       array[i].print_diff(prevstate,target,separator);
   };
 };
@@ -268,10 +268,21 @@ friend int Compare(mu_1__type_0& a, mu_1__type_0& b)
     int i=0;
     name = (char *)n;
 
-if (n) array[i].set_self_ar(n,"a", i * 2 + os); else array[i].set_self_ar(NULL, NULL, 0); i++;
-if (n) array[i].set_self_ar(n,"b", i * 2 + os); else array[i].set_self_ar(NULL, NULL, 0); i++;
-if (n) array[i].set_self_ar(n,"c", i * 2 + os); else array[i].set_self_ar(NULL, NULL, 0); i++;
-if (n) array[i].set_self_ar(n,"d", i * 2 + os); else array[i].set_self_ar(NULL, NULL, 0); i++;
+if (n) array[i].set_self_ar(n,"b1", i * 2 + os); else array[i].set_self_ar(NULL, NULL, 0); i++;
+if (n) array[i].set_self_ar(n,"b2", i * 2 + os); else array[i].set_self_ar(NULL, NULL, 0); i++;
+if (n) array[i].set_self_ar(n,"b3", i * 2 + os); else array[i].set_self_ar(NULL, NULL, 0); i++;
+if (n) array[i].set_self_ar(n,"b4", i * 2 + os); else array[i].set_self_ar(NULL, NULL, 0); i++;
+if (n) array[i].set_self_ar(n,"b5", i * 2 + os); else array[i].set_self_ar(NULL, NULL, 0); i++;
+if (n) array[i].set_self_ar(n,"b6", i * 2 + os); else array[i].set_self_ar(NULL, NULL, 0); i++;
+if (n) array[i].set_self_ar(n,"b7", i * 2 + os); else array[i].set_self_ar(NULL, NULL, 0); i++;
+if (n) array[i].set_self_ar(n,"b8", i * 2 + os); else array[i].set_self_ar(NULL, NULL, 0); i++;
+if (n) array[i].set_self_ar(n,"b9", i * 2 + os); else array[i].set_self_ar(NULL, NULL, 0); i++;
+if (n) array[i].set_self_ar(n,"b10", i * 2 + os); else array[i].set_self_ar(NULL, NULL, 0); i++;
+if (n) array[i].set_self_ar(n,"b11", i * 2 + os); else array[i].set_self_ar(NULL, NULL, 0); i++;
+if (n) array[i].set_self_ar(n,"b12", i * 2 + os); else array[i].set_self_ar(NULL, NULL, 0); i++;
+if (n) array[i].set_self_ar(n,"b13", i * 2 + os); else array[i].set_self_ar(NULL, NULL, 0); i++;
+if (n) array[i].set_self_ar(n,"b14", i * 2 + os); else array[i].set_self_ar(NULL, NULL, 0); i++;
+if (n) array[i].set_self_ar(n,"b15", i * 2 + os); else array[i].set_self_ar(NULL, NULL, 0); i++;
   }
 mu_1__type_0::~mu_1__type_0()
 {
@@ -282,7 +293,7 @@ mu_1__type_0 mu_1__type_0_undefined_var;
 class mu_1__type_1:public mu_1__type_super
 {
  public:
-  mu_1__type_0 array[ 4 ]; 
+  mu_1__type_0 array[ 15 ]; 
 #define awesome_mu_00_mu_1__type_0_mu_1__type_1 1 
  public:
   char *name;
@@ -296,7 +307,7 @@ class mu_1__type_1:public mu_1__type_super
   mu_1__type_0& operator[] (int index) /* const */
   {
 #ifndef NO_RUN_TIME_CHECKING
-    if ( ( index >= 1 ) && ( index <= 4 ) )
+    if ( ( index >= 1 ) && ( index <= 15 ) )
       return array[ index - 1 ];
     else {
       if (index==UNDEFVAL) 
@@ -311,7 +322,7 @@ class mu_1__type_1:public mu_1__type_super
   };
   mu_1__type_1& operator= (const mu_1__type_1& from)
   {
-    for (int i = 0; i < 4; i++)
+    for (int i = 0; i < 15; i++)
       array[i] = from.array[i];
     return *this;
   }
@@ -319,7 +330,7 @@ class mu_1__type_1:public mu_1__type_super
 friend int CompareWeight(mu_1__type_1& a, mu_1__type_1& b)
   {
     int w;
-    for (int i=0; i<4; i++) {
+    for (int i=0; i<15; i++) {
       w = CompareWeight(a.array[i], b.array[i]);
       if (w!=0) return w;
     }
@@ -328,7 +339,7 @@ friend int CompareWeight(mu_1__type_1& a, mu_1__type_1& b)
 friend int Compare(mu_1__type_1& a, mu_1__type_1& b)
   {
     int w;
-    for (int i=0; i<4; i++) {
+    for (int i=0; i<15; i++) {
       w = Compare(a.array[i], b.array[i]);
       if (w!=0) return w;
     }
@@ -343,19 +354,19 @@ friend int Compare(mu_1__type_1& a, mu_1__type_1& b)
   virtual void MultisetLimit(PermSet& Perm);
   virtual void MultisetSort()
   {
-    for (int i=0; i<4; i++)
+    for (int i=0; i<15; i++)
       array[i].MultisetSort();
   }
   void print_statistic()
   {
-    for (int i=0; i<4; i++)
+    for (int i=0; i<15; i++)
       array[i].print_statistic();
   }
-  void clear() { for (int i = 0; i < 4; i++) array[i].clear(); };
+  void clear() { for (int i = 0; i < 15; i++) array[i].clear(); };
 
-  void undefine() { for (int i = 0; i < 4; i++) array[i].undefine(); };
+  void undefine() { for (int i = 0; i < 15; i++) array[i].undefine(); };
 
-  void reset() { for (int i = 0; i < 4; i++) array[i].reset(); };
+  void reset() { for (int i = 0; i < 15; i++) array[i].reset(); };
 
   int array_dim() {
 
@@ -379,11 +390,11 @@ friend int Compare(mu_1__type_1& a, mu_1__type_1& b)
 
 	std::vector<mu_0_boolean*> barr;
 	#ifdef awesome_mu_00_mu_0_boolean_mu_1__type_1
-		for (int ix = 0; ix < 4; ix++){ barr.push_back(&(array[ix])); }
+		for (int ix = 0; ix < 15; ix++){ barr.push_back(&(array[ix])); }
 		return barr;
 	#else 
-		for (int ix = 0; ix < 4; ix++){
-			for (int ix2 = 0; ix2 < 4; ix2++){ barr.push_back(&(array[ix][ix2+1])); }
+		for (int ix = 0; ix < 15; ix++){
+			for (int ix2 = 0; ix2 < 15; ix2++){ barr.push_back(&(array[ix][ix2+1])); }
 		}
 		return barr;
 	   
@@ -392,18 +403,18 @@ friend int Compare(mu_1__type_1& a, mu_1__type_1& b)
 }
   void to_state(state *thestate)
   {
-    for (int i = 0; i < 4; i++)
+    for (int i = 0; i < 15; i++)
       array[i].to_state(thestate);
   };
 
   void print(FILE *target, const char *separator)
   {
-    for (int i = 0; i < 4; i++)
+    for (int i = 0; i < 15; i++)
       array[i].print(target,separator); };
 
   void print_diff(state *prevstate, FILE *target, const char *separator)
   {
-    for (int i = 0; i < 4; i++)
+    for (int i = 0; i < 15; i++)
       array[i].print_diff(prevstate,target,separator);
   };
 };
@@ -429,10 +440,21 @@ friend int Compare(mu_1__type_1& a, mu_1__type_1& b)
     int i=0;
     name = (char *)n;
 
-if (n) array[i].set_self_ar(n,"a", i * 8 + os); else array[i].set_self_ar(NULL, NULL, 0); i++;
-if (n) array[i].set_self_ar(n,"b", i * 8 + os); else array[i].set_self_ar(NULL, NULL, 0); i++;
-if (n) array[i].set_self_ar(n,"c", i * 8 + os); else array[i].set_self_ar(NULL, NULL, 0); i++;
-if (n) array[i].set_self_ar(n,"d", i * 8 + os); else array[i].set_self_ar(NULL, NULL, 0); i++;
+if (n) array[i].set_self_ar(n,"b1", i * 30 + os); else array[i].set_self_ar(NULL, NULL, 0); i++;
+if (n) array[i].set_self_ar(n,"b2", i * 30 + os); else array[i].set_self_ar(NULL, NULL, 0); i++;
+if (n) array[i].set_self_ar(n,"b3", i * 30 + os); else array[i].set_self_ar(NULL, NULL, 0); i++;
+if (n) array[i].set_self_ar(n,"b4", i * 30 + os); else array[i].set_self_ar(NULL, NULL, 0); i++;
+if (n) array[i].set_self_ar(n,"b5", i * 30 + os); else array[i].set_self_ar(NULL, NULL, 0); i++;
+if (n) array[i].set_self_ar(n,"b6", i * 30 + os); else array[i].set_self_ar(NULL, NULL, 0); i++;
+if (n) array[i].set_self_ar(n,"b7", i * 30 + os); else array[i].set_self_ar(NULL, NULL, 0); i++;
+if (n) array[i].set_self_ar(n,"b8", i * 30 + os); else array[i].set_self_ar(NULL, NULL, 0); i++;
+if (n) array[i].set_self_ar(n,"b9", i * 30 + os); else array[i].set_self_ar(NULL, NULL, 0); i++;
+if (n) array[i].set_self_ar(n,"b10", i * 30 + os); else array[i].set_self_ar(NULL, NULL, 0); i++;
+if (n) array[i].set_self_ar(n,"b11", i * 30 + os); else array[i].set_self_ar(NULL, NULL, 0); i++;
+if (n) array[i].set_self_ar(n,"b12", i * 30 + os); else array[i].set_self_ar(NULL, NULL, 0); i++;
+if (n) array[i].set_self_ar(n,"b13", i * 30 + os); else array[i].set_self_ar(NULL, NULL, 0); i++;
+if (n) array[i].set_self_ar(n,"b14", i * 30 + os); else array[i].set_self_ar(NULL, NULL, 0); i++;
+if (n) array[i].set_self_ar(n,"b15", i * 30 + os); else array[i].set_self_ar(NULL, NULL, 0); i++;
   }
 mu_1__type_1::~mu_1__type_1()
 {
@@ -443,7 +465,7 @@ mu_1__type_1 mu_1__type_1_undefined_var;
 class mu_1__type_2:public mu_1__type_super
 {
  public:
-  mu_0_boolean array[ 4 ]; 
+  mu_0_boolean array[ 15 ]; 
 #define awesome_mu_00_mu_0_boolean_mu_1__type_2 1 
  public:
   char *name;
@@ -457,7 +479,7 @@ class mu_1__type_2:public mu_1__type_super
   mu_0_boolean& operator[] (int index) /* const */
   {
 #ifndef NO_RUN_TIME_CHECKING
-    if ( ( index >= 1 ) && ( index <= 4 ) )
+    if ( ( index >= 1 ) && ( index <= 15 ) )
       return array[ index - 1 ];
     else {
       if (index==UNDEFVAL) 
@@ -472,7 +494,7 @@ class mu_1__type_2:public mu_1__type_super
   };
   mu_1__type_2& operator= (const mu_1__type_2& from)
   {
-    for (int i = 0; i < 4; i++)
+    for (int i = 0; i < 15; i++)
       array[i].value(from.array[i].value());
     return *this;
   }
@@ -480,7 +502,7 @@ class mu_1__type_2:public mu_1__type_super
 friend int CompareWeight(mu_1__type_2& a, mu_1__type_2& b)
   {
     int w;
-    for (int i=0; i<4; i++) {
+    for (int i=0; i<15; i++) {
       w = CompareWeight(a.array[i], b.array[i]);
       if (w!=0) return w;
     }
@@ -489,7 +511,7 @@ friend int CompareWeight(mu_1__type_2& a, mu_1__type_2& b)
 friend int Compare(mu_1__type_2& a, mu_1__type_2& b)
   {
     int w;
-    for (int i=0; i<4; i++) {
+    for (int i=0; i<15; i++) {
       w = Compare(a.array[i], b.array[i]);
       if (w!=0) return w;
     }
@@ -504,19 +526,19 @@ friend int Compare(mu_1__type_2& a, mu_1__type_2& b)
   virtual void MultisetLimit(PermSet& Perm);
   virtual void MultisetSort()
   {
-    for (int i=0; i<4; i++)
+    for (int i=0; i<15; i++)
       array[i].MultisetSort();
   }
   void print_statistic()
   {
-    for (int i=0; i<4; i++)
+    for (int i=0; i<15; i++)
       array[i].print_statistic();
   }
-  void clear() { for (int i = 0; i < 4; i++) array[i].clear(); };
+  void clear() { for (int i = 0; i < 15; i++) array[i].clear(); };
 
-  void undefine() { for (int i = 0; i < 4; i++) array[i].undefine(); };
+  void undefine() { for (int i = 0; i < 15; i++) array[i].undefine(); };
 
-  void reset() { for (int i = 0; i < 4; i++) array[i].reset(); };
+  void reset() { for (int i = 0; i < 15; i++) array[i].reset(); };
 
   int array_dim() {
 
@@ -540,11 +562,11 @@ friend int Compare(mu_1__type_2& a, mu_1__type_2& b)
 
 	std::vector<mu_0_boolean*> barr;
 	#ifdef awesome_mu_00_mu_0_boolean_mu_1__type_2
-		for (int ix = 0; ix < 4; ix++){ barr.push_back(&(array[ix])); }
+		for (int ix = 0; ix < 15; ix++){ barr.push_back(&(array[ix])); }
 		return barr;
 	#else 
-		for (int ix = 0; ix < 4; ix++){
-			for (int ix2 = 0; ix2 < 4; ix2++){ barr.push_back(&(array[ix][ix2+1])); }
+		for (int ix = 0; ix < 15; ix++){
+			for (int ix2 = 0; ix2 < 15; ix2++){ barr.push_back(&(array[ix][ix2+1])); }
 		}
 		return barr;
 	   
@@ -553,18 +575,18 @@ friend int Compare(mu_1__type_2& a, mu_1__type_2& b)
 }
   void to_state(state *thestate)
   {
-    for (int i = 0; i < 4; i++)
+    for (int i = 0; i < 15; i++)
       array[i].to_state(thestate);
   };
 
   void print(FILE *target, const char *separator)
   {
-    for (int i = 0; i < 4; i++)
+    for (int i = 0; i < 15; i++)
       array[i].print(target,separator); };
 
   void print_diff(state *prevstate, FILE *target, const char *separator)
   {
-    for (int i = 0; i < 4; i++)
+    for (int i = 0; i < 15; i++)
       array[i].print_diff(prevstate,target,separator);
   };
 };
@@ -590,10 +612,21 @@ friend int Compare(mu_1__type_2& a, mu_1__type_2& b)
     int i=0;
     name = (char *)n;
 
-if (n) array[i].set_self_ar(n,"a", i * 2 + os); else array[i].set_self_ar(NULL, NULL, 0); i++;
-if (n) array[i].set_self_ar(n,"b", i * 2 + os); else array[i].set_self_ar(NULL, NULL, 0); i++;
-if (n) array[i].set_self_ar(n,"c", i * 2 + os); else array[i].set_self_ar(NULL, NULL, 0); i++;
-if (n) array[i].set_self_ar(n,"d", i * 2 + os); else array[i].set_self_ar(NULL, NULL, 0); i++;
+if (n) array[i].set_self_ar(n,"b1", i * 2 + os); else array[i].set_self_ar(NULL, NULL, 0); i++;
+if (n) array[i].set_self_ar(n,"b2", i * 2 + os); else array[i].set_self_ar(NULL, NULL, 0); i++;
+if (n) array[i].set_self_ar(n,"b3", i * 2 + os); else array[i].set_self_ar(NULL, NULL, 0); i++;
+if (n) array[i].set_self_ar(n,"b4", i * 2 + os); else array[i].set_self_ar(NULL, NULL, 0); i++;
+if (n) array[i].set_self_ar(n,"b5", i * 2 + os); else array[i].set_self_ar(NULL, NULL, 0); i++;
+if (n) array[i].set_self_ar(n,"b6", i * 2 + os); else array[i].set_self_ar(NULL, NULL, 0); i++;
+if (n) array[i].set_self_ar(n,"b7", i * 2 + os); else array[i].set_self_ar(NULL, NULL, 0); i++;
+if (n) array[i].set_self_ar(n,"b8", i * 2 + os); else array[i].set_self_ar(NULL, NULL, 0); i++;
+if (n) array[i].set_self_ar(n,"b9", i * 2 + os); else array[i].set_self_ar(NULL, NULL, 0); i++;
+if (n) array[i].set_self_ar(n,"b10", i * 2 + os); else array[i].set_self_ar(NULL, NULL, 0); i++;
+if (n) array[i].set_self_ar(n,"b11", i * 2 + os); else array[i].set_self_ar(NULL, NULL, 0); i++;
+if (n) array[i].set_self_ar(n,"b12", i * 2 + os); else array[i].set_self_ar(NULL, NULL, 0); i++;
+if (n) array[i].set_self_ar(n,"b13", i * 2 + os); else array[i].set_self_ar(NULL, NULL, 0); i++;
+if (n) array[i].set_self_ar(n,"b14", i * 2 + os); else array[i].set_self_ar(NULL, NULL, 0); i++;
+if (n) array[i].set_self_ar(n,"b15", i * 2 + os); else array[i].set_self_ar(NULL, NULL, 0); i++;
   }
 mu_1__type_2::~mu_1__type_2()
 {
@@ -604,7 +637,7 @@ mu_1__type_2 mu_1__type_2_undefined_var;
 class mu_1__type_3:public mu_1__type_super
 {
  public:
-  mu_0_boolean array[ 4 ]; 
+  mu_0_boolean array[ 15 ]; 
 #define awesome_mu_00_mu_0_boolean_mu_1__type_3 1 
  public:
   char *name;
@@ -618,7 +651,7 @@ class mu_1__type_3:public mu_1__type_super
   mu_0_boolean& operator[] (int index) /* const */
   {
 #ifndef NO_RUN_TIME_CHECKING
-    if ( ( index >= 1 ) && ( index <= 4 ) )
+    if ( ( index >= 1 ) && ( index <= 15 ) )
       return array[ index - 1 ];
     else {
       if (index==UNDEFVAL) 
@@ -633,7 +666,7 @@ class mu_1__type_3:public mu_1__type_super
   };
   mu_1__type_3& operator= (const mu_1__type_3& from)
   {
-    for (int i = 0; i < 4; i++)
+    for (int i = 0; i < 15; i++)
       array[i].value(from.array[i].value());
     return *this;
   }
@@ -641,7 +674,7 @@ class mu_1__type_3:public mu_1__type_super
 friend int CompareWeight(mu_1__type_3& a, mu_1__type_3& b)
   {
     int w;
-    for (int i=0; i<4; i++) {
+    for (int i=0; i<15; i++) {
       w = CompareWeight(a.array[i], b.array[i]);
       if (w!=0) return w;
     }
@@ -650,7 +683,7 @@ friend int CompareWeight(mu_1__type_3& a, mu_1__type_3& b)
 friend int Compare(mu_1__type_3& a, mu_1__type_3& b)
   {
     int w;
-    for (int i=0; i<4; i++) {
+    for (int i=0; i<15; i++) {
       w = Compare(a.array[i], b.array[i]);
       if (w!=0) return w;
     }
@@ -665,19 +698,19 @@ friend int Compare(mu_1__type_3& a, mu_1__type_3& b)
   virtual void MultisetLimit(PermSet& Perm);
   virtual void MultisetSort()
   {
-    for (int i=0; i<4; i++)
+    for (int i=0; i<15; i++)
       array[i].MultisetSort();
   }
   void print_statistic()
   {
-    for (int i=0; i<4; i++)
+    for (int i=0; i<15; i++)
       array[i].print_statistic();
   }
-  void clear() { for (int i = 0; i < 4; i++) array[i].clear(); };
+  void clear() { for (int i = 0; i < 15; i++) array[i].clear(); };
 
-  void undefine() { for (int i = 0; i < 4; i++) array[i].undefine(); };
+  void undefine() { for (int i = 0; i < 15; i++) array[i].undefine(); };
 
-  void reset() { for (int i = 0; i < 4; i++) array[i].reset(); };
+  void reset() { for (int i = 0; i < 15; i++) array[i].reset(); };
 
   int array_dim() {
 
@@ -701,11 +734,11 @@ friend int Compare(mu_1__type_3& a, mu_1__type_3& b)
 
 	std::vector<mu_0_boolean*> barr;
 	#ifdef awesome_mu_00_mu_0_boolean_mu_1__type_3
-		for (int ix = 0; ix < 4; ix++){ barr.push_back(&(array[ix])); }
+		for (int ix = 0; ix < 15; ix++){ barr.push_back(&(array[ix])); }
 		return barr;
 	#else 
-		for (int ix = 0; ix < 4; ix++){
-			for (int ix2 = 0; ix2 < 4; ix2++){ barr.push_back(&(array[ix][ix2+1])); }
+		for (int ix = 0; ix < 15; ix++){
+			for (int ix2 = 0; ix2 < 15; ix2++){ barr.push_back(&(array[ix][ix2+1])); }
 		}
 		return barr;
 	   
@@ -714,18 +747,18 @@ friend int Compare(mu_1__type_3& a, mu_1__type_3& b)
 }
   void to_state(state *thestate)
   {
-    for (int i = 0; i < 4; i++)
+    for (int i = 0; i < 15; i++)
       array[i].to_state(thestate);
   };
 
   void print(FILE *target, const char *separator)
   {
-    for (int i = 0; i < 4; i++)
+    for (int i = 0; i < 15; i++)
       array[i].print(target,separator); };
 
   void print_diff(state *prevstate, FILE *target, const char *separator)
   {
-    for (int i = 0; i < 4; i++)
+    for (int i = 0; i < 15; i++)
       array[i].print_diff(prevstate,target,separator);
   };
 };
@@ -751,10 +784,21 @@ friend int Compare(mu_1__type_3& a, mu_1__type_3& b)
     int i=0;
     name = (char *)n;
 
-if (n) array[i].set_self_ar(n,"a", i * 2 + os); else array[i].set_self_ar(NULL, NULL, 0); i++;
-if (n) array[i].set_self_ar(n,"b", i * 2 + os); else array[i].set_self_ar(NULL, NULL, 0); i++;
-if (n) array[i].set_self_ar(n,"c", i * 2 + os); else array[i].set_self_ar(NULL, NULL, 0); i++;
-if (n) array[i].set_self_ar(n,"d", i * 2 + os); else array[i].set_self_ar(NULL, NULL, 0); i++;
+if (n) array[i].set_self_ar(n,"b1", i * 2 + os); else array[i].set_self_ar(NULL, NULL, 0); i++;
+if (n) array[i].set_self_ar(n,"b2", i * 2 + os); else array[i].set_self_ar(NULL, NULL, 0); i++;
+if (n) array[i].set_self_ar(n,"b3", i * 2 + os); else array[i].set_self_ar(NULL, NULL, 0); i++;
+if (n) array[i].set_self_ar(n,"b4", i * 2 + os); else array[i].set_self_ar(NULL, NULL, 0); i++;
+if (n) array[i].set_self_ar(n,"b5", i * 2 + os); else array[i].set_self_ar(NULL, NULL, 0); i++;
+if (n) array[i].set_self_ar(n,"b6", i * 2 + os); else array[i].set_self_ar(NULL, NULL, 0); i++;
+if (n) array[i].set_self_ar(n,"b7", i * 2 + os); else array[i].set_self_ar(NULL, NULL, 0); i++;
+if (n) array[i].set_self_ar(n,"b8", i * 2 + os); else array[i].set_self_ar(NULL, NULL, 0); i++;
+if (n) array[i].set_self_ar(n,"b9", i * 2 + os); else array[i].set_self_ar(NULL, NULL, 0); i++;
+if (n) array[i].set_self_ar(n,"b10", i * 2 + os); else array[i].set_self_ar(NULL, NULL, 0); i++;
+if (n) array[i].set_self_ar(n,"b11", i * 2 + os); else array[i].set_self_ar(NULL, NULL, 0); i++;
+if (n) array[i].set_self_ar(n,"b12", i * 2 + os); else array[i].set_self_ar(NULL, NULL, 0); i++;
+if (n) array[i].set_self_ar(n,"b13", i * 2 + os); else array[i].set_self_ar(NULL, NULL, 0); i++;
+if (n) array[i].set_self_ar(n,"b14", i * 2 + os); else array[i].set_self_ar(NULL, NULL, 0); i++;
+if (n) array[i].set_self_ar(n,"b15", i * 2 + os); else array[i].set_self_ar(NULL, NULL, 0); i++;
   }
 mu_1__type_3::~mu_1__type_3()
 {
@@ -765,7 +809,7 @@ mu_1__type_3 mu_1__type_3_undefined_var;
 class mu_1__type_4:public mu_1__type_super
 {
  public:
-  mu_0_boolean array[ 4 ]; 
+  mu_0_boolean array[ 15 ]; 
 #define awesome_mu_00_mu_0_boolean_mu_1__type_4 1 
  public:
   char *name;
@@ -779,7 +823,7 @@ class mu_1__type_4:public mu_1__type_super
   mu_0_boolean& operator[] (int index) /* const */
   {
 #ifndef NO_RUN_TIME_CHECKING
-    if ( ( index >= 1 ) && ( index <= 4 ) )
+    if ( ( index >= 1 ) && ( index <= 15 ) )
       return array[ index - 1 ];
     else {
       if (index==UNDEFVAL) 
@@ -794,7 +838,7 @@ class mu_1__type_4:public mu_1__type_super
   };
   mu_1__type_4& operator= (const mu_1__type_4& from)
   {
-    for (int i = 0; i < 4; i++)
+    for (int i = 0; i < 15; i++)
       array[i].value(from.array[i].value());
     return *this;
   }
@@ -802,7 +846,7 @@ class mu_1__type_4:public mu_1__type_super
 friend int CompareWeight(mu_1__type_4& a, mu_1__type_4& b)
   {
     int w;
-    for (int i=0; i<4; i++) {
+    for (int i=0; i<15; i++) {
       w = CompareWeight(a.array[i], b.array[i]);
       if (w!=0) return w;
     }
@@ -811,7 +855,7 @@ friend int CompareWeight(mu_1__type_4& a, mu_1__type_4& b)
 friend int Compare(mu_1__type_4& a, mu_1__type_4& b)
   {
     int w;
-    for (int i=0; i<4; i++) {
+    for (int i=0; i<15; i++) {
       w = Compare(a.array[i], b.array[i]);
       if (w!=0) return w;
     }
@@ -826,19 +870,19 @@ friend int Compare(mu_1__type_4& a, mu_1__type_4& b)
   virtual void MultisetLimit(PermSet& Perm);
   virtual void MultisetSort()
   {
-    for (int i=0; i<4; i++)
+    for (int i=0; i<15; i++)
       array[i].MultisetSort();
   }
   void print_statistic()
   {
-    for (int i=0; i<4; i++)
+    for (int i=0; i<15; i++)
       array[i].print_statistic();
   }
-  void clear() { for (int i = 0; i < 4; i++) array[i].clear(); };
+  void clear() { for (int i = 0; i < 15; i++) array[i].clear(); };
 
-  void undefine() { for (int i = 0; i < 4; i++) array[i].undefine(); };
+  void undefine() { for (int i = 0; i < 15; i++) array[i].undefine(); };
 
-  void reset() { for (int i = 0; i < 4; i++) array[i].reset(); };
+  void reset() { for (int i = 0; i < 15; i++) array[i].reset(); };
 
   int array_dim() {
 
@@ -862,11 +906,11 @@ friend int Compare(mu_1__type_4& a, mu_1__type_4& b)
 
 	std::vector<mu_0_boolean*> barr;
 	#ifdef awesome_mu_00_mu_0_boolean_mu_1__type_4
-		for (int ix = 0; ix < 4; ix++){ barr.push_back(&(array[ix])); }
+		for (int ix = 0; ix < 15; ix++){ barr.push_back(&(array[ix])); }
 		return barr;
 	#else 
-		for (int ix = 0; ix < 4; ix++){
-			for (int ix2 = 0; ix2 < 4; ix2++){ barr.push_back(&(array[ix][ix2+1])); }
+		for (int ix = 0; ix < 15; ix++){
+			for (int ix2 = 0; ix2 < 15; ix2++){ barr.push_back(&(array[ix][ix2+1])); }
 		}
 		return barr;
 	   
@@ -875,18 +919,18 @@ friend int Compare(mu_1__type_4& a, mu_1__type_4& b)
 }
   void to_state(state *thestate)
   {
-    for (int i = 0; i < 4; i++)
+    for (int i = 0; i < 15; i++)
       array[i].to_state(thestate);
   };
 
   void print(FILE *target, const char *separator)
   {
-    for (int i = 0; i < 4; i++)
+    for (int i = 0; i < 15; i++)
       array[i].print(target,separator); };
 
   void print_diff(state *prevstate, FILE *target, const char *separator)
   {
-    for (int i = 0; i < 4; i++)
+    for (int i = 0; i < 15; i++)
       array[i].print_diff(prevstate,target,separator);
   };
 };
@@ -912,10 +956,21 @@ friend int Compare(mu_1__type_4& a, mu_1__type_4& b)
     int i=0;
     name = (char *)n;
 
-if (n) array[i].set_self_ar(n,"a", i * 2 + os); else array[i].set_self_ar(NULL, NULL, 0); i++;
-if (n) array[i].set_self_ar(n,"b", i * 2 + os); else array[i].set_self_ar(NULL, NULL, 0); i++;
-if (n) array[i].set_self_ar(n,"c", i * 2 + os); else array[i].set_self_ar(NULL, NULL, 0); i++;
-if (n) array[i].set_self_ar(n,"d", i * 2 + os); else array[i].set_self_ar(NULL, NULL, 0); i++;
+if (n) array[i].set_self_ar(n,"b1", i * 2 + os); else array[i].set_self_ar(NULL, NULL, 0); i++;
+if (n) array[i].set_self_ar(n,"b2", i * 2 + os); else array[i].set_self_ar(NULL, NULL, 0); i++;
+if (n) array[i].set_self_ar(n,"b3", i * 2 + os); else array[i].set_self_ar(NULL, NULL, 0); i++;
+if (n) array[i].set_self_ar(n,"b4", i * 2 + os); else array[i].set_self_ar(NULL, NULL, 0); i++;
+if (n) array[i].set_self_ar(n,"b5", i * 2 + os); else array[i].set_self_ar(NULL, NULL, 0); i++;
+if (n) array[i].set_self_ar(n,"b6", i * 2 + os); else array[i].set_self_ar(NULL, NULL, 0); i++;
+if (n) array[i].set_self_ar(n,"b7", i * 2 + os); else array[i].set_self_ar(NULL, NULL, 0); i++;
+if (n) array[i].set_self_ar(n,"b8", i * 2 + os); else array[i].set_self_ar(NULL, NULL, 0); i++;
+if (n) array[i].set_self_ar(n,"b9", i * 2 + os); else array[i].set_self_ar(NULL, NULL, 0); i++;
+if (n) array[i].set_self_ar(n,"b10", i * 2 + os); else array[i].set_self_ar(NULL, NULL, 0); i++;
+if (n) array[i].set_self_ar(n,"b11", i * 2 + os); else array[i].set_self_ar(NULL, NULL, 0); i++;
+if (n) array[i].set_self_ar(n,"b12", i * 2 + os); else array[i].set_self_ar(NULL, NULL, 0); i++;
+if (n) array[i].set_self_ar(n,"b13", i * 2 + os); else array[i].set_self_ar(NULL, NULL, 0); i++;
+if (n) array[i].set_self_ar(n,"b14", i * 2 + os); else array[i].set_self_ar(NULL, NULL, 0); i++;
+if (n) array[i].set_self_ar(n,"b15", i * 2 + os); else array[i].set_self_ar(NULL, NULL, 0); i++;
   }
 mu_1__type_4::~mu_1__type_4()
 {
@@ -923,10 +978,21 @@ mu_1__type_4::~mu_1__type_4()
 /*** end array declaration ***/
 mu_1__type_4 mu_1__type_4_undefined_var;
 
-const int mu_a = 1;
-const int mu_b = 2;
-const int mu_c = 3;
-const int mu_d = 4;
+const int mu_b1 = 1;
+const int mu_b2 = 2;
+const int mu_b3 = 3;
+const int mu_b4 = 4;
+const int mu_b5 = 5;
+const int mu_b6 = 6;
+const int mu_b7 = 7;
+const int mu_b8 = 8;
+const int mu_b9 = 9;
+const int mu_b10 = 10;
+const int mu_b11 = 11;
+const int mu_b12 = 12;
+const int mu_b13 = 13;
+const int mu_b14 = 14;
+const int mu_b15 = 15;
 const int mu_T = 1;
 /*** Variable declaration ***/
 mu_1_real_type mu_fun("fun",0);
@@ -944,16 +1010,16 @@ mu_1_integer mu_f_n("f_n",46);
 mu_1__type_1 mu_on("on",57);
 
 /*** Variable declaration ***/
-mu_1__type_2 mu_ontable("ontable",89);
+mu_1__type_2 mu_ontable("ontable",507);
 
 /*** Variable declaration ***/
-mu_1__type_3 mu_isclear("isclear",97);
+mu_1__type_3 mu_isclear("isclear",537);
 
 /*** Variable declaration ***/
-mu_0_boolean mu_handempty("handempty",105);
+mu_0_boolean mu_handempty("handempty",567);
 
 /*** Variable declaration ***/
-mu_1__type_4 mu_holding("holding",107);
+mu_1__type_4 mu_holding("holding",569);
 
 void mu_set_on(const mu_1_block& mu_x, const mu_1_block& mu_y, const mu_0_boolean& mu_value)
 {
@@ -1331,21 +1397,21 @@ public:
   char * Name(RULE_INDEX_TYPE r)
   {
     static mu_1_block mu_y;
-    mu_y.value((r % 4) + 1);
-    r = r / 4;
+    mu_y.value((r % 15) + 1);
+    r = r / 15;
     static mu_1_block mu_x;
-    mu_x.value((r % 4) + 1);
-    r = r / 4;
+    mu_x.value((r % 15) + 1);
+    r = r / 15;
     return tsprintf(" unstack , y:%s, x:%s", mu_y.Name(), mu_x.Name());
   }
   bool Condition(RULE_INDEX_TYPE r)
   {
     static mu_1_block mu_y;
-    mu_y.value((r % 4) + 1);
-    r = r / 4;
+    mu_y.value((r % 15) + 1);
+    r = r / 15;
     static mu_1_block mu_x;
-    mu_x.value((r % 4) + 1);
-    r = r / 4;
+    mu_x.value((r % 15) + 1);
+    r = r / 15;
 bool mu__boolexpr5;
 bool mu__boolexpr6;
   if (!(mu_on[mu_x][mu_y])) mu__boolexpr6 = FALSE ;
@@ -1363,11 +1429,11 @@ bool mu__boolexpr6;
   {
     std::vector<std::string> preconds;
     static mu_1_block mu_y;
-    mu_y.value((r % 4) + 1);
-    r = r / 4;
+    mu_y.value((r % 15) + 1);
+    r = r / 15;
     static mu_1_block mu_x;
-    mu_x.value((r % 4) + 1);
-    r = r / 4;
+    mu_x.value((r % 15) + 1);
+    r = r / 15;
 
 bool mu__boolexpr7;
   if (!(mu_on[mu_x][mu_y])) mu__boolexpr7 = FALSE ;
@@ -1386,14 +1452,17 @@ bool mu__boolexpr7;
     std::vector<mu_0_boolean*> effs;
 
     static mu_1_block mu_y;
-    mu_y.value((r % 4) + 1);
-    r = r / 4;
+    mu_y.value((r % 15) + 1);
+    r = r / 15;
     static mu_1_block mu_x;
-    mu_x.value((r % 4) + 1);
-    r = r / 4;
+    mu_x.value((r % 15) + 1);
+    r = r / 15;
 
     effs.push_back(&(mu_holding[mu_x]));  // mu_true 
     effs.push_back(&(mu_isclear[mu_y]));  // mu_true 
+    effs.push_back(&(mu_isclear[mu_x]));  // mu_false 
+    effs.push_back(&(mu_handempty));  // mu_false 
+    effs.push_back(&(mu_on[mu_x][mu_y]));  // mu_false 
 
     return effs;
   }
@@ -1403,11 +1472,11 @@ bool mu__boolexpr7;
     std::vector<std::string> aeffs;
 
     static mu_1_block mu_y;
-    mu_y.value((r % 4) + 1);
-    r = r / 4;
+    mu_y.value((r % 15) + 1);
+    r = r / 15;
     static mu_1_block mu_x;
-    mu_x.value((r % 4) + 1);
-    r = r / 4;
+    mu_x.value((r % 15) + 1);
+    r = r / 15;
 
     aeffs.push_back(mu_holding[mu_x].name); //  mu_true 
     aeffs.push_back(mu_isclear[mu_y].name); //  mu_true 
@@ -1419,12 +1488,12 @@ bool mu__boolexpr7;
   {
     RULE_INDEX_TYPE r = what_rule - 1;
     static mu_1_block mu_y;
-    mu_y.value((r % 4) + 1);
-    r = r / 4;
+    mu_y.value((r % 15) + 1);
+    r = r / 15;
     static mu_1_block mu_x;
-    mu_x.value((r % 4) + 1);
-    r = r / 4;
-    while (what_rule < 17 )
+    mu_x.value((r % 15) + 1);
+    r = r / 15;
+    while (what_rule < 226 )
       {
 	if ( ( TRUE  ) ) {
 bool mu__boolexpr8;
@@ -1449,21 +1518,21 @@ bool mu__boolexpr9;
 	else
 	  what_rule += 1;
     r = what_rule - 1;
-    mu_y.value((r % 4) + 1);
-    r = r / 4;
-    mu_x.value((r % 4) + 1);
-    r = r / 4;
+    mu_y.value((r % 15) + 1);
+    r = r / 15;
+    mu_x.value((r % 15) + 1);
+    r = r / 15;
     }
   }
 
   void Code(RULE_INDEX_TYPE r)
   {
     static mu_1_block mu_y;
-    mu_y.value((r % 4) + 1);
-    r = r / 4;
+    mu_y.value((r % 15) + 1);
+    r = r / 15;
     static mu_1_block mu_x;
-    mu_x.value((r % 4) + 1);
-    r = r / 4;
+    mu_x.value((r % 15) + 1);
+    r = r / 15;
 mu_holding[mu_x] = mu_true;
 mu_isclear[mu_y] = mu_true;
 mu_isclear[mu_x] = mu_false;
@@ -1476,11 +1545,11 @@ mu_on[mu_x][mu_y] = mu_false;
 
 
     static mu_1_block mu_y;
-    mu_y.value((r % 4) + 1);
-    r = r / 4;
+    mu_y.value((r % 15) + 1);
+    r = r / 15;
     static mu_1_block mu_x;
-    mu_x.value((r % 4) + 1);
-    r = r / 4;
+    mu_x.value((r % 15) + 1);
+    r = r / 15;
 
     mu_holding[mu_x] = mu_true; 
     mu_isclear[mu_y] = mu_true; 
@@ -1491,33 +1560,33 @@ mu_on[mu_x][mu_y] = mu_false;
   int Duration(RULE_INDEX_TYPE r)
   {
     static mu_1_block mu_y;
-    mu_y.value((r % 4) + 1);
-    r = r / 4;
+    mu_y.value((r % 15) + 1);
+    r = r / 15;
     static mu_1_block mu_x;
-    mu_x.value((r % 4) + 1);
-    r = r / 4;
+    mu_x.value((r % 15) + 1);
+    r = r / 15;
     return 0;
   }
 
   int Weight(RULE_INDEX_TYPE r)
   {
     static mu_1_block mu_y;
-    mu_y.value((r % 4) + 1);
-    r = r / 4;
+    mu_y.value((r % 15) + 1);
+    r = r / 15;
     static mu_1_block mu_x;
-    mu_x.value((r % 4) + 1);
-    r = r / 4;
+    mu_x.value((r % 15) + 1);
+    r = r / 15;
     return 0;
   }
 
   char * PDDLName(RULE_INDEX_TYPE r)
   {
     static mu_1_block mu_y;
-    mu_y.value((r % 4) + 1);
-    r = r / 4;
+    mu_y.value((r % 15) + 1);
+    r = r / 15;
     static mu_1_block mu_x;
-    mu_x.value((r % 4) + 1);
-    r = r / 4;
+    mu_x.value((r % 15) + 1);
+    r = r / 15;
     return tsprintf(" unstack(%s,%s)", mu_y.Name(), mu_x.Name());
   }
    RuleManager::rule_pddlclass PDDLClass(RULE_INDEX_TYPE r)
@@ -1537,21 +1606,21 @@ public:
   char * Name(RULE_INDEX_TYPE r)
   {
     static mu_1_block mu_y;
-    mu_y.value((r % 4) + 1);
-    r = r / 4;
+    mu_y.value((r % 15) + 1);
+    r = r / 15;
     static mu_1_block mu_x;
-    mu_x.value((r % 4) + 1);
-    r = r / 4;
+    mu_x.value((r % 15) + 1);
+    r = r / 15;
     return tsprintf(" stack , y:%s, x:%s", mu_y.Name(), mu_x.Name());
   }
   bool Condition(RULE_INDEX_TYPE r)
   {
     static mu_1_block mu_y;
-    mu_y.value((r % 4) + 1);
-    r = r / 4;
+    mu_y.value((r % 15) + 1);
+    r = r / 15;
     static mu_1_block mu_x;
-    mu_x.value((r % 4) + 1);
-    r = r / 4;
+    mu_x.value((r % 15) + 1);
+    r = r / 15;
 bool mu__boolexpr10;
   if (!(mu_holding[mu_x])) mu__boolexpr10 = FALSE ;
   else {
@@ -1564,11 +1633,11 @@ bool mu__boolexpr10;
   {
     std::vector<std::string> preconds;
     static mu_1_block mu_y;
-    mu_y.value((r % 4) + 1);
-    r = r / 4;
+    mu_y.value((r % 15) + 1);
+    r = r / 15;
     static mu_1_block mu_x;
-    mu_x.value((r % 4) + 1);
-    r = r / 4;
+    mu_x.value((r % 15) + 1);
+    r = r / 15;
 
 		preconds.push_back(mu_holding[mu_x].name); 
 		preconds.push_back(mu_isclear[mu_y].name); 
@@ -1581,15 +1650,17 @@ bool mu__boolexpr10;
     std::vector<mu_0_boolean*> effs;
 
     static mu_1_block mu_y;
-    mu_y.value((r % 4) + 1);
-    r = r / 4;
+    mu_y.value((r % 15) + 1);
+    r = r / 15;
     static mu_1_block mu_x;
-    mu_x.value((r % 4) + 1);
-    r = r / 4;
+    mu_x.value((r % 15) + 1);
+    r = r / 15;
 
     effs.push_back(&(mu_isclear[mu_x]));  // mu_true 
     effs.push_back(&(mu_handempty));  // mu_true 
     effs.push_back(&(mu_on[mu_x][mu_y]));  // mu_true 
+    effs.push_back(&(mu_holding[mu_x]));  // mu_false 
+    effs.push_back(&(mu_isclear[mu_y]));  // mu_false 
 
     return effs;
   }
@@ -1599,11 +1670,11 @@ bool mu__boolexpr10;
     std::vector<std::string> aeffs;
 
     static mu_1_block mu_y;
-    mu_y.value((r % 4) + 1);
-    r = r / 4;
+    mu_y.value((r % 15) + 1);
+    r = r / 15;
     static mu_1_block mu_x;
-    mu_x.value((r % 4) + 1);
-    r = r / 4;
+    mu_x.value((r % 15) + 1);
+    r = r / 15;
 
     aeffs.push_back(mu_isclear[mu_x].name); //  mu_true 
     aeffs.push_back(mu_handempty.name); //  mu_true 
@@ -1614,14 +1685,14 @@ bool mu__boolexpr10;
 
   void NextRule(RULE_INDEX_TYPE & what_rule)
   {
-    RULE_INDEX_TYPE r = what_rule - 17;
+    RULE_INDEX_TYPE r = what_rule - 226;
     static mu_1_block mu_y;
-    mu_y.value((r % 4) + 1);
-    r = r / 4;
+    mu_y.value((r % 15) + 1);
+    r = r / 15;
     static mu_1_block mu_x;
-    mu_x.value((r % 4) + 1);
-    r = r / 4;
-    while (what_rule < 33 )
+    mu_x.value((r % 15) + 1);
+    r = r / 15;
+    while (what_rule < 451 )
       {
 	if ( ( TRUE  ) ) {
 bool mu__boolexpr11;
@@ -1640,22 +1711,22 @@ bool mu__boolexpr11;
 	}
 	else
 	  what_rule += 1;
-    r = what_rule - 17;
-    mu_y.value((r % 4) + 1);
-    r = r / 4;
-    mu_x.value((r % 4) + 1);
-    r = r / 4;
+    r = what_rule - 226;
+    mu_y.value((r % 15) + 1);
+    r = r / 15;
+    mu_x.value((r % 15) + 1);
+    r = r / 15;
     }
   }
 
   void Code(RULE_INDEX_TYPE r)
   {
     static mu_1_block mu_y;
-    mu_y.value((r % 4) + 1);
-    r = r / 4;
+    mu_y.value((r % 15) + 1);
+    r = r / 15;
     static mu_1_block mu_x;
-    mu_x.value((r % 4) + 1);
-    r = r / 4;
+    mu_x.value((r % 15) + 1);
+    r = r / 15;
 mu_isclear[mu_x] = mu_true;
 mu_handempty = mu_true;
 mu_on[mu_x][mu_y] = mu_true;
@@ -1668,11 +1739,11 @@ mu_isclear[mu_y] = mu_false;
 
 
     static mu_1_block mu_y;
-    mu_y.value((r % 4) + 1);
-    r = r / 4;
+    mu_y.value((r % 15) + 1);
+    r = r / 15;
     static mu_1_block mu_x;
-    mu_x.value((r % 4) + 1);
-    r = r / 4;
+    mu_x.value((r % 15) + 1);
+    r = r / 15;
 
     mu_isclear[mu_x] = mu_true; 
     mu_handempty = mu_true; 
@@ -1684,33 +1755,33 @@ mu_isclear[mu_y] = mu_false;
   int Duration(RULE_INDEX_TYPE r)
   {
     static mu_1_block mu_y;
-    mu_y.value((r % 4) + 1);
-    r = r / 4;
+    mu_y.value((r % 15) + 1);
+    r = r / 15;
     static mu_1_block mu_x;
-    mu_x.value((r % 4) + 1);
-    r = r / 4;
+    mu_x.value((r % 15) + 1);
+    r = r / 15;
     return 0;
   }
 
   int Weight(RULE_INDEX_TYPE r)
   {
     static mu_1_block mu_y;
-    mu_y.value((r % 4) + 1);
-    r = r / 4;
+    mu_y.value((r % 15) + 1);
+    r = r / 15;
     static mu_1_block mu_x;
-    mu_x.value((r % 4) + 1);
-    r = r / 4;
+    mu_x.value((r % 15) + 1);
+    r = r / 15;
     return 0;
   }
 
   char * PDDLName(RULE_INDEX_TYPE r)
   {
     static mu_1_block mu_y;
-    mu_y.value((r % 4) + 1);
-    r = r / 4;
+    mu_y.value((r % 15) + 1);
+    r = r / 15;
     static mu_1_block mu_x;
-    mu_x.value((r % 4) + 1);
-    r = r / 4;
+    mu_x.value((r % 15) + 1);
+    r = r / 15;
     return tsprintf(" stack(%s,%s)", mu_y.Name(), mu_x.Name());
   }
    RuleManager::rule_pddlclass PDDLClass(RULE_INDEX_TYPE r)
@@ -1730,15 +1801,15 @@ public:
   char * Name(RULE_INDEX_TYPE r)
   {
     static mu_1_block mu_x;
-    mu_x.value((r % 4) + 1);
-    r = r / 4;
+    mu_x.value((r % 15) + 1);
+    r = r / 15;
     return tsprintf(" put-down , x:%s", mu_x.Name());
   }
   bool Condition(RULE_INDEX_TYPE r)
   {
     static mu_1_block mu_x;
-    mu_x.value((r % 4) + 1);
-    r = r / 4;
+    mu_x.value((r % 15) + 1);
+    r = r / 15;
     return mu_holding[mu_x];
   }
 
@@ -1746,8 +1817,8 @@ public:
   {
     std::vector<std::string> preconds;
     static mu_1_block mu_x;
-    mu_x.value((r % 4) + 1);
-    r = r / 4;
+    mu_x.value((r % 15) + 1);
+    r = r / 15;
 
 		preconds.push_back(mu_holding[mu_x].name); 
 
@@ -1759,12 +1830,13 @@ public:
     std::vector<mu_0_boolean*> effs;
 
     static mu_1_block mu_x;
-    mu_x.value((r % 4) + 1);
-    r = r / 4;
+    mu_x.value((r % 15) + 1);
+    r = r / 15;
 
     effs.push_back(&(mu_isclear[mu_x]));  // mu_true 
     effs.push_back(&(mu_handempty));  // mu_true 
     effs.push_back(&(mu_ontable[mu_x]));  // mu_true 
+    effs.push_back(&(mu_holding[mu_x]));  // mu_false 
 
     return effs;
   }
@@ -1774,8 +1846,8 @@ public:
     std::vector<std::string> aeffs;
 
     static mu_1_block mu_x;
-    mu_x.value((r % 4) + 1);
-    r = r / 4;
+    mu_x.value((r % 15) + 1);
+    r = r / 15;
 
     aeffs.push_back(mu_isclear[mu_x].name); //  mu_true 
     aeffs.push_back(mu_handempty.name); //  mu_true 
@@ -1786,11 +1858,11 @@ public:
 
   void NextRule(RULE_INDEX_TYPE & what_rule)
   {
-    RULE_INDEX_TYPE r = what_rule - 33;
+    RULE_INDEX_TYPE r = what_rule - 451;
     static mu_1_block mu_x;
-    mu_x.value((r % 4) + 1);
-    r = r / 4;
-    while (what_rule < 37 )
+    mu_x.value((r % 15) + 1);
+    r = r / 15;
+    while (what_rule < 466 )
       {
 	if ( ( TRUE  ) ) {
 	      if (mu_holding[mu_x]) {
@@ -1804,17 +1876,17 @@ public:
 	}
 	else
 	  what_rule += 1;
-    r = what_rule - 33;
-    mu_x.value((r % 4) + 1);
-    r = r / 4;
+    r = what_rule - 451;
+    mu_x.value((r % 15) + 1);
+    r = r / 15;
     }
   }
 
   void Code(RULE_INDEX_TYPE r)
   {
     static mu_1_block mu_x;
-    mu_x.value((r % 4) + 1);
-    r = r / 4;
+    mu_x.value((r % 15) + 1);
+    r = r / 15;
 mu_isclear[mu_x] = mu_true;
 mu_handempty = mu_true;
 mu_ontable[mu_x] = mu_true;
@@ -1826,8 +1898,8 @@ mu_holding[mu_x] = mu_false;
 
 
     static mu_1_block mu_x;
-    mu_x.value((r % 4) + 1);
-    r = r / 4;
+    mu_x.value((r % 15) + 1);
+    r = r / 15;
 
     mu_isclear[mu_x] = mu_true; 
     mu_handempty = mu_true; 
@@ -1839,24 +1911,24 @@ mu_holding[mu_x] = mu_false;
   int Duration(RULE_INDEX_TYPE r)
   {
     static mu_1_block mu_x;
-    mu_x.value((r % 4) + 1);
-    r = r / 4;
+    mu_x.value((r % 15) + 1);
+    r = r / 15;
     return 0;
   }
 
   int Weight(RULE_INDEX_TYPE r)
   {
     static mu_1_block mu_x;
-    mu_x.value((r % 4) + 1);
-    r = r / 4;
+    mu_x.value((r % 15) + 1);
+    r = r / 15;
     return 0;
   }
 
   char * PDDLName(RULE_INDEX_TYPE r)
   {
     static mu_1_block mu_x;
-    mu_x.value((r % 4) + 1);
-    r = r / 4;
+    mu_x.value((r % 15) + 1);
+    r = r / 15;
     return tsprintf(" put-down(%s)", mu_x.Name());
   }
    RuleManager::rule_pddlclass PDDLClass(RULE_INDEX_TYPE r)
@@ -1876,15 +1948,15 @@ public:
   char * Name(RULE_INDEX_TYPE r)
   {
     static mu_1_block mu_x;
-    mu_x.value((r % 4) + 1);
-    r = r / 4;
+    mu_x.value((r % 15) + 1);
+    r = r / 15;
     return tsprintf(" pick-up , x:%s", mu_x.Name());
   }
   bool Condition(RULE_INDEX_TYPE r)
   {
     static mu_1_block mu_x;
-    mu_x.value((r % 4) + 1);
-    r = r / 4;
+    mu_x.value((r % 15) + 1);
+    r = r / 15;
 bool mu__boolexpr12;
 bool mu__boolexpr13;
   if (!(mu_isclear[mu_x])) mu__boolexpr13 = FALSE ;
@@ -1902,8 +1974,8 @@ bool mu__boolexpr13;
   {
     std::vector<std::string> preconds;
     static mu_1_block mu_x;
-    mu_x.value((r % 4) + 1);
-    r = r / 4;
+    mu_x.value((r % 15) + 1);
+    r = r / 15;
 
 bool mu__boolexpr14;
   if (!(mu_isclear[mu_x])) mu__boolexpr14 = FALSE ;
@@ -1922,10 +1994,13 @@ bool mu__boolexpr14;
     std::vector<mu_0_boolean*> effs;
 
     static mu_1_block mu_x;
-    mu_x.value((r % 4) + 1);
-    r = r / 4;
+    mu_x.value((r % 15) + 1);
+    r = r / 15;
 
     effs.push_back(&(mu_holding[mu_x]));  // mu_true 
+    effs.push_back(&(mu_ontable[mu_x]));  // mu_false 
+    effs.push_back(&(mu_isclear[mu_x]));  // mu_false 
+    effs.push_back(&(mu_handempty));  // mu_false 
 
     return effs;
   }
@@ -1935,8 +2010,8 @@ bool mu__boolexpr14;
     std::vector<std::string> aeffs;
 
     static mu_1_block mu_x;
-    mu_x.value((r % 4) + 1);
-    r = r / 4;
+    mu_x.value((r % 15) + 1);
+    r = r / 15;
 
     aeffs.push_back(mu_holding[mu_x].name); //  mu_true 
 
@@ -1945,11 +2020,11 @@ bool mu__boolexpr14;
 
   void NextRule(RULE_INDEX_TYPE & what_rule)
   {
-    RULE_INDEX_TYPE r = what_rule - 37;
+    RULE_INDEX_TYPE r = what_rule - 466;
     static mu_1_block mu_x;
-    mu_x.value((r % 4) + 1);
-    r = r / 4;
-    while (what_rule < 41 )
+    mu_x.value((r % 15) + 1);
+    r = r / 15;
+    while (what_rule < 481 )
       {
 	if ( ( TRUE  ) ) {
 bool mu__boolexpr15;
@@ -1973,17 +2048,17 @@ bool mu__boolexpr16;
 	}
 	else
 	  what_rule += 1;
-    r = what_rule - 37;
-    mu_x.value((r % 4) + 1);
-    r = r / 4;
+    r = what_rule - 466;
+    mu_x.value((r % 15) + 1);
+    r = r / 15;
     }
   }
 
   void Code(RULE_INDEX_TYPE r)
   {
     static mu_1_block mu_x;
-    mu_x.value((r % 4) + 1);
-    r = r / 4;
+    mu_x.value((r % 15) + 1);
+    r = r / 15;
 mu_holding[mu_x] = mu_true;
 mu_ontable[mu_x] = mu_false;
 mu_isclear[mu_x] = mu_false;
@@ -1995,8 +2070,8 @@ mu_handempty = mu_false;
 
 
     static mu_1_block mu_x;
-    mu_x.value((r % 4) + 1);
-    r = r / 4;
+    mu_x.value((r % 15) + 1);
+    r = r / 15;
 
     mu_holding[mu_x] = mu_true; 
 
@@ -2006,24 +2081,24 @@ mu_handempty = mu_false;
   int Duration(RULE_INDEX_TYPE r)
   {
     static mu_1_block mu_x;
-    mu_x.value((r % 4) + 1);
-    r = r / 4;
+    mu_x.value((r % 15) + 1);
+    r = r / 15;
     return 0;
   }
 
   int Weight(RULE_INDEX_TYPE r)
   {
     static mu_1_block mu_x;
-    mu_x.value((r % 4) + 1);
-    r = r / 4;
+    mu_x.value((r % 15) + 1);
+    r = r / 15;
     return 0;
   }
 
   char * PDDLName(RULE_INDEX_TYPE r)
   {
     static mu_1_block mu_x;
-    mu_x.value((r % 4) + 1);
-    r = r / 4;
+    mu_x.value((r % 15) + 1);
+    r = r / 15;
     return tsprintf(" pick-up(%s)", mu_x.Name());
   }
    RuleManager::rule_pddlclass PDDLClass(RULE_INDEX_TYPE r)
@@ -2046,133 +2121,133 @@ void SetNextEnabledRule(RULE_INDEX_TYPE & what_rule)
   if (what_rule<1)
     { R0.NextRule(what_rule);
       if (what_rule<1) return; }
-  if (what_rule>=1 && what_rule<17)
+  if (what_rule>=1 && what_rule<226)
     { R1.NextRule(what_rule);
-      if (what_rule<17) return; }
-  if (what_rule>=17 && what_rule<33)
+      if (what_rule<226) return; }
+  if (what_rule>=226 && what_rule<451)
     { R2.NextRule(what_rule);
-      if (what_rule<33) return; }
-  if (what_rule>=33 && what_rule<37)
+      if (what_rule<451) return; }
+  if (what_rule>=451 && what_rule<466)
     { R3.NextRule(what_rule);
-      if (what_rule<37) return; }
-  if (what_rule>=37 && what_rule<41)
+      if (what_rule<466) return; }
+  if (what_rule>=466 && what_rule<481)
     { R4.NextRule(what_rule);
-      if (what_rule<41) return; }
+      if (what_rule<481) return; }
 }
 bool Condition(RULE_INDEX_TYPE r)
 {
   category = CONDITION;
   if (r<=0) return R0.Condition(r-0);
-  if (r>=1 && r<=16) return R1.Condition(r-1);
-  if (r>=17 && r<=32) return R2.Condition(r-17);
-  if (r>=33 && r<=36) return R3.Condition(r-33);
-  if (r>=37 && r<=40) return R4.Condition(r-37);
+  if (r>=1 && r<=225) return R1.Condition(r-1);
+  if (r>=226 && r<=450) return R2.Condition(r-226);
+  if (r>=451 && r<=465) return R3.Condition(r-451);
+  if (r>=466 && r<=480) return R4.Condition(r-466);
 Error.Notrace("Internal: NextStateGenerator -- checking condition for nonexisting rule.");
 }
 std::vector<std::string> precond_array(RULE_INDEX_TYPE r)
 {
   category = CONDITION;
   if (r<=0) return R0.precond_array(r-0);
-  if (r>=1 && r<=16) return R1.precond_array(r-1);
-  if (r>=17 && r<=32) return R2.precond_array(r-17);
-  if (r>=33 && r<=36) return R3.precond_array(r-33);
-  if (r>=37 && r<=40) return R4.precond_array(r-37);
+  if (r>=1 && r<=225) return R1.precond_array(r-1);
+  if (r>=226 && r<=450) return R2.precond_array(r-226);
+  if (r>=451 && r<=465) return R3.precond_array(r-451);
+  if (r>=466 && r<=480) return R4.precond_array(r-466);
 Error.Notrace("Internal: NextStateGenerator -- checking preconditions for nonexisting rule.");
 }
 std::vector<mu_0_boolean*> effects_array(RULE_INDEX_TYPE r)
 {
   if (r<=0) return R0.effects_array(r-0);
-  if (r>=1 && r<=16) return R1.effects_array(r-1);
-  if (r>=17 && r<=32) return R2.effects_array(r-17);
-  if (r>=33 && r<=36) return R3.effects_array(r-33);
-  if (r>=37 && r<=40) return R4.effects_array(r-37);
+  if (r>=1 && r<=225) return R1.effects_array(r-1);
+  if (r>=226 && r<=450) return R2.effects_array(r-226);
+  if (r>=451 && r<=465) return R3.effects_array(r-451);
+  if (r>=466 && r<=480) return R4.effects_array(r-466);
 Error.Notrace("Internal: NextStateGenerator -- checking effects for nonexisting rule.");
 }
 std::vector<std::string> effects_add_array(RULE_INDEX_TYPE r)
 {
   if (r<=0) return R0.effects_add_array(r-0);
-  if (r>=1 && r<=16) return R1.effects_add_array(r-1);
-  if (r>=17 && r<=32) return R2.effects_add_array(r-17);
-  if (r>=33 && r<=36) return R3.effects_add_array(r-33);
-  if (r>=37 && r<=40) return R4.effects_add_array(r-37);
+  if (r>=1 && r<=225) return R1.effects_add_array(r-1);
+  if (r>=226 && r<=450) return R2.effects_add_array(r-226);
+  if (r>=451 && r<=465) return R3.effects_add_array(r-451);
+  if (r>=466 && r<=480) return R4.effects_add_array(r-466);
 Error.Notrace("Internal: NextStateGenerator -- checking add effects for nonexisting rule.");
 }
 void Code(RULE_INDEX_TYPE r)
 {
   if (r<=0) { R0.Code(r-0); return; } 
-  if (r>=1 && r<=16) { R1.Code(r-1); return; } 
-  if (r>=17 && r<=32) { R2.Code(r-17); return; } 
-  if (r>=33 && r<=36) { R3.Code(r-33); return; } 
-  if (r>=37 && r<=40) { R4.Code(r-37); return; } 
+  if (r>=1 && r<=225) { R1.Code(r-1); return; } 
+  if (r>=226 && r<=450) { R2.Code(r-226); return; } 
+  if (r>=451 && r<=465) { R3.Code(r-451); return; } 
+  if (r>=466 && r<=480) { R4.Code(r-466); return; } 
 }
 void Code_ff(RULE_INDEX_TYPE r)
 {
   if (r<=0) { R0.Code_ff(r-0); return; } 
-  if (r>=1 && r<=16) { R1.Code_ff(r-1); return; } 
-  if (r>=17 && r<=32) { R2.Code_ff(r-17); return; } 
-  if (r>=33 && r<=36) { R3.Code_ff(r-33); return; } 
-  if (r>=37 && r<=40) { R4.Code_ff(r-37); return; } 
+  if (r>=1 && r<=225) { R1.Code_ff(r-1); return; } 
+  if (r>=226 && r<=450) { R2.Code_ff(r-226); return; } 
+  if (r>=451 && r<=465) { R3.Code_ff(r-451); return; } 
+  if (r>=466 && r<=480) { R4.Code_ff(r-466); return; } 
 }
 int Priority(RULE_INDEX_TYPE r)
 {
   if (r<=0) { return R0.Priority(); } 
-  if (r>=1 && r<=16) { return R1.Priority(); } 
-  if (r>=17 && r<=32) { return R2.Priority(); } 
-  if (r>=33 && r<=36) { return R3.Priority(); } 
-  if (r>=37 && r<=40) { return R4.Priority(); } 
+  if (r>=1 && r<=225) { return R1.Priority(); } 
+  if (r>=226 && r<=450) { return R2.Priority(); } 
+  if (r>=451 && r<=465) { return R3.Priority(); } 
+  if (r>=466 && r<=480) { return R4.Priority(); } 
 }
 char * Name(RULE_INDEX_TYPE r)
 {
   if (r<=0) return R0.Name(r-0);
-  if (r>=1 && r<=16) return R1.Name(r-1);
-  if (r>=17 && r<=32) return R2.Name(r-17);
-  if (r>=33 && r<=36) return R3.Name(r-33);
-  if (r>=37 && r<=40) return R4.Name(r-37);
+  if (r>=1 && r<=225) return R1.Name(r-1);
+  if (r>=226 && r<=450) return R2.Name(r-226);
+  if (r>=451 && r<=465) return R3.Name(r-451);
+  if (r>=466 && r<=480) return R4.Name(r-466);
   return NULL;
 }
 int Duration(RULE_INDEX_TYPE r)
 {
   if (r<=0) return R0.Duration(r-0);
-  if (r>=1 && r<=16) return R1.Duration(r-1);
-  if (r>=17 && r<=32) return R2.Duration(r-17);
-  if (r>=33 && r<=36) return R3.Duration(r-33);
-  if (r>=37 && r<=40) return R4.Duration(r-37);
+  if (r>=1 && r<=225) return R1.Duration(r-1);
+  if (r>=226 && r<=450) return R2.Duration(r-226);
+  if (r>=451 && r<=465) return R3.Duration(r-451);
+  if (r>=466 && r<=480) return R4.Duration(r-466);
 Error.Notrace("Internal: NextStateGenerator -- querying duration for nonexisting rule.");
 }
 int Weight(RULE_INDEX_TYPE r)
 {
   if (r<=0) return R0.Weight(r-0);
-  if (r>=1 && r<=16) return R1.Weight(r-1);
-  if (r>=17 && r<=32) return R2.Weight(r-17);
-  if (r>=33 && r<=36) return R3.Weight(r-33);
-  if (r>=37 && r<=40) return R4.Weight(r-37);
+  if (r>=1 && r<=225) return R1.Weight(r-1);
+  if (r>=226 && r<=450) return R2.Weight(r-226);
+  if (r>=451 && r<=465) return R3.Weight(r-451);
+  if (r>=466 && r<=480) return R4.Weight(r-466);
 Error.Notrace("Internal: NextStateGenerator -- querying duration for nonexisting rule.");
 }
 char * PDDLName(RULE_INDEX_TYPE r)
 {
   if (r<=0) return R0.PDDLName(r-0);
-  if (r>=1 && r<=16) return R1.PDDLName(r-1);
-  if (r>=17 && r<=32) return R2.PDDLName(r-17);
-  if (r>=33 && r<=36) return R3.PDDLName(r-33);
-  if (r>=37 && r<=40) return R4.PDDLName(r-37);
+  if (r>=1 && r<=225) return R1.PDDLName(r-1);
+  if (r>=226 && r<=450) return R2.PDDLName(r-226);
+  if (r>=451 && r<=465) return R3.PDDLName(r-451);
+  if (r>=466 && r<=480) return R4.PDDLName(r-466);
   return NULL;
 }
 RuleManager::rule_pddlclass PDDLClass(RULE_INDEX_TYPE r)
 {
   if (r<=0) return R0.PDDLClass(r-0);
-  if (r>=1 && r<=16) return R1.PDDLClass(r-1);
-  if (r>=17 && r<=32) return R2.PDDLClass(r-17);
-  if (r>=33 && r<=36) return R3.PDDLClass(r-33);
-  if (r>=37 && r<=40) return R4.PDDLClass(r-37);
+  if (r>=1 && r<=225) return R1.PDDLClass(r-1);
+  if (r>=226 && r<=450) return R2.PDDLClass(r-226);
+  if (r>=451 && r<=465) return R3.PDDLClass(r-451);
+  if (r>=466 && r<=480) return R4.PDDLClass(r-466);
 Error.Notrace("Internal: NextStateGenerator -- querying PDDL class for nonexisting rule.");
 }
 };
-const RULE_INDEX_TYPE numrules = 41;
+const RULE_INDEX_TYPE numrules = 481;
 
 /********************
   parameter
  ********************/
-#define RULES_IN_WORLD 41
+#define RULES_IN_WORLD 481
 
 
 /********************
@@ -2189,40 +2264,53 @@ public:
   void Code(unsigned short r)
   {
 {
-for(int mu_x = 1; mu_x <= 4; mu_x++) {
+for(int mu_x = 1; mu_x <= 15; mu_x++) {
 {
-for(int mu_y = 1; mu_y <= 4; mu_y++) {
+for(int mu_y = 1; mu_y <= 15; mu_y++) {
 mu_set_on ( mu_x, mu_y, mu_false );
 };
 };
 };
 };
 {
-for(int mu_x = 1; mu_x <= 4; mu_x++) {
+for(int mu_x = 1; mu_x <= 15; mu_x++) {
 mu_set_ontable ( mu_x, mu_false );
 };
 };
 {
-for(int mu_x = 1; mu_x <= 4; mu_x++) {
+for(int mu_x = 1; mu_x <= 15; mu_x++) {
 mu_set_isclear ( mu_x, mu_false );
 };
 };
 mu_set_handempty ( mu_false );
 {
-for(int mu_x = 1; mu_x <= 4; mu_x++) {
+for(int mu_x = 1; mu_x <= 15; mu_x++) {
 mu_set_holding ( mu_x, mu_false );
 };
 };
 mu_fun = 0.000000e+00;
-mu_isclear[mu_d] = mu_true;
-mu_ontable[mu_a] = mu_true;
-mu_on[mu_d][mu_c] = mu_true;
-mu_on[mu_c][mu_b] = mu_true;
-mu_on[mu_b][mu_a] = mu_true;
-mu_handempty = mu_true;
 mu_h_n = 0;
 mu_g_n = 0;
-mu_f_n = (mu_h_n) + (mu_g_n);
+mu_f_n = 0;
+mu_handempty = mu_true;
+mu_on[mu_b1][mu_b6] = mu_true;
+mu_ontable[mu_b2] = mu_true;
+mu_on[mu_b3][mu_b12] = mu_true;
+mu_on[mu_b4][mu_b11] = mu_true;
+mu_on[mu_b5][mu_b2] = mu_true;
+mu_ontable[mu_b6] = mu_true;
+mu_on[mu_b7][mu_b14] = mu_true;
+mu_on[mu_b8][mu_b10] = mu_true;
+mu_on[mu_b9][mu_b15] = mu_true;
+mu_ontable[mu_b10] = mu_true;
+mu_on[mu_b11][mu_b9] = mu_true;
+mu_on[mu_b12][mu_b13] = mu_true;
+mu_on[mu_b13][mu_b7] = mu_true;
+mu_on[mu_b14][mu_b8] = mu_true;
+mu_on[mu_b15][mu_b3] = mu_true;
+mu_isclear[mu_b1] = mu_true;
+mu_isclear[mu_b4] = mu_true;
+mu_isclear[mu_b5] = mu_true;
   };
 
 };
@@ -2252,18 +2340,68 @@ int mu__goal_17() // Goal "enjoy"
 {
 bool mu__boolexpr18;
 bool mu__boolexpr19;
-  if (!(mu_on[mu_a][mu_b])) mu__boolexpr19 = FALSE ;
+bool mu__boolexpr20;
+bool mu__boolexpr21;
+bool mu__boolexpr22;
+bool mu__boolexpr23;
+bool mu__boolexpr24;
+bool mu__boolexpr25;
+bool mu__boolexpr26;
+bool mu__boolexpr27;
+bool mu__boolexpr28;
+bool mu__boolexpr29;
+  if (!(mu_on[mu_b1][mu_b5])) mu__boolexpr29 = FALSE ;
   else {
-  mu__boolexpr19 = (mu_on[mu_b][mu_c]) ; 
+  mu__boolexpr29 = (mu_on[mu_b3][mu_b12]) ; 
+}
+  if (!(mu__boolexpr29)) mu__boolexpr28 = FALSE ;
+  else {
+  mu__boolexpr28 = (mu_on[mu_b4][mu_b13]) ; 
+}
+  if (!(mu__boolexpr28)) mu__boolexpr27 = FALSE ;
+  else {
+  mu__boolexpr27 = (mu_on[mu_b5][mu_b2]) ; 
+}
+  if (!(mu__boolexpr27)) mu__boolexpr26 = FALSE ;
+  else {
+  mu__boolexpr26 = (mu_on[mu_b6][mu_b8]) ; 
+}
+  if (!(mu__boolexpr26)) mu__boolexpr25 = FALSE ;
+  else {
+  mu__boolexpr25 = (mu_on[mu_b7][mu_b9]) ; 
+}
+  if (!(mu__boolexpr25)) mu__boolexpr24 = FALSE ;
+  else {
+  mu__boolexpr24 = (mu_on[mu_b8][mu_b15]) ; 
+}
+  if (!(mu__boolexpr24)) mu__boolexpr23 = FALSE ;
+  else {
+  mu__boolexpr23 = (mu_on[mu_b9][mu_b1]) ; 
+}
+  if (!(mu__boolexpr23)) mu__boolexpr22 = FALSE ;
+  else {
+  mu__boolexpr22 = (mu_on[mu_b10][mu_b6]) ; 
+}
+  if (!(mu__boolexpr22)) mu__boolexpr21 = FALSE ;
+  else {
+  mu__boolexpr21 = (mu_on[mu_b12][mu_b11]) ; 
+}
+  if (!(mu__boolexpr21)) mu__boolexpr20 = FALSE ;
+  else {
+  mu__boolexpr20 = (mu_on[mu_b13][mu_b10]) ; 
+}
+  if (!(mu__boolexpr20)) mu__boolexpr19 = FALSE ;
+  else {
+  mu__boolexpr19 = (mu_on[mu_b14][mu_b4]) ; 
 }
   if (!(mu__boolexpr19)) mu__boolexpr18 = FALSE ;
   else {
-  mu__boolexpr18 = (mu_on[mu_c][mu_d]) ; 
+  mu__boolexpr18 = (mu_on[mu_b15][mu_b3]) ; 
 }
 return mu__boolexpr18;
 };
 
-bool mu__condition_20() // Condition for Rule "enjoy"
+bool mu__condition_30() // Condition for Rule "enjoy"
 {
   return mu__goal_17( );
 }
@@ -2271,7 +2409,7 @@ bool mu__condition_20() // Condition for Rule "enjoy"
 /**** end rule declaration ****/
 
 const rulerec goals[] = {
-{"enjoy", &mu__condition_20, NULL, },
+{"enjoy", &mu__condition_30, NULL, },
 };
 const unsigned short numgoals = 1;
 
@@ -2560,7 +2698,7 @@ void mu_1__type_0::Permute(PermSet& Perm, int i)
 {
   static mu_1__type_0 temp("Permute_mu_1__type_0",-1);
   int j;
-  for (j=0; j<4; j++)
+  for (j=0; j<15; j++)
     array[j].Permute(Perm, i);
 };
 void mu_1__type_0::SimpleCanonicalize(PermSet& Perm)
@@ -2575,7 +2713,7 @@ void mu_1__type_1::Permute(PermSet& Perm, int i)
 {
   static mu_1__type_1 temp("Permute_mu_1__type_1",-1);
   int j;
-  for (j=0; j<4; j++)
+  for (j=0; j<15; j++)
     array[j].Permute(Perm, i);
 };
 void mu_1__type_1::SimpleCanonicalize(PermSet& Perm)
@@ -2590,7 +2728,7 @@ void mu_1__type_2::Permute(PermSet& Perm, int i)
 {
   static mu_1__type_2 temp("Permute_mu_1__type_2",-1);
   int j;
-  for (j=0; j<4; j++)
+  for (j=0; j<15; j++)
     array[j].Permute(Perm, i);
 };
 void mu_1__type_2::SimpleCanonicalize(PermSet& Perm)
@@ -2605,7 +2743,7 @@ void mu_1__type_3::Permute(PermSet& Perm, int i)
 {
   static mu_1__type_3 temp("Permute_mu_1__type_3",-1);
   int j;
-  for (j=0; j<4; j++)
+  for (j=0; j<15; j++)
     array[j].Permute(Perm, i);
 };
 void mu_1__type_3::SimpleCanonicalize(PermSet& Perm)
@@ -2620,7 +2758,7 @@ void mu_1__type_4::Permute(PermSet& Perm, int i)
 {
   static mu_1__type_4 temp("Permute_mu_1__type_4",-1);
   int j;
-  for (j=0; j<4; j++)
+  for (j=0; j<15; j++)
     array[j].Permute(Perm, i);
 };
 void mu_1__type_4::SimpleCanonicalize(PermSet& Perm)

@@ -257,6 +257,7 @@ void StatsManager::initStatsFile() {
 		for(int i=0; i<num_props; ++i)
 			fwrite(&dummy,sizeof(unsigned long),1,stats);
 	}
+	delete [] filename;
 }
 
 unsigned long StatsManager::getStatistic(int key)
@@ -391,7 +392,7 @@ void OutputManager::WritePlans() {
 	edge* plan;
 	
 	fseek(plans,0,SEEK_SET);
-	//ancora una volta prescansioniamo per risparmiare spazio, ma sarebbe molto più comodo scrivercelo
+	//ancora una volta prescansioniamo per risparmiare spazio, ma sarebbe molto piï¿½ comodo scrivercelo
 	while(!feof(plans) && (fread(&from,sizeof(unsigned long),1,plans)==1)) {
 		lplan=1;
 		while(!feof(plans) && (fread(&rule,sizeof(RULE_INDEX_TYPE),1,plans)==1)) {			
@@ -544,7 +545,10 @@ MEMTRACKALLOC
 		fprintf(target,"; --Plan duration: %04d, weight: %04d----\n",time,weight);
 		fprintf(target,"; ---------------------------------------\n\n");		
 	}
-	
+
+	//WP WP WP WP WP WP WP WP WP WP
+	// deleted to avoid memory leaks!
+	delete plan;
 }
 
 	

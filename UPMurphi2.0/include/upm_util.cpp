@@ -132,7 +132,7 @@ char *tsprintf(const char *fmt, ...)
 {
   static char temp_buffer[BUFFER_SIZE];	/* hope that\'s enough. */
   va_list argp;
-  char *retval;
+//  char *retval;
 
   va_start(argp, fmt);
   vsprintf(temp_buffer, fmt, argp);
@@ -143,7 +143,7 @@ char *tsprintf(const char *fmt, ...)
 Please increase the constant BUFFER_SIZE in file mu_verifier.h and recompile your program\n\
 (you may also reduce the length of expression by using function call.");
 
-  retval = new char[strlen(temp_buffer) + 1];
+  char * retval = new char[strlen(temp_buffer) + 1];
 MEMTRACKALLOC 
   strcpy(retval, temp_buffer);
   return (retval);

@@ -3898,6 +3898,34 @@ const char *simplerule::generate_code()
   fprintf(codefile, "  };\n" "\n");
   
 
+
+
+  // generate execute code responsible for add effects
+    fprintf(codefile, "  void Code_ff(RULE_INDEX_TYPE r)\n" "  {\n\n");
+    fprintf(codefile, "\n");
+
+    generate_rule_params_assignment(enclosures);
+    generate_rule_aliases(enclosures);
+    locals->generate_decls();
+
+    fprintf(codefile, "\n");
+
+    // gets the m_0_boolean* grounded fact
+    for (stmt * b = body; b != NULL; b = b->next) {
+  	  std::string src_str(b->get_src());
+  	  if ((b->get_target() != "ERROR") && (b->get_src() != "ERROR") && (src_str.compare("mu_false")!=0)){
+  		  fprintf(codefile, "    %s = %s; \n", b->get_target(), b->get_src());
+  	  }
+    }
+
+    fprintf(codefile, "\n\n  }\n" "\n");
+
+
+
+
+
+
+
   // generate Duration(r)
   fprintf(codefile, "  int Duration(RULE_INDEX_TYPE r)\n" "  {\n");
   generate_rule_params_assignment(enclosures);
@@ -4178,6 +4206,8 @@ void make_print_world(ste * globals)
 	"void world_class::set_h_val()\n"
 	"{\n"
 	"  //	double h_val = 0; \n"
+	"  //   double h_val = upm_rpg().get_rpg_value();\n"
+	"  upm_rpg::getInstance().clear_all();\n"
 	"  double h_val = upm_rpg::getInstance().get_rpg_value();\n"
 	"  mu_h_n.value(h_val);\n"
 	"}\n");
@@ -4705,6 +4735,27 @@ RULE_INDEX_TYPE generate_ruleset()
       else
 	fprintf(codefile,
 		"  if (r<=%lu) { R%lu.Code(r-%lu); return; } \n",
+		i + sr->getsize() - 1, r, i);
+      r++;
+      i += sr->getsize();
+    }
+  }
+  fprintf(codefile, "}\n");
+
+  // generate Code(r)
+  fprintf(codefile, "void Code_ff(RULE_INDEX_TYPE r)\n" "{\n");
+  i = 0;
+  r = 0;
+  for (sr = simplerule::SimpleRuleList; sr != NULL;
+       sr = sr->NextSimpleRule) {
+    if (sr->getclass() == rule::Simple && sr != error_rule) {
+      if (i != 0)
+	fprintf(codefile,
+		"  if (r>=%lu && r<=%lu) { R%lu.Code_ff(r-%lu); return; } \n",
+		i, i + sr->getsize() - 1, r, i);
+      else
+	fprintf(codefile,
+		"  if (r<=%lu) { R%lu.Code_ff(r-%lu); return; } \n",
 		i + sr->getsize() - 1, r, i);
       r++;
       i += sr->getsize();
