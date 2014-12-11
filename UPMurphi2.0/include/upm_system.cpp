@@ -81,8 +81,19 @@ bool StateManager::Add(state * s, bool valid, bool permanent, unsigned long *ind
 	delete s;
 #endif  			
 	  } else {
+
+/**
+* 	TIMING OF ENQUEUING!!!!   WP WP WP WP WP WP WP
+*/
+
+//		  clock_t q_t = clock();
+
 			statesNextLevel++;
 			queue->enqueue(s,state_index);
+
+//		q_t = clock() - q_t;
+//		cout << "\nTime of ENQUEUING: " << (((float)q_t)/CLOCKS_PER_SEC) << " (" << q_t << " clicks)\n" << endl;
+
 
 //			queue->Print();
 	  }

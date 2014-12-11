@@ -1,0 +1,186 @@
+type
+	 real_type: real(3,3);
+
+	block : Enum {l,h,e,a,j,c,d,f,g,k,m,i,b};
+
+const 
+	 T:1;
+
+
+var 
+
+	fun[pddlname:fun;] :  real_type;
+
+
+	on[pddlname:on;] : Array [block] of Array [block] of  boolean;
+	ontable[pddlname:ontable;] : Array [block] of  boolean;
+	clear[pddlname:clear;] : Array [block] of  boolean;
+	handempty[pddlname:handempty;] :  boolean;
+	holding[pddlname:holding;] : Array [block] of  boolean;
+
+
+-- External function declaration 
+
+procedure set_on( x : block ; y : block ;  value : boolean);
+BEGIN
+	on[x][y] := value;
+END;
+
+function get_on( x : block ; y : block): boolean;
+BEGIN
+	return 	on[x][y];
+END;
+
+procedure set_ontable( x : block ;  value : boolean);
+BEGIN
+	ontable[x] := value;
+END;
+
+function get_ontable( x : block): boolean;
+BEGIN
+	return 	ontable[x];
+END;
+
+procedure set_clear( x : block ;  value : boolean);
+BEGIN
+	clear[x] := value;
+END;
+
+function get_clear( x : block): boolean;
+BEGIN
+	return 	clear[x];
+END;
+
+procedure set_handempty(  value : boolean);
+BEGIN
+	handempty := value;
+END;
+
+function get_handempty(): boolean;
+BEGIN
+	return 	handempty;
+END;
+
+procedure set_holding( x : block ;  value : boolean);
+BEGIN
+	holding[x] := value;
+END;
+
+function get_holding( x : block): boolean;
+BEGIN
+	return 	holding[x];
+END;
+
+
+
+
+ruleset x:block do 
+ action rule " pick-up " 
+(clear[x]) & (ontable[x]) & (handempty) ==> 
+pddlname: " pick-up"; 
+BEGIN
+holding[x]:= true; 
+ontable[x]:= false; 
+clear[x]:= false; 
+handempty:= false; 
+
+END; 
+END;
+
+ruleset x:block do 
+ action rule " put-down " 
+holding[x] ==> 
+pddlname: " put-down"; 
+BEGIN
+clear[x]:= true; 
+handempty:= true; 
+ontable[x]:= true; 
+holding[x]:= false; 
+
+END; 
+END;
+
+ruleset x:block do 
+ ruleset y:block do 
+ action rule " stack " 
+(holding[x]) & (clear[y]) ==> 
+pddlname: " stack"; 
+BEGIN
+clear[x]:= true; 
+handempty:= true; 
+on[x][y]:= true; 
+holding[x]:= false; 
+clear[y]:= false; 
+
+END; 
+END; 
+END;
+
+ruleset x:block do 
+ ruleset y:block do 
+ action rule " unstack " 
+(on[x][y]) & (clear[x]) & (handempty) ==> 
+pddlname: " unstack"; 
+BEGIN
+holding[x]:= true; 
+clear[y]:= true; 
+clear[x]:= false; 
+handempty:= false; 
+on[x][y]:= false; 
+
+END; 
+END; 
+END;
+
+clock rule " time passing " 
+ (true) ==> 
+BEGIN 
+ 	 
+END;
+
+
+startstate "start" 
+BEGIN 
+for x : block do 
+  for y : block do 
+    set_on(x,y, false);
+END; END;  -- close for
+   for x : block do 
+     set_ontable(x, false);
+END;  -- close for
+   for x : block do 
+     set_clear(x, false);
+END;  -- close for
+   set_handempty(false);
+
+   for x : block do 
+     set_holding(x, false);
+END;  -- close for
+   fun := 0.0 ;
+
+clear[b]:= true; 
+clear[i]:= true; 
+clear[m]:= true; 
+ontable[k]:= true; 
+ontable[g]:= true; 
+ontable[m]:= true; 
+on[b][f]:= true; 
+on[f][d]:= true; 
+on[d][c]:= true; 
+on[c][j]:= true; 
+on[j][a]:= true; 
+on[a][e]:= true; 
+on[e][h]:= true; 
+on[h][l]:= true; 
+on[l][k]:= true; 
+on[i][g]:= true; 
+handempty:= true; 
+END; -- close startstate
+
+goal "enjoy" 
+ (on[g][i]) & (on[i][c]) & (on[c][d]) & (on[d][f]) & (on[f][a]) & (on[a][m]) & (on[m][h]) & (on[h][e]) & (on[e][l]) & (on[l][j]) & (on[j][b]) & (on[b][k]); 
+
+
+metric: minimize;
+
+

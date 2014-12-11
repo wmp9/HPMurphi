@@ -1,0 +1,122 @@
+
+======================================================
+
+UPMurphi Release 2.0.b4
+Universal Planner for Discrete Time Hybrid Systems
+
+Copyright (C) 2007 - 2010
+G. Della Penna, B. Intrigila, D. Magazzeni, F. Mercorio
+
+Call with the -c flag or read the license file for terms
+and conditions of use.
+Run this program with "-h" for the list of options.
+Send bugs and comments to giuseppe.dellapenna@univaq.it
+
+======================================================
+
+======================================================
+
+Model: sb1
+* the state size is 273 bits (rounded up to 36 bytes).
+
+======================================================
+First state is at 0xce3b1008
+
+=== Analyzing model... ===============================
+
+* State Space Expansion Algorithm: breadth first search.
+  with symmetry algorithm 3 -- Heuristic Small Memory Normalization
+  with permutation trial limit 10.
+* Maximum size of the state space: 156503909 states.
+  with states hash-compressed to 40 bits.
+
+[0:0:1.10] states explored: 1000, rules fired: 1995
+  BFS level: 500, states queued: 2, goals found: 0, errors: 0
+  909.09 states/sec, 1813.64 rules/sec, 0.00% memory used
+[0:0:1.12] states explored: 2000, rules fired: 3995
+  BFS level: 1000, states queued: 2, goals found: 0, errors: 0
+  1785.71 states/sec, 3566.96 rules/sec, 0.00% memory used
+[0:0:1.12] states explored: 3000, rules fired: 5995
+  BFS level: 1500, states queued: 2, goals found: 0, errors: 0
+  2678.57 states/sec, 5352.68 rules/sec, 0.00% memory used
+[0:0:1.14] states explored: 4000, rules fired: 7995
+  BFS level: 2000, states queued: 2, goals found: 0, errors: 0
+  3508.77 states/sec, 7013.16 rules/sec, 0.00% memory used
+
+======================================================
+
+Model exploration complete (in 1.14 seconds).
+	8009 rules fired
+	1 start states
+	4008 reachable states
+	1 goals found
+
+
+=== Building model dynamics... =======================
+
+* Transition Graph mode: Memory Image
+* Maximum size of graph: 169125161 transitions.
+
+[0:0:1.14] 1000 transitions generated, 0.00% memory used
+[0:0:1.14] 2000 transitions generated, 0.00% memory used
+[0:0:1.14] 3000 transitions generated, 0.00% memory used
+[0:0:1.14] 4000 transitions generated, 0.00% memory used
+[0:0:1.14] 5000 transitions generated, 0.00% memory used
+[0:0:1.14] 6000 transitions generated, 0.00% memory used
+[0:0:1.14] 7000 transitions generated, 0.00% memory used
+[0:0:1.14] 8000 transitions generated, 0.00% memory used
+
+======================================================
+
+Model dynamics rebuilding complete (in 1.14 seconds).
+	4008 states
+	8007 transitions
+	out degree: min 0 max 3 avg 2.00
+
+
+=== Finding control paths... =========================
+
+* Search Algorithm: Feasible Plan
+* Optimization mode: Minimize.
+
+[0:0:1.14] 1000 states controlled
+[0:0:1.14] 2000 states controlled
+
+======================================================
+
+Control paths calculation complete (in 1.14 seconds).
+	4008 states
+	2003 controllable
+
+
+=== Collecting plans... ==============================
+
+
+======================================================
+
+Plan(s) generation complete (in 1.14 seconds).
+	1 plans
+	plan length (actions): min 2003 max 2003 avg 2003.00
+	plan duration (time): min 0 max 2001 avg 2001.00
+	plan weight: min 0 max 2001 avg 2001.00
+
+
+=== Writing final results... =========================
+
+* Output format: PDDL+
+* Output target: stdout.
+
+; --Plan #00001--------------------------
+; ---------------------------------------
+(000)  openwindow [000]
+(2001)  kiss [000]
+; ---------------------------------------
+; --Plan duration: 2001, weight: 2001----
+; ---------------------------------------
+
+
+======================================================
+
+Results Written (in 1.14 seconds).
+
+

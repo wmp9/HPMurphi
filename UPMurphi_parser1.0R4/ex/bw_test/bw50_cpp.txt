@@ -1,0 +1,72 @@
+	 	 	 goal_fact_layer.insert(mu_on[mu_b1][mu_b33].name);
+	 	 	 goal_fact_layer.insert(mu_on[mu_b3][mu_b40].name);
+	 	 	 goal_fact_layer.insert(mu_on[mu_b4][mu_b46].name);
+	 	 	 goal_fact_layer.insert(mu_on[mu_b5][mu_b21].name);
+	 	 	 goal_fact_layer.insert(mu_on[mu_b6][mu_b17].name);
+	 	 	 goal_fact_layer.insert(mu_on[mu_b7][mu_b37].name);
+			 goal_fact_layer.insert(mu_on[mu_b8][mu_b15].name);
+			 goal_fact_layer.insert(mu_on[mu_b9][mu_b41].name);
+			 goal_fact_layer.insert(mu_on[mu_b10][mu_b26].name);
+			 goal_fact_layer.insert(mu_on[mu_b11][mu_b23].name);
+			 goal_fact_layer.insert(mu_on[mu_b12][mu_b25].name);
+			 goal_fact_layer.insert(mu_on[mu_b13][mu_b47].name);
+			 goal_fact_layer.insert(mu_on[mu_b14][mu_b20].name);
+			 goal_fact_layer.insert(mu_on[mu_b15][mu_b19].name);
+			 goal_fact_layer.insert(mu_on[mu_b16][mu_b31].name);
+			 goal_fact_layer.insert(mu_on[mu_b17][mu_b39].name);
+			 goal_fact_layer.insert(mu_on[mu_b18][mu_b50].name);
+			 goal_fact_layer.insert(mu_on[mu_b19][mu_b1].name);
+			 goal_fact_layer.insert(mu_on[mu_b20][mu_b45].name);
+			 goal_fact_layer.insert(mu_on[mu_b21][mu_b11].name);
+			 goal_fact_layer.insert(mu_on[mu_b23][mu_b43].name);
+			 goal_fact_layer.insert(mu_on[mu_b25][mu_b42].name);
+			 goal_fact_layer.insert(mu_on[mu_b26][mu_b36].name);
+			 goal_fact_layer.insert(mu_on[mu_b27][mu_b35].name);
+			 goal_fact_layer.insert(mu_on[mu_b28][mu_b29].name);
+			 goal_fact_layer.insert(mu_on[mu_b29][mu_b44].name);
+			 goal_fact_layer.insert(mu_on[mu_b30][mu_b8].name);
+			 goal_fact_layer.insert(mu_on[mu_b31][mu_b9].name);
+			 goal_fact_layer.insert(mu_on[mu_b32][mu_b6].name);
+			 goal_fact_layer.insert(mu_on[mu_b33][mu_b10].name);
+			 goal_fact_layer.insert(mu_on[mu_b34][mu_b14].name);
+			 goal_fact_layer.insert(mu_on[mu_b35][mu_b2].name);
+			 goal_fact_layer.insert(mu_on[mu_b36][mu_b7].name);
+			 goal_fact_layer.insert(mu_on[mu_b37][mu_b32].name);
+			 goal_fact_layer.insert(mu_on[mu_b38][mu_b28].name);
+			 goal_fact_layer.insert(mu_on[mu_b40][mu_b24].name);
+			 goal_fact_layer.insert(mu_on[mu_b41][mu_b38].name);
+			 goal_fact_layer.insert(mu_on[mu_b42][mu_b34].name);
+			 goal_fact_layer.insert(mu_on[mu_b43][mu_b12].name);
+			 goal_fact_layer.insert(mu_on[mu_b44][mu_b49].name);
+			 goal_fact_layer.insert(mu_on[mu_b45][mu_b4].name);
+			 goal_fact_layer.insert(mu_on[mu_b46][mu_b18].name);
+			 goal_fact_layer.insert(mu_on[mu_b47][mu_b30].name);
+			 goal_fact_layer.insert(mu_on[mu_b48][mu_b22].name);
+			 goal_fact_layer.insert(mu_on[mu_b50][mu_b13].name);
+
+
+/* TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO
+ *
+ * GOAL IS HARDCODED RIGHT NOW BUT THIS NEEDS TO BE TAKEN CARE OF!
+ */
+
+
+	 	if ( (f_l.count(mu_on[mu_b1][mu_b33].name)!=0) && (f_l.count(mu_on[mu_b3][mu_b40].name)!=0) && (f_l.count(mu_on[mu_b4][mu_b46].name)!=0) &&
+	 	 (f_l.count(mu_on[mu_b5][mu_b21].name)!=0) && (f_l.count(mu_on[mu_b6][mu_b17].name)!=0) && (f_l.count(mu_on[mu_b7][mu_b37].name)!=0) &&
+		 (f_l.count(mu_on[mu_b8][mu_b15].name)!=0) && (f_l.count(mu_on[mu_b9][mu_b41].name)!=0) && (f_l.count(mu_on[mu_b10][mu_b26].name)!=0) &&
+		 (f_l.count(mu_on[mu_b11][mu_b23].name)!=0) && (f_l.count(mu_on[mu_b12][mu_b25].name)!=0) && (f_l.count(mu_on[mu_b13][mu_b47].name)!=0) &&
+		 (f_l.count(mu_on[mu_b14][mu_b20].name)!=0) && (f_l.count(mu_on[mu_b15][mu_b19].name)!=0) && (f_l.count(mu_on[mu_b16][mu_b31].name)!=0) &&
+		 (f_l.count(mu_on[mu_b17][mu_b39].name)!=0) && (f_l.count(mu_on[mu_b18][mu_b50].name)!=0) && (f_l.count(mu_on[mu_b19][mu_b1].name)!=0) &&
+		 (f_l.count(mu_on[mu_b20][mu_b45].name)!=0) && (f_l.count(mu_on[mu_b21][mu_b11].name)!=0) && (f_l.count(mu_on[mu_b23][mu_b43].name)!=0) &&
+		 (f_l.count(mu_on[mu_b25][mu_b42].name)!=0) && (f_l.count(mu_on[mu_b26][mu_b36].name)!=0) && (f_l.count(mu_on[mu_b27][mu_b35].name)!=0) &&
+		 (f_l.count(mu_on[mu_b28][mu_b29].name)!=0) && (f_l.count(mu_on[mu_b29][mu_b44].name)!=0) && (f_l.count(mu_on[mu_b30][mu_b8].name)!=0) &&
+		 (f_l.count(mu_on[mu_b31][mu_b9].name)!=0) && (f_l.count(mu_on[mu_b32][mu_b6].name)!=0) && (f_l.count(mu_on[mu_b33][mu_b10].name)!=0) &&
+		 (f_l.count(mu_on[mu_b34][mu_b14].name)!=0) && (f_l.count(mu_on[mu_b35][mu_b2].name)!=0) && (f_l.count(mu_on[mu_b36][mu_b7].name)!=0) &&
+		 (f_l.count(mu_on[mu_b37][mu_b32].name)!=0) && (f_l.count(mu_on[mu_b38][mu_b28].name)!=0) && (f_l.count(mu_on[mu_b40][mu_b24].name)!=0) &&
+		 (f_l.count(mu_on[mu_b41][mu_b38].name)!=0) && (f_l.count(mu_on[mu_b42][mu_b34].name)!=0) && (f_l.count(mu_on[mu_b43][mu_b12].name)!=0) &&
+		 (f_l.count(mu_on[mu_b44][mu_b49].name)!=0) && (f_l.count(mu_on[mu_b45][mu_b4].name)!=0) && (f_l.count(mu_on[mu_b46][mu_b18].name)!=0) &&
+		 (f_l.count(mu_on[mu_b47][mu_b30].name)!=0) && (f_l.count(mu_on[mu_b48][mu_b22].name)!=0) && (f_l.count(mu_on[mu_b50][mu_b13].name)!=0) )
+	 	{
+	 					cout << "\n\n\nGOOAL\n\n\n" << endl;
+	 					break;
+	 	}

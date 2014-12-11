@@ -1,14 +1,14 @@
 /******************************
   Program "blocks.m" compiled by "Universal Planner Murphi Release 2.0.R8"
 
-  Murphi Last Compiled date: "May 20 2014"
+  Murphi Last Compiled date: "Dec  8 2014"
  ******************************/
 
 /********************
   Parameter
  ********************/
 #define MURPHI_VERSION "Universal Planner Murphi Release 2.0.R8"
-#define MURPHI_DATE "May 20 2014"
+#define MURPHI_DATE "Dec  8 2014"
 #define PROTOCOL_NAME "blocks"
 #define BITS_IN_WORLD 115
 #define HASHC
@@ -196,6 +196,12 @@ friend int Compare(mu_1__type_0& a, mu_1__type_0& b)
 
   void reset() { for (int i = 0; i < 4; i++) array[i].reset(); };
 
+  void to_state(state *thestate)
+  {
+    for (int i = 0; i < 4; i++)
+      array[i].to_state(thestate);
+  };
+
   int array_dim() {
 
   const char* mb = "mu_0_boolean";
@@ -229,12 +235,6 @@ friend int Compare(mu_1__type_0& a, mu_1__type_0& b)
 
 	#endif 
 }
-  void to_state(state *thestate)
-  {
-    for (int i = 0; i < 4; i++)
-      array[i].to_state(thestate);
-  };
-
   void print(FILE *target, const char *separator)
   {
     for (int i = 0; i < 4; i++)
@@ -357,6 +357,12 @@ friend int Compare(mu_1__type_1& a, mu_1__type_1& b)
 
   void reset() { for (int i = 0; i < 4; i++) array[i].reset(); };
 
+  void to_state(state *thestate)
+  {
+    for (int i = 0; i < 4; i++)
+      array[i].to_state(thestate);
+  };
+
   int array_dim() {
 
   const char* mb = "mu_0_boolean";
@@ -390,12 +396,6 @@ friend int Compare(mu_1__type_1& a, mu_1__type_1& b)
 
 	#endif 
 }
-  void to_state(state *thestate)
-  {
-    for (int i = 0; i < 4; i++)
-      array[i].to_state(thestate);
-  };
-
   void print(FILE *target, const char *separator)
   {
     for (int i = 0; i < 4; i++)
@@ -518,6 +518,12 @@ friend int Compare(mu_1__type_2& a, mu_1__type_2& b)
 
   void reset() { for (int i = 0; i < 4; i++) array[i].reset(); };
 
+  void to_state(state *thestate)
+  {
+    for (int i = 0; i < 4; i++)
+      array[i].to_state(thestate);
+  };
+
   int array_dim() {
 
   const char* mb = "mu_0_boolean";
@@ -551,12 +557,6 @@ friend int Compare(mu_1__type_2& a, mu_1__type_2& b)
 
 	#endif 
 }
-  void to_state(state *thestate)
-  {
-    for (int i = 0; i < 4; i++)
-      array[i].to_state(thestate);
-  };
-
   void print(FILE *target, const char *separator)
   {
     for (int i = 0; i < 4; i++)
@@ -679,6 +679,12 @@ friend int Compare(mu_1__type_3& a, mu_1__type_3& b)
 
   void reset() { for (int i = 0; i < 4; i++) array[i].reset(); };
 
+  void to_state(state *thestate)
+  {
+    for (int i = 0; i < 4; i++)
+      array[i].to_state(thestate);
+  };
+
   int array_dim() {
 
   const char* mb = "mu_0_boolean";
@@ -712,12 +718,6 @@ friend int Compare(mu_1__type_3& a, mu_1__type_3& b)
 
 	#endif 
 }
-  void to_state(state *thestate)
-  {
-    for (int i = 0; i < 4; i++)
-      array[i].to_state(thestate);
-  };
-
   void print(FILE *target, const char *separator)
   {
     for (int i = 0; i < 4; i++)
@@ -840,6 +840,12 @@ friend int Compare(mu_1__type_4& a, mu_1__type_4& b)
 
   void reset() { for (int i = 0; i < 4; i++) array[i].reset(); };
 
+  void to_state(state *thestate)
+  {
+    for (int i = 0; i < 4; i++)
+      array[i].to_state(thestate);
+  };
+
   int array_dim() {
 
   const char* mb = "mu_0_boolean";
@@ -873,12 +879,6 @@ friend int Compare(mu_1__type_4& a, mu_1__type_4& b)
 
 	#endif 
 }
-  void to_state(state *thestate)
-  {
-    for (int i = 0; i < 4; i++)
-      array[i].to_state(thestate);
-  };
-
   void print(FILE *target, const char *separator)
   {
     for (int i = 0; i < 4; i++)
@@ -1122,9 +1122,9 @@ double world_class::get_h_val()
 void world_class::set_h_val()
 {
   //	double h_val = 0; 
-  //   double h_val = upm_rpg().get_rpg_value();
+  //   double h_val = upm_rpg().compute_rpg();
   upm_rpg::getInstance().clear_all();
-  double h_val = upm_rpg::getInstance().get_rpg_value();
+  double h_val = upm_rpg::getInstance().compute_rpg();
   mu_h_n.value(h_val);
 }
 //WP
@@ -1240,9 +1240,9 @@ public:
     return mu_true;
   }
 
-  std::vector<std::string> precond_array(RULE_INDEX_TYPE r)
+  std::vector<mu_0_boolean*> precond_array(RULE_INDEX_TYPE r)
   {
-    std::vector<std::string> preconds;
+    std::vector<mu_0_boolean*> preconds;
 
 
     return preconds;
@@ -1257,9 +1257,9 @@ public:
     return effs;
   }
 
-  std::vector<std::string> effects_add_array(RULE_INDEX_TYPE r)
+  std::vector<mu_0_boolean*> effects_add_array(RULE_INDEX_TYPE r)
   {
-    std::vector<std::string> aeffs;
+    std::vector<mu_0_boolean*> aeffs;
 
 
 
@@ -1359,9 +1359,9 @@ bool mu__boolexpr6;
     return mu__boolexpr5;
   }
 
-  std::vector<std::string> precond_array(RULE_INDEX_TYPE r)
+  std::vector<mu_0_boolean*> precond_array(RULE_INDEX_TYPE r)
   {
-    std::vector<std::string> preconds;
+    std::vector<mu_0_boolean*> preconds;
     static mu_1_block mu_y;
     mu_y.value((r % 4) + 1);
     r = r / 4;
@@ -1374,9 +1374,9 @@ bool mu__boolexpr7;
   else {
   mu__boolexpr7 = (mu_isclear[mu_x]) ; 
 }
-		preconds.push_back(mu_handempty.name); 
-		preconds.push_back(mu_isclear[mu_x].name); 
-		preconds.push_back(mu_on[mu_x][mu_y].name); 
+		preconds.push_back(&(mu_handempty)); 
+		preconds.push_back(&(mu_isclear[mu_x])); 
+		preconds.push_back(&(mu_on[mu_x][mu_y])); 
 
     return preconds;
   }
@@ -1394,13 +1394,16 @@ bool mu__boolexpr7;
 
     effs.push_back(&(mu_holding[mu_x]));  // mu_true 
     effs.push_back(&(mu_isclear[mu_y]));  // mu_true 
+    effs.push_back(&(mu_isclear[mu_x]));  // mu_false 
+    effs.push_back(&(mu_handempty));  // mu_false 
+    effs.push_back(&(mu_on[mu_x][mu_y]));  // mu_false 
 
     return effs;
   }
 
-  std::vector<std::string> effects_add_array(RULE_INDEX_TYPE r)
+  std::vector<mu_0_boolean*> effects_add_array(RULE_INDEX_TYPE r)
   {
-    std::vector<std::string> aeffs;
+    std::vector<mu_0_boolean*> aeffs;
 
     static mu_1_block mu_y;
     mu_y.value((r % 4) + 1);
@@ -1409,8 +1412,8 @@ bool mu__boolexpr7;
     mu_x.value((r % 4) + 1);
     r = r / 4;
 
-    aeffs.push_back(mu_holding[mu_x].name); //  mu_true 
-    aeffs.push_back(mu_isclear[mu_y].name); //  mu_true 
+    aeffs.push_back(&(mu_holding[mu_x])); //  mu_true 
+    aeffs.push_back(&(mu_isclear[mu_y])); //  mu_true 
 
     return aeffs;
   }
@@ -1560,9 +1563,9 @@ bool mu__boolexpr10;
     return mu__boolexpr10;
   }
 
-  std::vector<std::string> precond_array(RULE_INDEX_TYPE r)
+  std::vector<mu_0_boolean*> precond_array(RULE_INDEX_TYPE r)
   {
-    std::vector<std::string> preconds;
+    std::vector<mu_0_boolean*> preconds;
     static mu_1_block mu_y;
     mu_y.value((r % 4) + 1);
     r = r / 4;
@@ -1570,8 +1573,8 @@ bool mu__boolexpr10;
     mu_x.value((r % 4) + 1);
     r = r / 4;
 
-		preconds.push_back(mu_holding[mu_x].name); 
-		preconds.push_back(mu_isclear[mu_y].name); 
+		preconds.push_back(&(mu_holding[mu_x])); 
+		preconds.push_back(&(mu_isclear[mu_y])); 
 
     return preconds;
   }
@@ -1590,13 +1593,15 @@ bool mu__boolexpr10;
     effs.push_back(&(mu_isclear[mu_x]));  // mu_true 
     effs.push_back(&(mu_handempty));  // mu_true 
     effs.push_back(&(mu_on[mu_x][mu_y]));  // mu_true 
+    effs.push_back(&(mu_holding[mu_x]));  // mu_false 
+    effs.push_back(&(mu_isclear[mu_y]));  // mu_false 
 
     return effs;
   }
 
-  std::vector<std::string> effects_add_array(RULE_INDEX_TYPE r)
+  std::vector<mu_0_boolean*> effects_add_array(RULE_INDEX_TYPE r)
   {
-    std::vector<std::string> aeffs;
+    std::vector<mu_0_boolean*> aeffs;
 
     static mu_1_block mu_y;
     mu_y.value((r % 4) + 1);
@@ -1605,9 +1610,9 @@ bool mu__boolexpr10;
     mu_x.value((r % 4) + 1);
     r = r / 4;
 
-    aeffs.push_back(mu_isclear[mu_x].name); //  mu_true 
-    aeffs.push_back(mu_handempty.name); //  mu_true 
-    aeffs.push_back(mu_on[mu_x][mu_y].name); //  mu_true 
+    aeffs.push_back(&(mu_isclear[mu_x])); //  mu_true 
+    aeffs.push_back(&(mu_handempty)); //  mu_true 
+    aeffs.push_back(&(mu_on[mu_x][mu_y])); //  mu_true 
 
     return aeffs;
   }
@@ -1742,14 +1747,14 @@ public:
     return mu_holding[mu_x];
   }
 
-  std::vector<std::string> precond_array(RULE_INDEX_TYPE r)
+  std::vector<mu_0_boolean*> precond_array(RULE_INDEX_TYPE r)
   {
-    std::vector<std::string> preconds;
+    std::vector<mu_0_boolean*> preconds;
     static mu_1_block mu_x;
     mu_x.value((r % 4) + 1);
     r = r / 4;
 
-		preconds.push_back(mu_holding[mu_x].name); 
+		preconds.push_back(&(mu_holding[mu_x])); 
 
     return preconds;
   }
@@ -1765,21 +1770,22 @@ public:
     effs.push_back(&(mu_isclear[mu_x]));  // mu_true 
     effs.push_back(&(mu_handempty));  // mu_true 
     effs.push_back(&(mu_ontable[mu_x]));  // mu_true 
+    effs.push_back(&(mu_holding[mu_x]));  // mu_false 
 
     return effs;
   }
 
-  std::vector<std::string> effects_add_array(RULE_INDEX_TYPE r)
+  std::vector<mu_0_boolean*> effects_add_array(RULE_INDEX_TYPE r)
   {
-    std::vector<std::string> aeffs;
+    std::vector<mu_0_boolean*> aeffs;
 
     static mu_1_block mu_x;
     mu_x.value((r % 4) + 1);
     r = r / 4;
 
-    aeffs.push_back(mu_isclear[mu_x].name); //  mu_true 
-    aeffs.push_back(mu_handempty.name); //  mu_true 
-    aeffs.push_back(mu_ontable[mu_x].name); //  mu_true 
+    aeffs.push_back(&(mu_isclear[mu_x])); //  mu_true 
+    aeffs.push_back(&(mu_handempty)); //  mu_true 
+    aeffs.push_back(&(mu_ontable[mu_x])); //  mu_true 
 
     return aeffs;
   }
@@ -1898,9 +1904,9 @@ bool mu__boolexpr13;
     return mu__boolexpr12;
   }
 
-  std::vector<std::string> precond_array(RULE_INDEX_TYPE r)
+  std::vector<mu_0_boolean*> precond_array(RULE_INDEX_TYPE r)
   {
-    std::vector<std::string> preconds;
+    std::vector<mu_0_boolean*> preconds;
     static mu_1_block mu_x;
     mu_x.value((r % 4) + 1);
     r = r / 4;
@@ -1910,9 +1916,9 @@ bool mu__boolexpr14;
   else {
   mu__boolexpr14 = (mu_ontable[mu_x]) ; 
 }
-		preconds.push_back(mu_handempty.name); 
-		preconds.push_back(mu_isclear[mu_x].name); 
-		preconds.push_back(mu_ontable[mu_x].name); 
+		preconds.push_back(&(mu_handempty)); 
+		preconds.push_back(&(mu_isclear[mu_x])); 
+		preconds.push_back(&(mu_ontable[mu_x])); 
 
     return preconds;
   }
@@ -1926,19 +1932,22 @@ bool mu__boolexpr14;
     r = r / 4;
 
     effs.push_back(&(mu_holding[mu_x]));  // mu_true 
+    effs.push_back(&(mu_ontable[mu_x]));  // mu_false 
+    effs.push_back(&(mu_isclear[mu_x]));  // mu_false 
+    effs.push_back(&(mu_handempty));  // mu_false 
 
     return effs;
   }
 
-  std::vector<std::string> effects_add_array(RULE_INDEX_TYPE r)
+  std::vector<mu_0_boolean*> effects_add_array(RULE_INDEX_TYPE r)
   {
-    std::vector<std::string> aeffs;
+    std::vector<mu_0_boolean*> aeffs;
 
     static mu_1_block mu_x;
     mu_x.value((r % 4) + 1);
     r = r / 4;
 
-    aeffs.push_back(mu_holding[mu_x].name); //  mu_true 
+    aeffs.push_back(&(mu_holding[mu_x])); //  mu_true 
 
     return aeffs;
   }
@@ -2069,7 +2078,7 @@ bool Condition(RULE_INDEX_TYPE r)
   if (r>=37 && r<=40) return R4.Condition(r-37);
 Error.Notrace("Internal: NextStateGenerator -- checking condition for nonexisting rule.");
 }
-std::vector<std::string> precond_array(RULE_INDEX_TYPE r)
+std::vector<mu_0_boolean*> precond_array(RULE_INDEX_TYPE r)
 {
   category = CONDITION;
   if (r<=0) return R0.precond_array(r-0);
@@ -2088,7 +2097,7 @@ std::vector<mu_0_boolean*> effects_array(RULE_INDEX_TYPE r)
   if (r>=37 && r<=40) return R4.effects_array(r-37);
 Error.Notrace("Internal: NextStateGenerator -- checking effects for nonexisting rule.");
 }
-std::vector<std::string> effects_add_array(RULE_INDEX_TYPE r)
+std::vector<mu_0_boolean*> effects_add_array(RULE_INDEX_TYPE r)
 {
   if (r<=0) return R0.effects_add_array(r-0);
   if (r>=1 && r<=16) return R1.effects_add_array(r-1);
@@ -2248,6 +2257,8 @@ unsigned short StartStateManager::numstartstates = 1;
 /********************
   Goal records
  ********************/
+
+// WPGOAL
 int mu__goal_17() // Goal "enjoy"
 {
 bool mu__boolexpr18;
@@ -2263,13 +2274,27 @@ bool mu__boolexpr19;
 return mu__boolexpr18;
 };
 
+
+
+//WP WP WP WP WP WP  NEED TO FIX THE GOAL LAYER EXTRACTION PROBLEM!!!!!!!!!!!!!!!!!
+
+
+//		mu_on[mu_a][mu_b]  
+//		mu_on[mu_b][mu_c]  
+//		mu_on[mu_c][mu_d]  
+
+
+/* mu_on[mu_c][mu_d] */
+
 bool mu__condition_20() // Condition for Rule "enjoy"
 {
   return mu__goal_17( );
 }
 
-/**** end rule declaration ****/
+bool mu__goal__00(){ return mu__condition_20(); } /* WP WP WP GOAL CONDITION CHECK */ /**** end rule declaration ****/
 
+
+// WPGOAL
 const rulerec goals[] = {
 {"enjoy", &mu__condition_20, NULL, },
 };

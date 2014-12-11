@@ -1,0 +1,99 @@
+
+======================================================
+
+UPMurphi Release 2.0.b4
+Universal Planner for Discrete Time Hybrid Systems
+
+Copyright (C) 2007 - 2010
+G. Della Penna, B. Intrigila, D. Magazzeni, F. Mercorio
+
+Call with the -c flag or read the license file for terms
+and conditions of use.
+Run this program with "-h" for the list of options.
+Send bugs and comments to giuseppe.dellapenna@univaq.it
+
+======================================================
+
+======================================================
+
+Model: sb2
+* the state size is 273 bits (rounded up to 36 bytes).
+
+======================================================
+First state is at 0xce34b008
+
+=== Analyzing model... ===============================
+
+* State Space Expansion Algorithm: breadth first search.
+  with symmetry algorithm 3 -- Heuristic Small Memory Normalization
+  with permutation trial limit 10.
+* Maximum size of the state space: 156503909 states.
+  with states hash-compressed to 40 bits.
+
+
+======================================================
+
+Model exploration complete (in 1.08 seconds).
+	2 rules fired
+	1 start states
+	3 reachable states
+	1 goals found
+
+
+=== Building model dynamics... =======================
+
+* Transition Graph mode: Memory Image
+* Maximum size of graph: 169125161 transitions.
+
+
+======================================================
+
+Model dynamics rebuilding complete (in 1.10 seconds).
+	3 states
+	2 transitions
+	out degree: min 0 max 1 avg 0.67
+
+
+=== Finding control paths... =========================
+
+* Search Algorithm: Feasible Plan
+* Optimization mode: Minimize.
+
+
+======================================================
+
+Control paths calculation complete (in 1.10 seconds).
+	3 states
+	1 controllable
+
+
+=== Collecting plans... ==============================
+
+
+======================================================
+
+Plan(s) generation complete (in 1.10 seconds).
+	1 plans
+	plan length (actions): min 1 max 1 avg 1.00
+	plan duration (time): min 0 max 0 avg 0.00
+	plan weight: min 0 max 0 avg 0.00
+
+
+=== Writing final results... =========================
+
+* Output format: PDDL+
+* Output target: stdout.
+
+; --Plan #00001--------------------------
+; ---------------------------------------
+(000)  openwindow [000]
+; ---------------------------------------
+; --Plan duration: 0000, weight: 0000----
+; ---------------------------------------
+
+
+======================================================
+
+Results Written (in 1.10 seconds).
+
+

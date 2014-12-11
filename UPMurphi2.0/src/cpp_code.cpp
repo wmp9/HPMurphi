@@ -17,6 +17,9 @@
 #include <set>
 #include <iterator>
 
+// WP WP WP WP WP WP WP WP WP WP
+bool ff_enabled = true;
+
 /* NOTE: 
 
    Beware of declarations introduced not at the beginnings
@@ -517,18 +520,33 @@ const char *arraytypedecl::generate_decl()
 	    "  void clear() { for (int i = 0; i < %d; i++) array[i].clear(); };\n\n"
 	    "  void undefine() { for (int i = 0; i < %d; i++) array[i].undefine(); };\n\n"
 	    "  void reset() { for (int i = 0; i < %d; i++) array[i].reset(); };\n\n"
-
+	    //      "  void from_state(state *thestate)\n"
+	    //      "  {\n"
+	    //      "    for (int i = 0; i < %d; i++)\n"
+	    //      "      array[i].from_state(thestate);\n"
+	    //      "  };\n\n",
+	    "  void to_state(state *thestate)\n"
+	    "  {\n"
+	    "    for (int i = 0; i < %d; i++)\n"
+	    "      array[i].to_state(thestate);\n" "  };\n\n",
+    	indextype->getsize(),	/* body of clear */
+    	indextype->getsize(),	/* body of undefine */
+    	indextype->getsize(),	/* body of reset */
+	    indextype->getsize()	/* body of to_state */
+    	);
 
     	/*
     	 *  WP WP WP WP WP WP WP WP WP WP WP WP WP WP WP WP WP WP WP WP WP WP WP WP WP WP WP WP WP
     	 *
     	 * THIS CODE IS CREATED IN EVERY SINGLE NEWLY CREATED mu_1__type_X OBJECT!
-    	 * (HAVEN'T FIGURED WHERE DO THE OTHER CODE GENERATION SNIPPETS ACTUALLY PUT THE CODE :)
+    	 * (HAVEN'T FIGURED WHERE DO THE OTHER CODE GENERATION SNIPPETS ACTUALLY PUT THE CODE)
     	 * AND I'VE PUT THE CODE EVERYWHERE. AND I MEAN E-V'RY-WHEEEEEEEEEREEE! )
     	 *
     	 * */
 
+    if (ff_enabled == true){
 
+    fprintf(codefile,
     	"  int array_dim() {\n\n"
         "  const char* mb = \"mu_0_boolean\";\n"
         "  const char* mt = \"mu_1__type\";\n\n"
@@ -572,29 +590,20 @@ const char *arraytypedecl::generate_decl()
 		"		}\n"
 		"		return barr;\n"
 		"	   \n\n"
-		"	#endif \n}\n"
+		"	#endif \n}\n",
 
-	    "  void to_state(state *thestate)\n"
-	    "  {\n"
-	    "    for (int i = 0; i < %d; i++)\n"
-	    "      array[i].to_state(thestate);\n" "  };\n\n",
-//      "  void from_state(state *thestate)\n"
-//      "  {\n"
-//      "    for (int i = 0; i < %d; i++)\n"
-//      "      array[i].from_state(thestate);\n"
-//      "  };\n\n",
-	    indextype->getsize(),	/* body of clear */
-	    indextype->getsize(),	/* body of undefine */
-	    indextype->getsize(),	/* body of reset */
+
+
 	    mu_name,				/* WP: CLASS NAME FOR array_dim*/
 	    mu_name,				/* WP: CLASS NAME FOR bool_array*/
 	    indextype->getsize(),	/* body of bool_array in #ifdef */
 	    indextype->getsize(),	/* body of bool_array in #else */
-	    indextype->getsize(),	/* body of bool_array in #else */
-	    indextype->getsize()	/* body of to_state */
-//	    indextype->getsize()	/* WP: BODY OF ARRAY_DIM */
-	    //      indextype->getsize()  /* body of from_state */
+	    indextype->getsize()	/* body of bool_array in #else */
 	);
+
+    }
+
+
 
     /* compact print function */
     // Uli: print() function has to be used because of Undefined value
@@ -3454,6 +3463,14 @@ generate_rules_aux(int quantindex,
     } else
       rulename = NULL;
 
+
+    /**
+     * WP WP WP WP WP WP WP WP WP WP WP WP
+     *
+     * GOAL CONDITION.
+     */
+    fprintf(codefile,"bool mu__goal__00(){ return %s(); } /* WP WP WP GOAL CONDITION CHECK */ ", condname);
+
     /* install it into the appropriate list. */
     rr = new rulerec(tsprintf("%s%s", therule->name, namequants),
 		     condname, rulename);
@@ -3678,11 +3695,11 @@ const char *simplerule::generate_code()
    * returns grounded preconditions!!!
    *
    */
-
+  if (ff_enabled == true){
   // generate array of preconditions(r)
-  fprintf(codefile, "  std::vector<std::string> precond_array(RULE_INDEX_TYPE r)\n" "  {\n"
+  fprintf(codefile, "  std::vector<mu_0_boolean*> precond_array(RULE_INDEX_TYPE r)\n" "  {\n"
 		  ""
-		  "    std::vector<std::string> preconds;\n");
+		  "    std::vector<mu_0_boolean*> preconds;\n");
   generate_rule_params_assignment(enclosures);  // RESPONSIBLE FOR CREATING THE RIGHT MU_BLOCKS FOR THE PRECONDITION!
   generate_rule_params_choose(enclosures);
   generate_rule_aliases(enclosures);
@@ -3691,82 +3708,37 @@ const char *simplerule::generate_code()
 
   std::set<std::string> precondset;
 
+  expr* lc = condition;
 
-  if(condition->get_left() != NULL){
-	  std::string lst(condition->get_left()->generate_code_left());
-	  std::string rst(condition->get_left()->generate_code_right());
+  while (lc != NULL) {
 
-	  precondset.insert(lst);
-	  precondset.insert(rst);
+  	std::string lst(lc->generate_code_right());
 
+  	if ((lst.compare("mu_true")!=0) && (lst.find("mu__boolexpr")==std::string::npos)) precondset.insert(lst);
 
-	  if(condition->get_left()->get_left() != NULL){
-		  std::string lst(condition->get_left()->get_left()->generate_code_left());
-		  std::string rst(condition->get_left()->get_left()->generate_code_right());
-
-		  precondset.insert(lst);
-		  precondset.insert(rst);
-	  }
-
-	  if(condition->get_left()->get_right() != NULL){
-		  std::string lst(condition->get_left()->get_right()->generate_code_left());
-		  std::string rst(condition->get_left()->get_right()->generate_code_right());
-
-		  precondset.insert(lst);
-		  precondset.insert(rst);
-	  }
-
+  	lc = lc->get_left();
   }
 
-  if(condition->get_right() != NULL){
-	  std::string lst(condition->get_right()->generate_code_left());
-	  std::string rst(condition->get_right()->generate_code_right());
 
-	  precondset.insert(lst);
-	  precondset.insert(rst);
-
-
-	  if(condition->get_right()->get_left() != NULL){
-		  std::string lst(condition->get_right()->get_left()->generate_code_left());
-		  std::string rst(condition->get_right()->get_left()->generate_code_right());
-
-		  precondset.insert(lst);
-		  precondset.insert(rst);
-	  }
-
-	  if(condition->get_right()->get_right() != NULL){
-		  std::string lst(condition->get_right()->get_right()->generate_code_left());
-		  std::string rst(condition->get_right()->get_right()->generate_code_right());
-
-		  precondset.insert(lst);
-		  precondset.insert(rst);
-	  }
-
-  }
-
-  std::string ulst(condition->generate_code_left());
-  std::string urst(condition->generate_code_right());
-
-  precondset.insert(ulst);
-  precondset.insert(urst);
+      fprintf(codefile, "\n");
 
 
 
   std::set<std::string>::iterator it;
   for (it=precondset.begin(); it!=precondset.end(); ++it){
 
-	  if (((*it).compare("mu_true")!=0) && ((*it).find("mu__boolexpr")==std::string::npos)) {
+//	  if ((*it).find("mu__boolexpr")==std::string::npos) {
 
-		  fprintf(codefile, "		preconds.push_back(%s.name); \n", it->c_str());
+		  fprintf(codefile, "		preconds.push_back(&(%s)); \n", it->c_str());
 
-	  }
+//	  }
   }
 
 
   fprintf(codefile, "\n    return preconds;\n");
   fprintf(codefile, "  }\n" "\n");
 
-
+  }
 
   /*
    * WP WP WP WP WP WP WP WP WP WP WP WP WP WP WP WP WP WP WP WP WP WP WP WP WP WP WP WP WP WP
@@ -3776,6 +3748,7 @@ const char *simplerule::generate_code()
    * TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO
    */
 
+  if (ff_enabled == true){
 
   // generate array of effects(r)
   fprintf(codefile, "  std::vector<mu_0_boolean*> effects_array(RULE_INDEX_TYPE r)\n" "  {\n"
@@ -3802,13 +3775,24 @@ const char *simplerule::generate_code()
   fprintf(codefile, "\n    return effs;\n");
   fprintf(codefile, "  }\n" "\n");
 
+  }
+
+  /*
+   * WP WP WP WP WP WP WP WP WP WP WP WP WP WP WP WP WP WP WP WP WP WP WP WP WP WP WP WP WP WP
+   *
+   * returns grounded add effects of an action!!!
+   *
+   * TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO
+   */
 
 
+
+  if (ff_enabled == true){
 
   // generate array of add effects(r)
-  fprintf(codefile, "  std::vector<std::string> effects_add_array(RULE_INDEX_TYPE r)\n" "  {\n"
+  fprintf(codefile, "  std::vector<mu_0_boolean*> effects_add_array(RULE_INDEX_TYPE r)\n" "  {\n"
 		  ""
-		  "    std::vector<std::string> aeffs;\n");
+		  "    std::vector<mu_0_boolean*> aeffs;\n");
 
   fprintf(codefile, "\n");
 
@@ -3822,7 +3806,7 @@ const char *simplerule::generate_code()
       for (stmt * b = body; b != NULL; b = b->next) {
     	  std::string src_str(b->get_src());
     	  if ((b->get_target() != "ERROR") && (b->get_src() != "ERROR") && (src_str.compare("mu_false")!=0)){
-    		  fprintf(codefile, "    aeffs.push_back(%s.name); //  %s \n", b->get_target(), b->get_src());
+    		  fprintf(codefile, "    aeffs.push_back(&(%s)); //  %s \n", b->get_target(), b->get_src());
     	  }
       }
 
@@ -3830,6 +3814,8 @@ const char *simplerule::generate_code()
 
   fprintf(codefile, "\n    return aeffs;\n");
   fprintf(codefile, "  }\n" "\n");
+
+  }
 
 
   // generate NextRule(r)
@@ -3897,8 +3883,15 @@ const char *simplerule::generate_code()
     
   fprintf(codefile, "  };\n" "\n");
   
+  /*
+   * WP WP WP WP WP WP WP WP WP WP WP WP WP WP WP WP WP WP WP WP WP WP WP WP WP WP WP WP WP WP
+   *
+   * executes only the add efects of an action (FF)
+   *
+   * TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO
+   */
 
-
+  if (ff_enabled == true){
 
   // generate execute code responsible for add effects
     fprintf(codefile, "  void Code_ff(RULE_INDEX_TYPE r)\n" "  {\n\n");
@@ -3920,7 +3913,7 @@ const char *simplerule::generate_code()
 
     fprintf(codefile, "\n\n  }\n" "\n");
 
-
+  }
 
 
 
@@ -4038,6 +4031,50 @@ const char *plangoal::generate_code ()
   generate_rule_aliases (enclosures);
   fprintf (codefile, "return %s;\n", condition->generate_code ());
   fprintf (codefile, "};\n\n");
+
+
+  if (ff_enabled){
+
+	  fprintf(codefile, "  std::set<mu_0_boolean*> get_goal_conditions()\n" "  {\n"
+					  ""
+					  "    std::set<mu_0_boolean*> goal_conds;\n");
+
+
+
+		std::set<std::string> goalcondset;
+
+		expr* lc = condition;
+
+		while (lc != NULL) {
+
+			std::string lst(lc->generate_code_right());
+
+			if (lst.find("mu_")==0 && lst.find("mu__")!=0) goalcondset.insert(lst);
+
+			lc = lc->get_left();
+		}
+
+
+			fprintf(codefile, "\n");
+
+			std::set<std::string>::iterator it;
+			for (it=goalcondset.begin(); it!=goalcondset.end(); ++it){
+
+			  if ((*it).find("mu__boolexpr")==std::string::npos) {
+
+				  fprintf(codefile, "		goal_conds.insert(&(%s)); \n", it->c_str());
+
+			  }
+			}
+
+
+			fprintf(codefile, "\n    return goal_conds;\n");
+			fprintf(codefile, "  }\n" "\n");
+
+  }
+
+
+
 
   /* there is no rule function as it is a invariant */
   /* may be added later */
@@ -4173,7 +4210,7 @@ void make_print_pddlworld_aux(vardecl * var)
 void make_print_world(ste * globals)
      /* done recursively. */
 {
-	//WP get_f_val
+	//WP WP WP WP get_f_val
 	fprintf(codefile,
 	"//WP\n"
 	"double world_class::get_f_val()\n"
@@ -4182,7 +4219,7 @@ void make_print_world(ste * globals)
 	"  return f_val;\n"
 	"}\n");
 
-	//WP set_f_val
+	//WP WP WP WP set_f_val
 	fprintf(codefile,
 	"//WP\n"
 	"void world_class::set_f_val()\n"
@@ -4191,7 +4228,7 @@ void make_print_world(ste * globals)
 	"  mu_f_n.value(f_val);\n"
 	"}\n");
 
-	//WP get_h_val
+	//WP WP WP WP get_h_val
 	fprintf(codefile,
 	"//WP\n"
 	"double world_class::get_h_val()\n"
@@ -4200,19 +4237,37 @@ void make_print_world(ste * globals)
 	"  return h_val;\n"
 	"}\n");
 
-	//WP set_h_val
+
+	// WP WP WP WP set_h_val with or without FF RPG
+	if (ff_enabled == true){
+
+	//WP WP WP WP set_h_val
 	fprintf(codefile,
 	"//WP\n"
 	"void world_class::set_h_val()\n"
 	"{\n"
 	"  //	double h_val = 0; \n"
-	"  //   double h_val = upm_rpg().get_rpg_value();\n"
+	"  //   double h_val = upm_rpg().compute_rpg();\n"
 	"  upm_rpg::getInstance().clear_all();\n"
-	"  double h_val = upm_rpg::getInstance().get_rpg_value();\n"
+	"  double h_val = upm_rpg::getInstance().compute_rpg();\n"
 	"  mu_h_n.value(h_val);\n"
 	"}\n");
 
-	//WP get_g_val
+	} else {
+
+	//WP WP WP WP set_h_val
+	fprintf(codefile,
+	"//WP\n"
+	"void world_class::set_h_val()\n"
+	"{\n"
+	"  double h_val = 0; \n"
+	"  mu_h_n.value(h_val);\n"
+	"}\n");
+
+	}
+
+
+	//WP WP WP WP get_g_val
 	fprintf(codefile,
 	"//WP\n"
 	"double world_class::get_g_val()\n"
@@ -4221,7 +4276,7 @@ void make_print_world(ste * globals)
 	"  return g_val;\n"
 	"}\n");
 
-	//WP set_g_val
+	//WP WP WP WP set_g_val
 	fprintf(codefile,
 	"//WP\n"
 	"void world_class::set_g_val(double g_val)\n"
@@ -4417,8 +4472,8 @@ void make_world(ste * globals)
   make_clear(globals);
   make_undefine(globals);
   make_reset(globals);
-  make_get_mu_bools(globals); /* WP: */
-  make_get_mu_bool_arrays(globals); /* WP: */
+  if (ff_enabled == true) make_get_mu_bools(globals); /* WP: */
+  if (ff_enabled == true) make_get_mu_bool_arrays(globals); /* WP: */
   make_print_world(globals);
   make_print_pddlworld(globals);
   make_print_statistic(globals);
@@ -4554,7 +4609,9 @@ generate_Goals ()
   for (sr = simplerule::SimpleRuleList; sr != NULL; sr = sr->NextSimpleRule) {
     if (sr->getclass () == rule::Goal) {
       sr->rulenumber = r++;
-      sr->generate_code ();
+      fprintf(codefile, "\n// WPGOAL\n");
+      sr->generate_code();
+      fprintf(codefile, "\n// WPGOAL\n");
     }
   }
   return r;
@@ -4644,10 +4701,14 @@ RULE_INDEX_TYPE generate_ruleset()
 	  "Error.Notrace(\"Internal: NextStateGenerator -- checking condition for nonexisting rule.\");\n"
 	  "}\n");
 
-
+  /*
+   * WP WP WP WP WP WP WP WP WP
+   */
   // generate precond_array(r)
+
+  if (ff_enabled == true){
     fprintf(codefile,
-  	  "std::vector<std::string> precond_array(RULE_INDEX_TYPE r)\n" "{\n"
+  	  "std::vector<mu_0_boolean*> precond_array(RULE_INDEX_TYPE r)\n" "{\n"
   	  "  category = CONDITION;\n");
     i = 0;
     r = 0;
@@ -4669,9 +4730,15 @@ RULE_INDEX_TYPE generate_ruleset()
     fprintf(codefile,
   	  "Error.Notrace(\"Internal: NextStateGenerator -- checking preconditions for nonexisting rule.\");\n"
   	  "}\n");
+  }
 
 
+/*
+ * WP WP WP WP WP WP WP WP WP
+ */
     // generate effects_array(r)
+
+  if (ff_enabled == true){
       fprintf(codefile,
     	  "std::vector<mu_0_boolean*> effects_array(RULE_INDEX_TYPE r)\n" "{\n");
       i = 0;
@@ -4694,11 +4761,16 @@ RULE_INDEX_TYPE generate_ruleset()
       fprintf(codefile,
     	  "Error.Notrace(\"Internal: NextStateGenerator -- checking effects for nonexisting rule.\");\n"
     	  "}\n");
+  }
 
-
+      /*
+       * WP WP WP WP WP WP WP WP WP
+       */
       // generate effects_add_array(r)
+
+  if (ff_enabled == true){
         fprintf(codefile,
-      	  "std::vector<std::string> effects_add_array(RULE_INDEX_TYPE r)\n" "{\n");
+      	  "std::vector<mu_0_boolean*> effects_add_array(RULE_INDEX_TYPE r)\n" "{\n");
         i = 0;
         r = 0;
         for (sr = simplerule::SimpleRuleList; sr != NULL;
@@ -4719,6 +4791,7 @@ RULE_INDEX_TYPE generate_ruleset()
         fprintf(codefile,
       	  "Error.Notrace(\"Internal: NextStateGenerator -- checking add effects for nonexisting rule.\");\n"
       	  "}\n");
+  }
 
 
   // generate Code(r)
@@ -4742,7 +4815,13 @@ RULE_INDEX_TYPE generate_ruleset()
   }
   fprintf(codefile, "}\n");
 
-  // generate Code(r)
+
+  /*
+   * WP WP WP WP WP WP WP WP WP
+   */
+  // generate Code FF(r)
+
+ if (ff_enabled){
   fprintf(codefile, "void Code_ff(RULE_INDEX_TYPE r)\n" "{\n");
   i = 0;
   r = 0;
@@ -4762,6 +4841,8 @@ RULE_INDEX_TYPE generate_ruleset()
     }
   }
   fprintf(codefile, "}\n");
+
+ }
 
   // generate Priority, added by Uli
   fprintf(codefile, "int Priority(RULE_INDEX_TYPE r)\n" "{\n");

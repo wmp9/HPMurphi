@@ -19,16 +19,14 @@
 class upm_rpg {
 
 private:
-	std::set<std::string> goal_fact_layer;
-	std::vector<std::set<std::string> > rpg_facts;
-	std::vector<std::set<std::string> > rpg_actions;
-	std::set<std::string> rpg;
-	std::map<std::string, std::vector<std::string> > action_pre;
-	std::map<std::string, std::string> achieved_by;
+	std::set<mu_0_boolean*> goal_fact_layer;
+	std::vector<std::set<mu_0_boolean*> > rpg_facts;
+	std::vector<state*> rpg_state_facts;
+	std::set<mu_0_boolean*> init_facts;
+//	std::vector<std::set<int> > rpg_actions;
+	std::map<int, std::vector<mu_0_boolean*> > action_pre;
+	std::map<mu_0_boolean*, int> achieved_by;
 	std::vector<int> remaining_rules;
-	double rpg_length;
-	void create_goal_layer();
-	bool goal_check(std::set <std::string> sl);
 
 	upm_rpg();
 	upm_rpg(upm_rpg const&);
@@ -47,16 +45,15 @@ public:
 			return instance;
 	}
 
-	void compute_rpg();
-	double get_rpg_value();
-	std::set<std::string> get_fact_layer();
+	double compute_rpg();
+//	double get_rpg_value();
+	std::set<mu_0_boolean*> get_fact_layer();
 	void clear_all(){
-		std::vector<std::set<std::string> >().swap(rpg_facts);
-		std::vector<std::set<std::string> >().swap(rpg_actions);
-		rpg.clear();
+		std::vector<std::set<mu_0_boolean*> >().swap(rpg_facts);
+//		std::vector<std::set<int> >().swap(rpg_actions);
+		std::vector<state*>().swap(rpg_state_facts);
 		action_pre.clear();
 		achieved_by.clear();
-		rpg_length = -1;
 	}
 };
 
